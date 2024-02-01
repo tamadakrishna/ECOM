@@ -126,7 +126,7 @@ export const AuthProvider = ({ children }) => {
   const addNewAddress = async (address) => {
     try {
       const { data } = await axios.post(
-        `${process.env.API_URL}/api/test`,
+        `${process.env.API_URL}/api/address`,
         address
       );
 

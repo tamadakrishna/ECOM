@@ -5,7 +5,7 @@ import User from "@/backend/models/user";
 import bcrypt from "bcryptjs";
 import dbConnect from "@/backend/config/dbConnect";
 
-export default async function auth(req, res) {
+export async function GET(req, res) {
   return await NextAuth(req, res, {
     session: {
       strategy: "jwt",
