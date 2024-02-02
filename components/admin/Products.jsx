@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import CustomPagination from "../layouts/CustomPagination";
+import Pagination from "../layouts/pagination";
 
 const Products = ({ data }) => {
   return (
@@ -56,10 +56,7 @@ const Products = ({ data }) => {
         </tbody>
       </table>
       <div className="mb-6">
-        <CustomPagination
-          resPerPage={data?.resPerPage}
-          productsCount={data?.filteredProductsCount}
-        />
+        <Pagination/>
       </div>
     </div>
   );

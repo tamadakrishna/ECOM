@@ -12,6 +12,13 @@ export const registerUser = async (req, res) => {
   return user;
 };
 
+export const getUsers = async (req, res) => {
+
+  const users = await User.find({});
+
+  return users;
+};
+
 
 
 

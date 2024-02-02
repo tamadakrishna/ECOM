@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import React, { useContext, useEffect } from "react";
-import CustomPagination from "../layouts/CustomPagination";
 import AuthContext from "@/context/AuthContext";
+import Pagination from "../layouts/pagination";
 
 const Users = ({ data }) => {
   // const { error, deleteUser, clearErrors } = useContext(AuthContext);
@@ -22,7 +22,7 @@ const Users = ({ data }) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <h1 className="text-3xl my-5 ml-4 font-bold">
-        {"data?.users?.length"} Users
+        {data?.length} Users
       </h1>
       <table className="w-full text-sm text-left">
         <thead className="text-l text-gray-700 uppercase">
@@ -42,11 +42,11 @@ const Users = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {["USER"].map((user) => (
+          {data?.map((user) => (
             <tr key={"user?._id"} className="bg-white">
-              <td className="px-6 py-2">{"user?.name"}</td>
-              <td className="px-6 py-2">{"user?.email"}</td>
-              <td className="px-6 py-2">{"user?.role"}</td>
+              <td className="px-6 py-2">{user?.name}</td>
+              <td className="px-6 py-2">{user?.email}</td>
+              <td className="px-6 py-2">{user?.role}</td>
               <td className="px-6 py-2">
                 <div>
                   <Link
@@ -67,14 +67,7 @@ const Users = ({ data }) => {
           ))}
         </tbody>
       </table>
-      {/* {data?.users?.length > data?.resPerPage && (
-        <div className="mb-6">
-          <CustomPagination
-            resPerPage={data?.resPerPage}
-            productsCount={data?.ordersCount}
-          />
-        </div>
-      )} */}
+      <Pagination/>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import axios from "axios";
 import ListProducts from "@/components/products/ListProduct"
-
 import queryString from "query-string";
 
 const getProducts = async (searchParams:any) => {

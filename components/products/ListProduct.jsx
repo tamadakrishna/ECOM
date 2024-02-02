@@ -1,32 +1,49 @@
 "use client";
 
 import React from "react";
-import CustomPagination from "../layouts/CustomPagination";
-import Filters from "../layouts/Filters";
+import './style.css';
+import Image from "next/image";
+import Link from "next/link";
 
-import ProductItem from "./ProductItem";
 
 const ListProducts = ({ data }) => {
   return (
-    <section className="py-12">
-      <div className="container max-w-screen-xl mx-auto px-4">
-        <div className="flex flex-col md:flex-row -mx-4">
-          <Filters />
-
-          <main className="md:w-2/3 lg:w-3/4 px-3">
-            {data?.products?.map((product) => (
-              <ProductItem key={product?._id} product={product} />
-            ))}
-
-            <CustomPagination
-              resPerPage={data?.resPerPage}
-              productsCount={data?.filteredProductsCount}
-            />
-          </main>
+    <div className="showContainer">
+        <div className="productFilters"></div>
+        <div className="products">
+            {
+                data?.products?.map((product,index)=>{
+                   return (<div className="product mt-2" key={index}>
+                        <div className="productImage">
+                        <Image
+                            src={
+                              product?.images[0]
+                                ? product?.images[0].url
+                                : "/images/default_product.png"
+                            }
+                            alt="product anme"
+                            fill={true}
+                          />
+                        </div>
+                        <div className="productDescription">
+                        <Link
+                          href={`/product`}
+                          className="hover:text-blue-600">
+                            <div>{product.name}</div>
+                        </Link>
+                            <div>Rating  {product.ratings}</div>
+                            <div>&#x20b9; {product.price}</div>
+                            <div>{product.description}</div>
+                        </div>
+                   </div>)
+                })
+            }
+            
         </div>
-      </div>
-    </section>
+    </div>
   );
 };
 
 export default ListProducts;
+
+

@@ -4,12 +4,10 @@ import ErrorHandler from "../utils/errorHandler";
 import dbConnect from "@/backend/config/dbConnect";
 
 export const newProduct = async (req, res, next) => {
-  req.body.user = req.user._id;
 
-  const product = await Product.create(req.body);
-  res.status(201).json({
-    product,
-  });
+  const product = await Product.create(req);
+
+  return product;
 };
 
 export const getProducts = async (req, res, next) => {

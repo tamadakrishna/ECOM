@@ -6,57 +6,57 @@ import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 const UploadImages = ({ id }) => {
-  const { uploadProductImages, error, loading, clearErrors } =
-    useContext(ProductContext);
+  // const { uploadProductImages, error, loading, clearErrors } =
+  //   useContext(ProductContext);
 
-  const [images, setImages] = useState([]);
-  const [imagesPreview, setImagesPreview] = useState([]);
+  // const [images, setImages] = useState([]);
+  // const [imagesPreview, setImagesPreview] = useState([]);
 
-  const onChange = (e) => {
-    const files = Array.from(e.target.files);
+  // const onChange = (e) => {
+  //   const files = Array.from(e.target.files);
 
-    setImages([]);
-    setImagesPreview([]);
+  //   setImages([]);
+  //   setImagesPreview([]);
 
-    files.forEach((file) => {
-      const reader = new FileReader();
+  //   files.forEach((file) => {
+  //     const reader = new FileReader();
 
-      reader.onload = () => {
-        if (reader.readyState === 2) {
-          setImagesPreview((oldArray) => [...oldArray, reader.result]);
-        }
-      };
+  //     reader.onload = () => {
+  //       if (reader.readyState === 2) {
+  //         setImagesPreview((oldArray) => [...oldArray, reader.result]);
+  //       }
+  //     };
 
-      setImages((oldArray) => [...oldArray, file]);
-      reader.readAsDataURL(file);
-    });
-  };
+  //     setImages((oldArray) => [...oldArray, file]);
+  //     reader.readAsDataURL(file);
+  //   });
+  // };
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      clearErrors();
-    }
-  }, [error, updated]);
+  // useEffect(() => {
+  //   if (error) {
+  //     toast.error(error);
+  //     clearErrors();
+  //   }
+  // }, [error, updated]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
 
-    const formData = new FormData();
+  //   const formData = new FormData();
 
-    images.forEach((image) => {
-      formData.append("image", image);
-    });
+  //   images.forEach((image) => {
+  //     formData.append("image", image);
+  //   });
 
-    uploadProductImages(formData, id);
-  };
+  //   uploadProductImages(formData, id);
+  // };
 
   return (
     <div
       style={{ maxWidth: "480px" }}
       className="mt-1 mb-20 p-4 md:p-7 mx-auto rounded bg-white shadow-lg"
     >
-      <form onSubmit={submitHandler}>
+      <form onSubmit={"submitHandler"}>
         <h2 className="mb-3 text-2xl font-semibold">Upload Product Images</h2>
 
         <div className="mb-4 flex flex-col md:flex-row">
