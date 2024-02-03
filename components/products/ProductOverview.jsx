@@ -1,25 +1,19 @@
 import "./overviewStyle.css";
 import Image from "next/image";
 
-const Flipkart = async () => {
-    const product = {
-        title:"SHOE",
-        description:"jjhfjdhfjdfhjfhdjhjdjfhjdhueyuij",
-        price:"700",
-        rating:"4.2",
-        seller:"KRISHNA ENTERPRISE"
-    }
+const ProductOverview = async ({product}) => {
   return (
     <div className="product-container">
         <div className="image-container">
             <div className="image-section">
             <Image
-              src={
-                 "/images/shoe.jpg"
+               src={
+                product?.images[0]
+                  ? product?.images[0].url
+                  : "/images/default_product.png"
               }
               alt="product anme"
-              width={600}
-              height={600}
+              fill={true}
             />
             </div>
             <div className="buyandcart">
@@ -33,10 +27,10 @@ const Flipkart = async () => {
         </div>
         <div className="description-container">
             <div>Breadcom</div>
-            <div className="">{product.title}</div>
-            <div>{product.description}</div>
-            <div>{product.price}</div>
-            <div>{product.rating}</div>
+            <div className="text-lg font-bold">{product.name}</div>
+            <div className="italic">{product.description}</div>
+            <div className="text-xl font-bold text-[#020617]">&#x20b9; {product.price}</div>
+            <div >Rating  <span >{product.ratings} &#9733; </span></div>
             <div>{product.seller}</div>
         </div>
     </div>
@@ -44,4 +38,4 @@ const Flipkart = async () => {
 };
 
 
-export default Flipkart;
+export default ProductOverview;

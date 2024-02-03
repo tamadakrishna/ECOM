@@ -13,6 +13,16 @@ export const ProductProvider = ({ children }) => {
 
   const router = useRouter();
 
+  const getProduct = async (id)=>{
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/apiproducts/${id}`);
+      console.log(data)
+    }
+    catch(error){
+      setError(error?.response?.data?.message);
+    }
+  }
+
   const newProduct = async (product) => {
     try {
       const { data } = await axios.post(
@@ -40,7 +50,7 @@ export const ProductProvider = ({ children }) => {
         updated,
         setUpdated,
         newProduct,
-
+        getProduct,
         clearErrors,
       }}
     >
