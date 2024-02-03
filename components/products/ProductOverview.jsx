@@ -1,7 +1,8 @@
 import "./overviewStyle.css";
 import Image from "next/image";
 
-const ProductOverview = async ({product}) => {
+const ProductOverview =  ({product}) => {
+    
   return (
     <div className="product-container">
         <div className="image-container">
@@ -20,7 +21,8 @@ const ProductOverview = async ({product}) => {
                 <div className="buy">
                     <h1>BUY NOW</h1>
                 </div>
-                <div className="cart">
+                
+                <div className="cart cursor-pointer">
                     <h1>ADD TO CART</h1>
                 </div>
             </div>
@@ -30,8 +32,8 @@ const ProductOverview = async ({product}) => {
             <div className="text-lg font-bold">{product.name}</div>
             <div className="italic">{product.description}</div>
             <div className="text-xl font-bold text-[#020617]">&#x20b9; {product.price}</div>
-            <div >Rating  <span >{product.ratings} &#9733; </span></div>
-            <div>{product.seller}</div>
+            <div >Rating:  <span >{product.ratings} &#9733; </span></div>
+            <div>Seller:  {product.seller}</div>
         </div>
     </div>
   )

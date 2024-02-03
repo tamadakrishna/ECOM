@@ -12,26 +12,8 @@ export const newProduct = async (req, res, next) => {
 
 export const getProducts = async (req, res, next) => {
     dbConnect();
-  const resPerPage = 2;
-  const productsCount = await Product.countDocuments();
-
-  const apiFilters = new APIFilters(Product.find(), req)
-    .search()
-    .filter();
-
-  let products = await apiFilters.query;
-  const filteredProductsCount = products.length;
-
-  apiFilters.pagination(resPerPage);
-
-  products = await apiFilters.query.clone();
-
-  return {
-    productsCount,
-    resPerPage,
-    filteredProductsCount,
-    products,
-  };
+    const Products = await Product.find({});
+    return Products;
 };
 
 export const getProduct = async (req, res, next) => {

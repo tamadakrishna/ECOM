@@ -6,13 +6,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 
-const ListProducts = ({ data }) => {
+const ListProducts = ({data}) => {
   return (
     <div className="showContainer">
         <div className="productFilters"></div>
         <div className="products p-1">
             {
-                data?.products?.map((product,index)=>{
+                data?.map((product,index)=>{
                    return (<div className="product mt-2 border" key={index}>
                         <div className="productImage">
                         <Image

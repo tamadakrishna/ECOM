@@ -6,7 +6,7 @@ const Products = ({ data }) => {
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <h1 className="text-3xl my-5 ml-4 font-bold">
-        {data?.productsCount} Products
+        {data?.length} Products
       </h1>
       <table className="w-full text-sm text-left">
         <thead className="text-l text-gray-700 uppercase">
@@ -26,11 +26,11 @@ const Products = ({ data }) => {
           </tr>
         </thead>
         <tbody>
-          {data?.products?.map((product, index) => (
+          {data?.map((product, index) => (
             <tr className="bg-white" key={index}>
               <td className="px-6 py-2">{product?.name}</td>
               <td className="px-6 py-2">{product?.stock}</td>
-              <td className="px-6 py-2">${product?.price}</td>
+              <td className="px-6 py-2">&#x20b9;{product?.price}</td>
               <td className="px-6 py-2">
                 <div>
                   <Link
