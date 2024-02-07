@@ -1,7 +1,10 @@
 import Product from "@/backend/models/product";
-import APIFilters from "../utils/APIFilters";
 import ErrorHandler from "../utils/errorHandler";
 import dbConnect from "@/backend/config/dbConnect";
+import axios from "axios";
+import {cloudinary} from "../utils/cloudinary";
+import {Store, FlushFiles} from "../utils/storage";
+
 
 export const newProduct = async (req, res, next) => {
 
@@ -20,14 +23,58 @@ export const getProduct = async (req, res, next) => {
     dbConnect();
   const product = await Product.findById(req);
   
-
-  if (!product) {
-    return next(new ErrorHandler("Product not found.", 404));
-  }
   return product;
-
   
 };
 
+export const Upload_Image = async (file,id) => {
+  
+  const Files = await Store(file);
+  let urls = [];
 
+  for(let i=0;i<Files.length;i++){
+    const result = await cloudinary.v2.uploader.upload(Files[i],{folder:"ECOM/Products"});
+    if(result)
+    {
+      urls.push( {
+        public_id: result.public_id,
+        url: result.url,
+      });
+    }
+  }
+  
 
+  const filter = {_id:id}
+  const product = await Product.findByIdAndUpdate(filter, {
+    images: urls,
+  });
+ 
+  if(product)
+  FlushFiles();
+  
+
+return;
+
+}
+
+export const deleteProduct = async(req,res) => {
+  dbConnect();
+  let product = await Product.findById(req);
+
+  await product.deleteOne();
+
+  return {status:200}
+}
+
+export const updateProduct= async(id,info) => {
+  dbConnect();
+  const filter = { _id:id };
+  // const update = { age: 59 };
+  const doc = await Product.findOneAndUpdate(filter, info, {
+    new: true
+  })
+  if(doc)
+  return {message:"success"};
+
+  return {message:"error"}
+}

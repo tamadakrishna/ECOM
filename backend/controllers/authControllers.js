@@ -20,6 +20,19 @@ export const getUsers = async (req, res) => {
 };
 
 
+export const deleteUser = async (req, res) => {
+
+  let user = await User.findById(req);
+
+  if (!user) {
+    return next(new ErrorHandler("No User found with this ID", 404));
+  }
+
+  await user.deleteOne();
+
+  return "SUCCESS";
+};
+
 
 
 

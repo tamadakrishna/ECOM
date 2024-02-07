@@ -1,8 +1,11 @@
+"use client";
 import "./overviewStyle.css";
 import Image from "next/image";
+import CartContext from "@/context/CartContext";
+import { useContext } from "react";
 
-const ProductOverview =  ({product}) => {
-    
+const ProductOverview = ({product}) => {
+    const {AddToCart} = useContext(CartContext)
   return (
     <div className="product-container">
         <div className="image-container">
@@ -21,8 +24,7 @@ const ProductOverview =  ({product}) => {
                 <div className="buy">
                     <h1>BUY NOW</h1>
                 </div>
-                
-                <div className="cart cursor-pointer">
+                <div className="cart cursor-pointer" onClick={()=>{AddToCart(product)}}>
                     <h1>ADD TO CART</h1>
                 </div>
             </div>

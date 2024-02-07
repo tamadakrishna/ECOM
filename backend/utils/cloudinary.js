@@ -6,23 +6,25 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-const uploads = (file, folder) => {
-  return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload(
-      file,
-      (result) => {
-        resolve({
-          public_id: result.public_id,
-          url: result.url,
-        });
-      },
 
-      {
-        resource_type: "auto",
-        folder: folder,
-      }
-    );
-  });
-};
 
-export { uploads, cloudinary };
+
+
+export { cloudinary };
+
+// return new Promise((resolve, reject) => {
+//   cloudinary.uploader.upload(
+//     file,
+//     (result) => {
+//       resolve({
+//         public_id: result.public_id,
+//         url: result.url,
+//       });
+//     },
+
+//     {
+//       resource_type: "auto",
+//       folder: folder,
+//     }
+//   );
+// });

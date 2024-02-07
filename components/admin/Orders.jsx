@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React, { useContext, useEffect } from "react";
-import CustomPagination from "../layouts/CustomPagination";
+import Pagination from "../layouts/Pagination";
 import OrderContext from "@/context/OrderContext";
 
 const Orders = ({ orders }) => {
@@ -70,10 +70,7 @@ const Orders = ({ orders }) => {
       </table>
 
       <div className="mb-6">
-        <CustomPagination
-          resPerPage={2}
-          productsCount={2}
-        />
+        <Pagination/>
       </div>
     </div>
   );

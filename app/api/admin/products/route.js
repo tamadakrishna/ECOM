@@ -10,3 +10,4 @@ export async function POST(request,{params}){
   console.log(response);
   return NextResponse.json("NEW PRODUCT")
 }
+
