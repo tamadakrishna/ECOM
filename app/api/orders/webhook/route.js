@@ -1,18 +1,5 @@
-import {createRouter} from "next-connect";
-import dbConnect from "@/backend/config/dbConnect";
-import onError from "@/backend/middlewares/errors";
-import { webhook } from "@/backend/controllers/orderControllers";
+import { NextResponse } from "next/server";
 
-const router = createRouter({ onError });
-
-dbConnect();
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-router.post(webhook);
-
-export default router.handler();
+export async function GET(request,{param}){
+    return NextResponse.json({message:"message"});
+}
