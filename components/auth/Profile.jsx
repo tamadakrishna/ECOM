@@ -12,11 +12,11 @@ const Profile = ({ addresses }) => {
     <>
       <figure className="flex items-start sm:items-center">
         <div className="relative">
-          <img
+          {/* <img
             className="w-16 h-16 rounded-full mr-4"
             src={user?.avatar ? user?.avatar?.url : "/images/default.png"}
             alt={user?.name}
-          />
+          /> */}
         </div>
         <figcaption>
           <h5 className="font-semibold text-lg">{user?.name}</h5>
