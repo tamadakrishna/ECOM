@@ -1,5 +1,4 @@
 import Product from "@/backend/models/product";
-import ErrorHandler from "../utils/errorHandler";
 import dbConnect from "@/backend/config/dbConnect";
 import axios from "axios";
 import {cloudinary} from "../utils/cloudinary";

@@ -3,7 +3,8 @@
 import Link from "next/link";
 import React, { useContext, useEffect } from "react";
 import AuthContext from "@/context/AuthContext";
-import Pagination from "../layouts/pagination";
+// import Pagination from "../layouts/pagination";
+import Pagination from "@/components/layouts/Pagination";
 
 const Users = ({ data }) => {
   const { deleteUser } = useContext(AuthContext);
