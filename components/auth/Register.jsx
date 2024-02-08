@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 import { toast } from "react-toastify";
 import Image from "next/image";
@@ -13,12 +13,6 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      clearErrors();
-    }
-  }, [error]);
 
   const submitHandler = (e) => {
     e.preventDefault();

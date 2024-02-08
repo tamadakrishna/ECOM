@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 
 import Sidebar from "../layouts/Sidebar";
 
@@ -29,17 +29,6 @@ const UpdateAddress = ({ id, address }) => {
 
   console.log("updated", updated);
 
-  useEffect(() => {
-    if (updated) {
-      toast.success("Address Updated");
-      setUpdated(false);
-    }
-
-    if (error) {
-      toast.error(error);
-      clearErrors();
-    }
-  }, [error, updated]);
 
   const submitHandler = (e) => {
     e.preventDefault();

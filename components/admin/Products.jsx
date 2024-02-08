@@ -1,6 +1,4 @@
 "use client";
-import React,{useContext} from "react";
-// import Pagination from "../layouts/pagination";
 import Pagination from "@/components/layouts/Pagination";
 import axios from 'axios';
 import Link from "next/link";

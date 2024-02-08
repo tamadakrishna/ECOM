@@ -1,25 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import React, { useContext, useEffect } from "react";
 import Pagination from "../layouts/Pagination";
-import OrderContext from "@/context/OrderContext";
 
 const Orders = ({ orders }) => {
 
-  // console.log(useContext(OrderContext))
-  // const { deleteOrder, error, clearErrors } = useContext(OrderContext);
-
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //     clearErrors();
-  //   }
-  // }, [error]);
-
-  // const deleteHandler = (id) => {
-  //   deleteOrder(id);
-  // };
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <h1 className="text-3xl my-5 ml-4 font-bold">

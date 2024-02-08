@@ -19,12 +19,6 @@ const NewAddress = () => {
   const [phoneNo, setPhonoNo] = useState("");
   const [country, setCountry] = useState("");
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      clearErrors();
-    }
-  }, [error]);
 
   const submitHandler = (e) => {
     e.preventDefault();

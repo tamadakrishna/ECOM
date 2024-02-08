@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import OrderItem from "./OrderItem";
 import CustomPagination from "../layouts/CustomPagination";
 import CartContext from "@/context/CartContext";
@@ -13,12 +13,6 @@ const ListOrders = ({ orders }) => {
 
   const orderSuccess = params.get("order_success");
 
-  useEffect(() => {
-    if (orderSuccess === "true") {
-      clearCart();
-      router.replace("/me/orders");
-    }
-  }, []);
 
   return (
     <>

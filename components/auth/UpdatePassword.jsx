@@ -1,7 +1,7 @@
 "use client";
 
 import AuthContext from "@/context/AuthContext";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { toast } from "react-toastify";
 
 const UpdatePassword = () => {
@@ -10,12 +10,7 @@ const UpdatePassword = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      clearErrors();
-    }
-  }, [error]);
+
 
   const submitHandler = (e) => {
     e.preventDefault();

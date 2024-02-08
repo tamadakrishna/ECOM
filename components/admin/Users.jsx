@@ -1,20 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import AuthContext from "@/context/AuthContext";
-// import Pagination from "../layouts/pagination";
 import Pagination from "@/components/layouts/Pagination";
 
 const Users = ({ data }) => {
   const { deleteUser } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error(error);
-  //     clearErrors();
-  //   }
-  // }, [error]);
 
   const deleteHandler = (id) => {
     deleteUser(id);

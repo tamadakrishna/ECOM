@@ -1,7 +1,7 @@
 "use client";
 
 import AuthContext from "@/context/AuthContext";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
@@ -13,17 +13,6 @@ const UpdateProfile = () => {
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState("/images/default.png");
 
-  useEffect(() => {
-    if (user) {
-      setName(user.name);
-      setEmail(user.email);
-    }
-
-    if (error) {
-      toast.error(error);
-      clearErrors();
-    }
-  }, [error, user]);
 
   const submitHandler = (e) => {
     e.preventDefault();
