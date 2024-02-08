@@ -5,10 +5,12 @@ import React, { useContext } from "react";
 import CartContext from "@/context/CartContext";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from 'next/navigation'
 
 const Cart = () => {
   const { cart, summary, RemoveFromCart, ModifyCart } = useContext(CartContext);
 
+  const router = useRouter()
   return (
    <>
    <div className="flex w-screen h-[calc(100vh_-_60px)]">
@@ -72,7 +74,7 @@ const Cart = () => {
       
       <div className="w-full h-[300px] mt-10 ">
       <div className="w-full h-10 ">
-        SUMMARY
+      <p className="text-[20px] text-gray-600 font-bold">SUMMARY</p>
       </div> 
         <div className="flex w-full h-10 ">
           <div className="w-2/4 h-10 ">SUBTOTAL</div>
@@ -92,7 +94,8 @@ const Cart = () => {
         </div>
         <div className="flex w-full h-10">
           <div className="w-full h-10 pl-1 pr-1 flex justify-center items-center">
-            <button className="w-full h-full bg-black text-slate-50">
+            <button className="w-full h-full bg-black text-slate-50"
+                    onClick={()=>{router.push("/shipping")}}>
               CHECKOUT
             </button>
             </div>
