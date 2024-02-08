@@ -2,7 +2,7 @@
 const nextConfig = {
    
     env:{
-        API_URL: "VERCEL_URL",
+        API_URL: "",
         DB_URI:"mongodb+srv://admin:admin@cluster0.uskgjtq.mongodb.net/?retryWrites=true&w=majority",
         NEXTAUTH_SECRET: "codingwithabbas",
 
