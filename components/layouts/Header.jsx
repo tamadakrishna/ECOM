@@ -20,7 +20,7 @@ const Header = () => {
   }, [data]);
 
   const { cart } = useContext(CartContext);
-  const cartItems = cart?.cartItems;
+  // const cartItems = cart?.cartItems;
 
   return (
     <header className="bg-white py-2 border-b">
@@ -47,7 +47,7 @@ const Header = () => {
                 
               </i>
               <span className="hidden lg:inline ml-1">
-              Cart (<b>{cartItems?.length || 0}</b>)
+              Cart (<b>{cart?.length || 0}</b>)
               </span>
             </Link>
             {!user ? (
@@ -61,12 +61,12 @@ const Header = () => {
             ) : (
               <Link href="/me">
                 <div className="flex items-center mb-4 space-x-3 mt-4 cursor-pointer">
-                  <img
+                  {/* <img
                     className="w-10 h-10 rounded-full"
                     src={
                       user?.avatar ? user?.avatar?.url : "/images/default.png"
                     }
-                  />
+                  /> */}
                   <div className="space-y-1 font-medium">
                     <p>
                       {user?.name}

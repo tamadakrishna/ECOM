@@ -7,25 +7,97 @@ const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [summary,setSummary] = useState({
+    subTotal:0,
+    shipping:40,
+    estimatedTotal:0,
+    salesTax:0
+  });
 
-  const UpdateCart = (Data) =>{
+  useEffect(()=>{
     const CartData = JSON.parse(localStorage.getItem('cart'));
-    CartData.push(Data)
-    localStorage.setItem('cart',JSON.stringify(CartData));
-    console.log("ADD TO CART",CartData)
+    if(CartData){
+      setCart(CartData);
+    }
+  },[])
+
+  useEffect(()=>{
+    cartSummary();
+  },[cart])
+
+  const cartSummary = () =>{
+    const subTotal = cart?.reduce((accumulator,product)=>{
+      return accumulator + (product?.quantity * product?.price);
+    },0)
+    const salesTax = parseFloat(subTotal * 0.18).toFixed(2);
+    const afterSalesTax = parseFloat((subTotal + (subTotal * 0.18)).toFixed(2));
+    const shipping = 40;
+    setSummary({
+      subTotal:subTotal,
+      shipping:40,
+      estimatedTotal:afterSalesTax,
+      salesTax:salesTax
+    });
+    return;
   }
 
   const router = useRouter();
 
   const AddToCart = async (product)=>{
+    console.log("Images",product)
     const Data = {
       id:product._id,
       name:product.name,
       price:product.price,
+      quantity:1,
+      imageUrl: product?.images[0] ? product?.images[0].url : "/images/default_product.png"
     }
-    setCart([...cart,Data]);
-    UpdateCart(Data);
+
+    const existingItemIndex = cart?.findIndex(item => item.id === Data.id);
+
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart[existingItemIndex].quantity++;
+      localStorage.setItem('cart',JSON.stringify(updatedCart));
+      setCart(updatedCart);
+    } else {
+      const UpdatedCart =[...cart, Data];
+      localStorage.setItem('cart',JSON.stringify(UpdatedCart));
+      setCart(prevCart => [...prevCart, Data]);
+    }
     
+    return;
+  }
+
+  const RemoveFromCart = (id)=>{
+    const updatedCart = cart.filter((info)=>{
+      return info.id!=id;
+    })
+    localStorage.setItem('cart',JSON.stringify(updatedCart));
+    setCart(updatedCart);
+
+    return;
+  }
+
+  const ModifyCart = (id,symbol) =>{
+    const existingItemIndex = cart?.findIndex(item => item.id === id);
+
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      if(symbol==="-")
+      {
+        updatedCart[existingItemIndex].quantity--;
+        localStorage.setItem('cart',JSON.stringify(updatedCart));
+        setCart(updatedCart);
+      }
+      else if(symbol==="+")
+      {
+        updatedCart[existingItemIndex].quantity++;
+        localStorage.setItem('cart',JSON.stringify(updatedCart));
+        setCart(updatedCart);
+      }
+    }
+
     return;
   }
 
@@ -33,7 +105,11 @@ export const CartProvider = ({ children }) => {
   return (
     <CartContext.Provider
       value={{
-        AddToCart
+        cart,
+        summary,
+        AddToCart,
+        RemoveFromCart,
+        ModifyCart
       }}
     >
       {children}
