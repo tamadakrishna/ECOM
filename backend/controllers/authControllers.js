@@ -1,4 +1,7 @@
 import User from "../models/user";
+import React, { useContext } from "react";
+
+
 
 export const registerUser = async (req, res) => {
   const { name, email, password } = req;
@@ -33,6 +36,19 @@ export const deleteUser = async (req, res) => {
   return "SUCCESS";
 };
 
+export const verifyUser = async (email,password) =>{
 
+  let user = await User.find({email:email,password:password});
+  if(!user)
+  return null;
 
+  return user[0];
+}
 
+export const getUser = async(email) => {
+  let user = await User.findOne({email:email})
+  if(!user)
+  return null;
+
+  return user;
+}

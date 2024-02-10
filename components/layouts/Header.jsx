@@ -8,13 +8,17 @@ import AuthContext from "@/context/AuthContext";
 import Search from "./Search";
 import CartContext from "@/context/CartContext";
 
+
 const Header = () => {
   const { user, setUser } = useContext(AuthContext);
+  const { LoadUserData} = useContext(AuthContext);
+
 
   const { data } = useSession();
 
   useEffect(() => {
     if (data) {
+      LoadUserData(data?.user)
       setUser(data?.user);
     }
   }, [data]);

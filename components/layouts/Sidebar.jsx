@@ -2,103 +2,104 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
+import React,{useContext} from "react";
+import AuthContext from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+
 
 const Sidebar = () => {
+  
+  const router = useRouter();
+
+  const { userData} = useContext(AuthContext);
+  console.log('userData', userData)
+
   const logoutHandler = () => {
-    signOut();
+    // router.replace('/')
+    signOut({ callbackUrl: `${process.env.API_URL}` });
   };
+
+  const AdminRoutes = [
+    {
+      name:"New Product",
+      route:"/admin/products/new"
+    },
+    {
+      name:"All Products",
+      route:"/admin/products"
+    },
+    {
+      name:"All Orders",
+      route:"/admin/orders"
+    },
+    {
+      name:"All Users",
+      route:"/admin/users"
+    },
+  ];
+
+  const UserRoutes = [
+    {
+      name:"Your Profile",
+      route:"/me"
+    },
+    {
+      name:"Orders",
+      route:"/me/orders"
+    },
+    {
+      name:"Update Profile",
+      route:"/me/update"
+    },
+    {
+      name:"Update Password",
+      route:"/me/update_password"
+    },
+  ];
 
   return (
     <aside className="md:w-1/3 lg:w-1/4 px-4">
       <ul className="sidebar">
-        <>
-          <li>
-            {" "}
-            <Link
-              href="/admin/products/new"
-              className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-            >
-              New Product <span className="text-red-500">(Admin)</span>
-            </Link>
-          </li>
 
-          <li>
-            {" "}
-            <Link
-              href="/admin/products"
-              className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-            >
-              All Products <span className="text-red-500">(Admin)</span>
-            </Link>
-          </li>
+        {
+        userData?.role==="admin" ?
+        (<div>
+          {
+            AdminRoutes?.map((info,index)=>{
+              return(
+                <li key={index}>
+                  <Link
+                    href={info?.route}
+                    className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md">
+                    {info?.name} <span className="text-red-500">(Admin)</span>
+                  </Link>
+                </li>
+              )
+            })
+          }
+        </div>) :
 
-          <li>
-            {" "}
-            <Link
-              href="/admin/orders"
-              className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-            >
-              All Orders <span className="text-red-500">(Admin)</span>
-            </Link>
-          </li>
-
-          <li>
-            {" "}
-            <Link
-              href="/admin/users"
-              className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-            >
-              All Users <span className="text-red-500">(Admin)</span>
-            </Link>
-          </li>
-
-          <hr />
-        </>
+        (<div>
+          {
+            UserRoutes?.map((info,index)=>{
+              return(
+                <li key={index}>
+                  <Link
+                    href={info?.route}
+                    className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md">
+                    {info?.name}
+                  </Link>
+                </li>
+              )
+            })
+          }
+        </div>)
+        }
 
         <li>
-          {" "}
-          <Link
-            href="/me"
-            className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-          >
-            Your Profile
-          </Link>
-        </li>
-        <li>
-          {" "}
-          <Link
-            href="/me/orders"
-            className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-          >
-            Orders
-          </Link>
-        </li>
-        <li>
-          {" "}
-          <Link
-            href="/me/update"
-            className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-          >
-            Update Profile
-          </Link>
-        </li>
-        <li>
-          {" "}
-          <Link
-            href="/me/update_password"
-            className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md"
-          >
-            Update Password
-          </Link>
-        </li>
-
-        <li>
-          {" "}
           <a
             className="block px-3 py-2 text-red-800 hover:bg-red-100 hover:text-white-500 rounded-md cursor-pointer"
-            onClick={logoutHandler}
-          >
+            onClick={logoutHandler}>
             Logout
           </a>
         </li>

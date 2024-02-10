@@ -7,10 +7,16 @@ import { createContext, useState } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [userData, setUserData] = useState({
+    name:"",
+    email:"",
+    role:""
+  })
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
   const [updated, setUpdated] = useState(false);
+  const [address,setAddress] = useState([]);
 
   const router = useRouter();
 
@@ -172,6 +178,20 @@ export const AuthProvider = ({ children }) => {
     setError(null);
   };
 
+  const getAddress = async () =>{
+
+    const { data } = await axios.get(`${process.env.API_URL}/api/address`);
+
+    setAddress(data);
+    
+    return;
+  }
+
+  const LoadUserData = async (info) =>{
+    setUserData(info);
+    return;
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -179,6 +199,9 @@ export const AuthProvider = ({ children }) => {
         error,
         loading,
         updated,
+        address,
+        userData,
+        LoadUserData,
         setUpdated,
         setUser,
         registerUser,
@@ -189,7 +212,7 @@ export const AuthProvider = ({ children }) => {
         addNewAddress,
         updateAddress,
         deleteAddress,
-
+        getAddress,
         clearErrors,
       }}
     >

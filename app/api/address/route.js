@@ -11,7 +11,7 @@ export async function POST(request) {
 }
 
 export async function GET(request) {
-        const address = await getAddresses(request.body)
+        const address = await getAddresses()
 
         if(address)
         return NextResponse.json(address)

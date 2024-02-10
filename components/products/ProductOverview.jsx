@@ -1,5 +1,4 @@
 "use client";
-import "./overviewStyle.css";
 import Image from "next/image";
 import CartContext from "@/context/CartContext";
 import { useContext } from "react";
@@ -7,9 +6,9 @@ import { useContext } from "react";
 const ProductOverview = ({product}) => {
     const {AddToCart} = useContext(CartContext)
   return (
-    <div className="product-container">
-        <div className="image-container">
-            <div className="image-section">
+    <div className="w-[100%] h-[calc(100vh_-_60px)] p-[10px] flex">
+        <div className="w-[40%] h-[100%]">
+            <div className="w-[100%] h-[75%] relative">
             <Image
                src={
                 product?.images[0]
@@ -20,16 +19,16 @@ const ProductOverview = ({product}) => {
               fill={true}
             />
             </div>
-            <div className="buyandcart">
-                <div className="buy">
+            <div className="w-[100%] h-[25%] flex justify-center gap-[10px]">
+                <div className="w-[250px] h-[60px] border-[1px] border-black flex justify-center items-center cursor-pointer">
                     <h1>BUY NOW</h1>
                 </div>
-                <div className="cart cursor-pointer" onClick={()=>{AddToCart(product)}}>
+                <div className="w-[250px] h-[60px] border-[1px] border-black flex justify-center items-center cursor-pointer" onClick={()=>{AddToCart(product)}}>
                     <h1>ADD TO CART</h1>
                 </div>
             </div>
         </div>
-        <div className="description-container">
+        <div className="w-[60%] h-[100%]">
             <div>Breadcom</div>
             <div className="text-lg font-bold">{product.name}</div>
             <div className="italic">{product.description}</div>

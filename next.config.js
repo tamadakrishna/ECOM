@@ -2,7 +2,7 @@
 const nextConfig = {
    
     env:{
-        API_URL: "https://ecom-pro.vercel.app",
+        API_URL: "http://localhost:3000",
         DB_URI:"mongodb+srv://admin:admin@cluster0.uskgjtq.mongodb.net/?retryWrites=true&w=majority",
         NEXTAUTH_SECRET: "codingwithabbas",
 

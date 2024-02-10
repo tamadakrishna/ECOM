@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter, useSearchParams } from "next/navigation";
 import { parseCallbackUrl } from "@/helpers/helpers";
 import Image from "next/image";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,22 +17,19 @@ const Login = () => {
   const params = useSearchParams();
   const callBackUrl = params.get("callbackUrl");
 
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
     const data = await signIn("credentials", {
       email,
       password,
-      callbackUrl: callBackUrl ? parseCallbackUrl(callBackUrl) : "/",
+      redirect:false,
+      // callbackUrl: callBackUrl ? parseCallbackUrl(callBackUrl) : "/",
     });
-    console.log(data)
-    if (data?.error) {
-      toast.error(data?.error);
-    }
-
-    if (data?.ok) {
-      router.push("/");
-    }
+    
+    if(data)
+    router.push('/me')
   };
 
   return (
