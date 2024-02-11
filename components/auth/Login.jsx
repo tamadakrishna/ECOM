@@ -3,9 +3,7 @@
 import Link from "next/link";
 import React, { useState, useContext } from "react";
 import { signIn } from "next-auth/react";
-import { toast } from "react-toastify";
-import { useRouter, useSearchParams } from "next/navigation";
-import { parseCallbackUrl } from "@/helpers/helpers";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 
@@ -14,9 +12,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const router = useRouter();
-  const params = useSearchParams();
-  const callBackUrl = params.get("callbackUrl");
-
 
   const submitHandler = async (e) => {
     e.preventDefault();

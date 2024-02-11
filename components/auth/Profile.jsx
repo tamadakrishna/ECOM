@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import AuthContext from "@/context/AuthContext";
 
-const Profile = ({ addresses }) => {
+const Profile = () => {
   const { user } = useContext(AuthContext);
 
   return (

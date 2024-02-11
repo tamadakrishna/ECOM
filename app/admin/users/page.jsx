@@ -1,21 +1,17 @@
-import axios from "axios";
 import React from "react";
 
-import { cookies } from "next/headers";
-import queryString from "query-string";
 import Users from "@/components/admin/Users";
 
-const getUsers = async () => {
-  
-  const { data } = await axios.get(
-    `${process.env.API_URL}/api/admin/users`,
-  );
+const AdminUsersPage = async () => {
 
-  return data;
-};
-
-const AdminUsersPage = async ({ searchParams }) => {
-  const users = await getUsers();
+  const users = [
+    {
+      _id:'hfjjfs',
+      name:'krishna',
+      email:"ugdfdjf@kfdnfj.com",
+      role:"user"
+    }
+  ];
 
   return <Users data={users} />;
 };
