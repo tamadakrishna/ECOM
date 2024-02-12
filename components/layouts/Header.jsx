@@ -11,20 +11,16 @@ import CartContext from "@/context/CartContext";
 
 const Header = () => {
   const { user, setUser } = useContext(AuthContext);
-  const { LoadUserData} = useContext(AuthContext);
-
+  const { cart } = useContext(CartContext);
 
   const { data } = useSession();
 
   useEffect(() => {
     if (data) {
-      LoadUserData(data?.user)
       setUser(data?.user);
     }
   }, [data]);
 
-  const { cart } = useContext(CartContext);
-  // const cartItems = cart?.cartItems;
 
   return (
     <header className="bg-white py-2 border-b">

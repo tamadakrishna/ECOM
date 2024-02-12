@@ -12,11 +12,10 @@ const Sidebar = () => {
   const router = useRouter();
 
   const { userData} = useContext(AuthContext);
-  console.log('userData', userData)
 
   const logoutHandler = () => {
-    // router.replace('/')
-    signOut({ callbackUrl: `${process.env.API_URL}` });
+    // router.replace('/') { callbackUrl: `${process.env.API_URL}/` }
+    signOut();
   };
 
   const AdminRoutes = [
@@ -26,7 +25,7 @@ const Sidebar = () => {
     },
     {
       name:"All Products",
-      route:"/admin/products"
+      route:`${process.env.API_URL}/admin/products`
     },
     {
       name:"All Orders",

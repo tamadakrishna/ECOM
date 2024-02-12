@@ -7,24 +7,14 @@ import { createContext, useState } from "react";
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
+  const [products, setProducts] = useState([]);
+  const [productDetails, setProductDetails] = useState({});
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
-  const [updated, setUpdated] = useState(false);
 
   const router = useRouter();
 
-  const getProduct = async (id)=>{
-    try{
-      const { data } = await axios.get(`${process.env.API_URL}/apiproducts/${id}`);
-      return data;
-    }
-    catch(error){
-      setError(error?.response?.data?.message);
-    }
-  }
-
-  const newProduct = async (product) => {
-    try {
+  const createProduct = async (product) => {
       const { data } = await axios.post(
         `${process.env.API_URL}/api/admin/products`,
         product
@@ -33,59 +23,72 @@ export const ProductProvider = ({ children }) => {
       if (data) {
         router.replace("/admin/products");
       }
-    } catch (error) {
-      setError(error?.response?.data?.message);
-    }
+   
   };
 
-  const deleteProduct = async (id)=>{
+  const getProduct = async (id)=>{
+    setLoading(true)
     try{
-      const {data} = await axios.delete(`${process.env.API_URL}/api/admin/products/${id}`);
-      router.replace(`/admin/products`);
+    const { data } = await axios.get(`${process.env.API_URL}/api/products/${id}`);
+    setProductDetails(data);
     }
     catch(error){
-      setError(error?.response?.data?.message);
+      setError(error.response);
     }
+    setLoading(false)
+    return;
+}
+
+  const deleteProduct = async (id)=>{
+
+      const {data} = await axios.delete(`${process.env.API_URL}/api/admin/products/${id}`);
+      router.replace(`/admin/products`);
+    
     return;
   }
 
   const updateProduct = async (id,info) =>{
-    try{
+
       const {data} = await axios.put(`${process.env.API_URL}/api/admin/products/${id}`,info)
       if(data)
       {
         router.replace(`/admin/products`);
       }
-    }
-    catch(error){
-      setError(error?.response?.data?.message)
-    }
+  
     return;
   }
 
   const uploadImage = async (file,id)=>{
-    // console.log("UPLOAD IMAGE")
     const data = await axios.post(`${process.env.API_URL}/api/admin/products/upload_images/${id}`,file);
     return;
   }
 
-  const clearErrors = () => {
-    setError(null);
-  };
+  const getProducts = async ()=>{
+    setLoading(true)
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/api/products/`);
+      setProducts(data);
+    }
+    catch(error){
+      setError(error.response)
+    }
+    setLoading(false)
+    return;
+  }
 
   return (
     <ProductContext.Provider
       value={{
-        error,
+        products,
+        productDetails,
         loading,
-        updated,
-        setUpdated,
-        newProduct,
+        error,
+        createProduct,
         getProduct,
+        getProducts,
         deleteProduct,
         updateProduct,
         uploadImage,
-        clearErrors,
       }}
     >
       {children}
