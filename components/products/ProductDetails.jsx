@@ -56,7 +56,7 @@ const ProductDetails = ({productId}) => {
                             mobile:w-[100%] mobile:h-[calc(100%_-_250px)] mobile:overflow-y-scroll">
                 <div className="text-lg font-bold text-[#020617]">{productDetails?.name}</div>
                 <div className="text-xl font-bold text-[#020617]">MRP &#x20b9; {productDetails?.price}</div>
-                <div className="italic">{productDetails?.description}</div>
+                <div className="italic text-[#020617]">{productDetails?.description}</div>
                 <div className="text-[#020617] text-[20px]">Rating:  <span className="text-[#020617]">{productDetails?.ratings} &#9733; </span></div>
                 <div className="text-[#020617] text-[20px]">Seller:  {productDetails?.seller}</div>
             </div>
