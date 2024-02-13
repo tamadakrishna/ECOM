@@ -137,9 +137,9 @@ const Cart = () => {
             </div>
             <div className="mobile:w-[calc(100%_-_150px)] mobile:h-[100%] mobile:p-[1px]">
               <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] font-semibold text-[#020617]">{product?.name}</div>
-              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">Price: &#x20b9; {product?.price}</div>
-              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">Quantity: {product?.quantity}</div>
-              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">Total: &#x20b9; {(product?.quantity * product?.price)}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617">Price: &#x20b9; {product?.price}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617">Quantity: {product?.quantity}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617">Total: &#x20b9; {(product?.quantity * product?.price)}</div>
               <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">
                   <div className="mobile:flex mobile:h-[100%] mobile:w-[100%] mobile:py-[2.5px]">
                       <div className="w-[80px] h-full  border-2 border-black-800">
@@ -149,7 +149,7 @@ const Cart = () => {
                         <div className="w-[40px] h-full border-2 border-black-500 mobile:flex mobile:justify-center mobile:items-center ">
                           <button className="w-full h-full font-semibold text-[#020617] text-[20px]" onClick={()=>{ModifyCart(product?.id, "-")}}>{"-"}</button>
                         </div>
-                        <div className="pl-2 pr-2">{product?.quantity}</div>
+                        <div className="pl-2 pr-2 text-[#020617">{product?.quantity}</div>
                         <div className="w-[40px] h-full border-2 border-black-500">
                           <button className="w-full h-full font-semibold text-[#020617]" onClick={()=>{ModifyCart(product?.id, "+")}}>{"+"}</button>
                         </div>
