@@ -13,7 +13,7 @@ const Cart = () => {
   const router = useRouter()
   return (
    <>
-   <div className="flex w-screen h-[calc(100vh_-_60px)]">
+   <div className="laptop:flex laptop:w-screen laptop:h-[calc(100vh_-_60px)] mobile:hidden">
     <div className="w-4/5 h-100vh pl-1">
       <div className="w-full h-11 border-b-4 border-gray-400">
         <p className="text-[30px] text-gray-500 ml-1">SHOPPING BAG</p>
@@ -103,6 +103,65 @@ const Cart = () => {
       </div>
       
     </div>
+   </div>
+   <div className="mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] overflow-y-scroll ">
+      <div className="mobile:w-[100%] mobile:h-[150px] ">
+        <div className="mobile:w-[100%] mobile:h-[35px]">
+          <h1 className="text-[#020617] text-[20px] font-bold"><span className="text-[20px] font-normal">Subtotal</span> <sup>&#x20b9;</sup>{summary?.subTotal}</h1>
+        </div>
+        <div className="mobile:w-[100%] mobile:h-[40px]">
+          <span className="text-green-800 font-bold">Your order is eligible for Delivery</span>
+        </div>
+        <div className="mobile:w-[100%] mobile:h-[60px] mobile:flex mobile:items-center mobile:px-[10px]  mobile:border-b-[1px] mobile:border-gray-300 ">
+          <div className="mobile:w-[100%] mobile:h-[40px] bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center">
+            <span className="text-[#020617]">Proceed to Checkout ({cart?.length})</span>
+          </div>
+        </div>
+      </div>
+      {
+        cart?.map((product,index)=>{
+          return (
+            <div key={index} className="mobile:w-[100%] mobile:h-[250px] mobile:mb-1 mobile:flex  laptop:hidden">
+            <div className="mobile:w-[150px] mobile:h-[100%] mobile:px-[2px] mobile:flex mobile:items-center ">
+              <div className="mobile:w-[100%] mobile:h-[68%] mobile:relative ">
+                    <Image
+                      src={
+                        product?.imageUrl
+                        ? product?.imageUrl
+                        : "/images/default_product.png"
+                      }
+                      alt="product anme"
+                      fill={true}
+                    />
+              </div>
+            </div>
+            <div className="mobile:w-[calc(100%_-_150px)] mobile:h-[100%] mobile:p-[1px]">
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] font-semibold text-[#020617]">{product?.name}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">Price: &#x20b9; {product?.price}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">Quantity: {product?.quantity}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">Total: &#x20b9; {(product?.quantity * product?.price)}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">
+                  <div className="mobile:flex mobile:h-[100%] mobile:w-[100%] mobile:py-[2.5px]">
+                      <div className="w-[80px] h-full  border-2 border-black-800">
+                        <button className="w-full h-full font-semibold text-[#020617]" onClick={()=>{RemoveFromCart(product?.id)}}>Remove</button>
+                      </div>
+                      <div className="flex h-full ml-2">
+                        <div className="w-[40px] h-full border-2 border-black-500 mobile:flex mobile:justify-center mobile:items-center ">
+                          <button className="w-full h-full font-semibold text-[#020617] text-[20px]" onClick={()=>{ModifyCart(product?.id, "-")}}>{"-"}</button>
+                        </div>
+                        <div className="pl-2 pr-2">{product?.quantity}</div>
+                        <div className="w-[40px] h-full border-2 border-black-500">
+                          <button className="w-full h-full font-semibold text-[#020617]" onClick={()=>{ModifyCart(product?.id, "+")}}>{"+"}</button>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+          )
+        })
+      }
+     
    </div>
    </>
   );

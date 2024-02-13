@@ -33,7 +33,7 @@ export default function Menu({cart,user}) {
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </div>
-            <div className="mobile:flex mobile:pt-[150px] mobile:justify-center mobile:gap-2  mobile:w-[100%] mobile:h-[100vh] ">
+            <div  className="mobile:flex mobile:pt-[150px] mobile:justify-center mobile:gap-2  mobile:w-[100%] mobile:h-[100vh] ">
               <div className="mobile:w-[150px] mobile:h-[50px] mobile:flex mobile:justify-center mobile:items-center">
               {!user ? (
                       <Link
@@ -69,7 +69,7 @@ export default function Menu({cart,user}) {
                 href="/cart"
                 className=" w-[100%] h-[100%] px-3 py-2 text-center text-gray-700 bg-white shadow-sm border border-gray-400 rounded-md hover:bg-gray-100 hover:border-gray-300"
               >
-                <span className="hidden laptop:inline ml-1">
+                <span className="hidden laptop:inline ml-1" >
                 Cart (<b>{cart?.length || 0}</b>)
                 </span>
               </Link>
