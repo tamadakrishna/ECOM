@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import AuthContext from "@/context/AuthContext";
 import Search from "./Search";
 import CartContext from "@/context/CartContext";
-
+import Menu from "@/components/layouts/Menu"
 
 const Header = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -41,7 +41,8 @@ const Header = () => {
                       laptop:flex laptop:w-[40vw] laptop:h-[100%] laptop:py-1">
         <Search />
       </div>
-      <div className="mobile:w-[20vw] mobile:flex mobile:items-center text-[#020617] laptop:hidden">Menu</div>
+      <div className="mobile:w-[20vw] mobile:flex mobile:items-center mobile:justify-end text-[#020617] mobile:mr-[5px] 
+                      laptop:hidden "> <Menu cart={cart} user={user}/> </div>
       <div className="mobile:hidden 
                       laptop:w-[40vw] laptop:h-[100%] laptop:flex laptop:justify-end ">
         <div className="mobile:hidden
