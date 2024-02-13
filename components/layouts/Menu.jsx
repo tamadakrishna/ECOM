@@ -37,6 +37,10 @@ export default function Menu({cart,user}) {
               <div className="mobile:w-[150px] mobile:h-[50px] mobile:flex mobile:justify-center mobile:items-center">
               {!user ? (
                       <Link
+                        onClick={(e) => { 
+                          setIsNavOpen(false)
+                          e.stopPropagation();
+                        }}
                         href="/login"
                         className="w-[100%] h-[100%] px-3 py-2 inline-block text-center text-gray-700 bg-white shadow-sm border border-gray-400 rounded-md hover:bg-gray-100 hover:border-gray-300"
                       >
@@ -44,7 +48,12 @@ export default function Menu({cart,user}) {
                         <span className="hidden laptop:inline ml-1">Sign in</span>
                       </Link>
                     ) : (
-                      <Link href="/me">
+                      <Link 
+                        onClick={(e) => { 
+                          setIsNavOpen(false)
+                          e.stopPropagation();
+                        }}
+                        href="/me">
                         <div className="w-[100%] h-[100%] flex items-center mb-4 space-x-3 mt-4 cursor-pointer">
                           {/* <img
                             className="w-10 h-10 rounded-full"
@@ -67,6 +76,10 @@ export default function Menu({cart,user}) {
               <div className="mobile:w-[150px] mobile:h-[50px] mobile:flex mobile:justify-center mobile:items-center ">
                 <Link
                 href="/cart"
+                onClick={(e) => { 
+                  setIsNavOpen(false)
+                  e.stopPropagation();
+                }}
                 className=" w-[100%] h-[100%] px-3 py-2 text-center text-gray-700 bg-white shadow-sm border border-gray-400 rounded-md hover:bg-gray-100 hover:border-gray-300"
               >
                 <span className="hidden laptop:inline ml-1" >

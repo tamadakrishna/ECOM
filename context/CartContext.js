@@ -29,6 +29,9 @@ export const CartProvider = ({ children }) => {
     const subTotal = cart?.reduce((accumulator,product)=>{
       return accumulator + (product?.quantity * product?.price);
     },0)
+    const quantity = cart?.reduce((accumulator,product)=>{
+      return accumulator + product?.quantity;
+    },0)
     const salesTax = parseFloat(subTotal * 0.18).toFixed(2);
     const afterSalesTax = parseFloat((subTotal + (subTotal * 0.18)).toFixed(2));
     const shipping = 40;
@@ -36,7 +39,8 @@ export const CartProvider = ({ children }) => {
       subTotal:subTotal,
       shipping:40,
       estimatedTotal:afterSalesTax,
-      salesTax:salesTax
+      salesTax:salesTax,
+      quantity:quantity
     });
     return;
   }
@@ -86,7 +90,7 @@ export const CartProvider = ({ children }) => {
       const updatedCart = [...cart];
       if(symbol==="-")
       {
-        updatedCart[existingItemIndex].quantity--;
+        updatedCart[existingItemIndex].quantity - 1 > 0 && updatedCart[existingItemIndex].quantity--;
         localStorage.setItem('cart',JSON.stringify(updatedCart));
         setCart(updatedCart);
       }

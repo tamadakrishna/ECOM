@@ -47,7 +47,8 @@ const Shipping = ()=> {
    
   
   return (
-    <div className="flex w-screen h-[calc(100vh_-_60px)] border-2 border-gray-800">
+    <>
+    <div className="flex w-screen h-[calc(100vh_-_60px)] border-2 border-gray-800 mobile:hidden">
       <div className="h-full w-[50%] border-2 border-red-700 flex justify-center items-center">
         <div className="h-[calc(100%_-_200px)] w-[calc(100%_-_200px)] border-2 border-black p-2 overflow-scroll">
           {
@@ -103,12 +104,40 @@ const Shipping = ()=> {
           </div>
       </div>
     </div>
+    <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[5px] ">
+      <div className="mobile:w-[100%] mobile:h-[100%] ">
+        <div className="mobile:w-[100%] mobile:h-[30px] ml-[5px]">
+          <h1 className="mobile:w-[100%] mobile:h-[100%] text-[#020617] text-[18px] font-semibold font-Poppins">Select a delivery address</h1>
+        </div>
+        {
+          [1,2,3,4]?.map((address,index)=>{
+            return (
+              <div key={index} className="mobile:mb-[4px] mobile:w-[100%] mobile:h-[220px] mobile:p-[5px] mobile:bg-white mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
+                  <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] font-semibold uppercase">Krishna</span></div>
+                  <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] ">2-141/31</span></div>
+                  <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] ">Nehru Nagar, New City</span></div>
+                  <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] uppercase">Visakhapatnam, Andhra Pradesh</span></div>
+                  <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] ">530040</span></div>
+                  <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] ">Phone number: 123456789</span></div>
+                  <div className="mobile:w-[100%] mobile:h-[60px] mobile:flex mobile:items-center mobile:px-[10px]">
+                  <div className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
+                        onClick={(e)=>{ 
+                          router.push("/shipping")
+                          }}>
+                        <span className="text-[#020617] cursor-pointer">Deliver to this address</span>
+                  </div>
+                  </div>
+            </div>);
+          })
+        }
+        
+        <div className="mobile:flex mobile:items-center mobile:mt-[2px] mobile:mb-[2px] mobile:w-[100%] mobile:h-[40px] mobile:bg-white cursor-pointer mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
+          <span className="text-[#020617] font-semibold text-[15px] cursor-pointer mobile:ml-[8px] ">Add a New Address</span> 
+        </div>
+      </div>
+    </div>
+    </>
   )
 }
 
 export default Shipping
-
-// &#x20b9; {summary?.subTotal}
-// {summary?.shipping}
-// {summary?.salesTax}
-// {summary?.estimatedTotal}

@@ -106,16 +106,20 @@ const Cart = () => {
    </div>
    <div className="mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] overflow-y-scroll ">
       <div className="mobile:w-[100%] mobile:h-[150px] ">
-        <div className="mobile:w-[100%] mobile:h-[35px]">
-          <h1 className="text-[#020617] text-[20px] font-bold"><span className="text-[20px] font-normal">Subtotal</span> <sup>&#x20b9;</sup>{summary?.subTotal}</h1>
+        <div className="mobile:w-[100%] mobile:h-[35px] ">
+          <h1 className="text-[#020617] text-[20px] font-bold ml-[6px]"><span className="text-[20px]  font-normal">Subtotal</span> <sup>&#x20b9;</sup>{summary?.subTotal}</h1>
         </div>
         <div className="mobile:w-[100%] mobile:h-[40px]">
-          <span className="text-green-800 font-bold">Your order is eligible for Delivery</span>
+          <span className="text-green-800 font-bold ml-[6px]">Your order is eligible for Delivery</span>
         </div>
+        
         <div className="mobile:w-[100%] mobile:h-[60px] mobile:flex mobile:items-center mobile:px-[10px]  mobile:border-b-[1px] mobile:border-gray-300 ">
-          <div className="mobile:w-[100%] mobile:h-[40px] bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center">
-            <span className="text-[#020617]">Proceed to Checkout ({cart?.length})</span>
-          </div>
+            <div className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
+                 onClick={(e)=>{ 
+                  router.push("/shipping")
+                  }}>
+                <span className="text-[#020617] cursor-pointer">Proceed to Checkout ({summary?.quantity})</span>
+            </div>
         </div>
       </div>
       {
@@ -137,9 +141,9 @@ const Cart = () => {
             </div>
             <div className="mobile:w-[calc(100%_-_150px)] mobile:h-[100%] mobile:p-[1px]">
               <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] font-semibold text-[#020617]">{product?.name}</div>
-              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617]">Price: &#x20b9; {product?.price}</div>
-              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617]">Quantity: {product?.quantity}</div>
-              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617]">Total: &#x20b9; {(product?.quantity * product?.price)}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617]">Price: &#x20b9;{product?.price}</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617]">Quantity: {product?.quantity} unit(s)</div>
+              <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] text-[#020617]">Total: &#x20b9;{(product?.quantity * product?.price)}</div>
               <div className="mobile:w-[100%] mobile:h-[35px] mobile:mb-[1px] ">
                   <div className="mobile:flex mobile:h-[100%] mobile:w-[100%] mobile:py-[2.5px]">
                       <div className="w-[80px] h-full  border-2 border-black-800">
