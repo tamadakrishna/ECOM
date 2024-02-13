@@ -41,7 +41,7 @@ const Header = () => {
                       laptop:flex laptop:w-[40vw] laptop:h-[100%] laptop:py-1">
         <Search />
       </div>
-      <div className="mobile:w-[20vw] mobile:flex mobile:items-center laptop:hidden">Menu</div>
+      <div className="mobile:w-[20vw] mobile:flex mobile:items-center text-[#020617] laptop:hidden">Menu</div>
       <div className="mobile:hidden 
                       laptop:w-[40vw] laptop:h-[100%] laptop:flex laptop:justify-end ">
         <div className="mobile:hidden
