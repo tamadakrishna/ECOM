@@ -12,9 +12,9 @@ const nextConfig = {
 
         // STRIPE_WEBHOOK_SECRET: "whsec_c7948d152d7f805b161e7d9b4617434241d8fba5f232a2be6ae11f79e919d946",
 
-        // CLOUD_NAME: "dewzsspgu",
-        // CLOUDINARY_API_KEY: "611878661422294",
-        // CLOUDINARY_API_SECRET: "emnAK4KUuAdfimtHrQSZHMdTqag",
+        CLOUD_NAME: "dewzsspgu",
+        CLOUDINARY_API_KEY: "611878661422294",
+        CLOUDINARY_API_SECRET: "emnAK4KUuAdfimtHrQSZHMdTqag",
     },
     images: {
         domains: ["res.cloudinary.com"],
