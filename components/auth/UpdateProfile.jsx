@@ -2,7 +2,6 @@
 
 import AuthContext from "@/context/AuthContext";
 import React, { useState, useContext } from "react";
-import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
   const { user, error, loading, updateProfile, clearErrors } =
