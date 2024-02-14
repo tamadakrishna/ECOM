@@ -1,7 +1,27 @@
 import mongoose from "mongoose";
 
 const addressSchema = new mongoose.Schema({
+  userid: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  mobile: {
+    type: String,
+    required: true,
+  },
+  houseno: {
+    type: String,
+    required: true,
+  },
   street: {
+    type: String,
+    required: true,
+  },
+  area: {
     type: String,
     required: true,
   },
@@ -9,15 +29,11 @@ const addressSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  pincode: {
+    type: String,
+    required: true,
+  },
   state: {
-    type: String,
-    required: true,
-  },
-  phoneNo: {
-    type: String,
-    required: true,
-  },
-  zipCode: {
     type: String,
     required: true,
   },

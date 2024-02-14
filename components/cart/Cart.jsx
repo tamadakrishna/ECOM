@@ -104,7 +104,7 @@ const Cart = () => {
       
     </div>
    </div>
-   <div className="mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] overflow-y-scroll ">
+   <div className="mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] overflow-y-scroll laptop:hidden ">
       <div className="mobile:w-[100%] mobile:h-[150px] ">
         <div className="mobile:w-[100%] mobile:h-[35px] ">
           <h1 className="text-[#020617] text-[20px] font-bold ml-[6px]"><span className="text-[20px]  font-normal">Subtotal</span> <sup>&#x20b9;</sup>{summary?.subTotal}</h1>

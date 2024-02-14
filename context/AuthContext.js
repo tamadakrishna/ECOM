@@ -30,12 +30,55 @@ export const AuthProvider = ({ children }) => {
    
   };
 
-  const getAddress = async () =>{
+  const getAddress = async (userid) =>{
+    if(userid){
+      const { data } = await axios.get(`${process.env.API_URL}/api/address`,
+      {
+        params:{
+          userid:userid
+        }
+      });
 
-    const { data } = await axios.get(`${process.env.API_URL}/api/address`);
-
-    setAddress(data);
+      setAddress(data);
+    }
+  
     
+    return;
+  }
+
+  const newAddress = async (address) =>{
+    try{
+    const { data } = await axios.post(`${process.env.API_URL}/api/address`,address);
+    console.log("new address response",data)
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
+  const deleteAddress = async(id) =>{
+    try{
+      const { data } = await axios.delete(`${process.env.API_URL}/api/address`,
+      {
+        data:{
+            "id":id
+        }
+      });
+      }
+      catch(error){
+        console.log(error);
+      }
+  }
+
+  const updateAddress = async(id, address) => {
+
+    try{
+    const {data} = await axios.put(`${process.env.API_URL}/api/address/${id}`,address)
+    }
+    catch(error){
+      console.log(error);
+    }
+
     return;
   }
 
@@ -43,9 +86,13 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        address,
         setUser,
         registerUser,
-        getAddress
+        getAddress,
+        newAddress,
+        deleteAddress,
+        updateAddress
       }}
     >
       {children}
