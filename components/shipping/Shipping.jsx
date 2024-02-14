@@ -31,8 +31,7 @@ const Shipping = ()=> {
 
     try {
       const stripe = await asyncStripe;
-      const {data} = await axios.post(`${process.env.API_URL}/api/checkout`,{amount:10})
-      console.log('data',data)
+      const {data} = await axios.post(`${process.env.API_URL}/api/checkout`,{amount:summary?.estimatedTotal})
       const sessionId  = data.sessionId; 
 
       const { error } = await stripe.redirectToCheckout({ sessionId });
@@ -104,7 +103,9 @@ const Shipping = ()=> {
           </div>
       </div>
     </div>
-    <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[5px] ">
+
+    {/* Address UI */}
+    <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[5px] mobile:hidden ">
       <div className="mobile:w-[100%] mobile:h-[100%] ">
         <div className="mobile:w-[100%] mobile:h-[30px] ml-[5px]">
           <h1 className="mobile:w-[100%] mobile:h-[100%] text-[#020617] text-[18px] font-semibold font-Poppins">Select a delivery address</h1>
@@ -133,6 +134,56 @@ const Shipping = ()=> {
         
         <div className="mobile:flex mobile:items-center mobile:mt-[2px] mobile:mb-[2px] mobile:w-[100%] mobile:h-[40px] mobile:bg-white cursor-pointer mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
           <span className="text-[#020617] font-semibold text-[15px] cursor-pointer mobile:ml-[8px] ">Add a New Address</span> 
+        </div>
+      </div>
+    </div>
+
+    {/* Summary UI */}
+    <div className="mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] mobile:bg-gray-100 mobile:p-[5px]">
+      <div className="mobile:w-[100%] mobile:h-[100%]  mobile:px-[10px] mobile:flex mobile:justify-center mobile:items-center ">
+        <div className="mobile:w-[350px] mobile:h-[450px] mobile:px-[8px] bg-white mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
+          <div className="mobile:w-[100%] mobile:h-[400px]">
+              <div className="mobile:w-[100%] mobile:h-[50px] mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center">
+                <span className="text-[#020617] text-[20px] font-semibold font-Poppins uppercase">ORDER SUMMARY</span>
+              </div>
+              <div className="mobile:w-[100%] mobile:max-h-[120px] mobile:border-b-[1.2px] mobile:border-gray-400 overflow-y-scroll">
+                {
+                  cart?.map((product,index)=>{
+                    return(
+                      <div key={index} className="mobile:w-[100%] mobile:h-[25px]   mobile:flex mobile:items-center mobile:justify-between">
+                        <span className="text-[#3f3f41] text-[15px]  font-Poppins ">{product?.quantity} x {product?.name}</span>
+                        <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{product?.quantity * product?.price}</span>
+                      </div>
+                    );
+                  })
+                }
+                
+              </div>
+              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins font-semibold">Subtotal</span>
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.subTotal}</span>
+              </div>
+              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">Estimated Tax</span>
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.salesTax}</span>
+              </div>
+              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">Shipping</span>
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.shipping}</span>
+              </div>
+              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">Estimated Total</span>
+                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.estimatedTotal}</span>
+              </div>
+          </div>
+          <div className="mobile:w-[100%] mobile:h-[50px]">
+            <div className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
+                onClick={(e)=>{ 
+                  handler();
+                  }}>
+                <span className="text-[#020617] cursor-pointer">Proceed to Pay</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
