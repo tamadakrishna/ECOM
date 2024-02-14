@@ -11,7 +11,7 @@ import axios from "axios";
 const Shipping = ()=> {
   
   const router = useRouter()
-
+  const [nextUI, setNextUI] = useState(false);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const { address, getAddress } = useContext(AuthContext);
   const { cart, summary} = useContext(CartContext);
@@ -105,7 +105,7 @@ const Shipping = ()=> {
     </div>
 
     {/* Address UI */}
-    <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[5px] mobile:hidden ">
+    <div className={`mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[5px]  ${nextUI ? "mobile:hidden" : ""}`}>
       <div className="mobile:w-[100%] mobile:h-[100%] ">
         <div className="mobile:w-[100%] mobile:h-[30px] ml-[5px]">
           <h1 className="mobile:w-[100%] mobile:h-[100%] text-[#020617] text-[18px] font-semibold font-Poppins">Select a delivery address</h1>
@@ -123,7 +123,7 @@ const Shipping = ()=> {
                   <div className="mobile:w-[100%] mobile:h-[60px] mobile:flex mobile:items-center mobile:px-[10px]">
                   <div className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
                         onClick={(e)=>{ 
-                          router.push("/shipping")
+                          setNextUI(true);
                           }}>
                         <span className="text-[#020617] cursor-pointer">Deliver to this address</span>
                   </div>
@@ -139,8 +139,10 @@ const Shipping = ()=> {
     </div>
 
     {/* Summary UI */}
-    <div className="mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] mobile:bg-gray-100 mobile:p-[5px]">
-      <div className="mobile:w-[100%] mobile:h-[100%]  mobile:px-[10px] mobile:flex mobile:justify-center mobile:items-center ">
+    <div className={`mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] mobile:bg-gray-100 mobile:p-[5px] ${nextUI ? "" : "mobile:hidden"}`}>
+      <div className="mobile:w-[100%] mobile:h-[25px] mobile:flex mobile:items-center mobile:justify-end "
+      onClick={(e)=>{  setNextUI(false); }}><span className="text-[#020617] text-[15px] font-semibold cursor-pointer mr-[10px]">Cancel</span></div>
+      <div className="mobile:w-[100%] mobile:h-[calc(100%_-_25px)]  mobile:px-[10px] mobile:flex mobile:justify-center mobile:items-center ">
         <div className="mobile:w-[350px] mobile:h-[450px] mobile:px-[8px] bg-white mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
           <div className="mobile:w-[100%] mobile:h-[400px]">
               <div className="mobile:w-[100%] mobile:h-[50px] mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center">

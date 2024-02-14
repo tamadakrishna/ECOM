@@ -48,7 +48,6 @@ export const CartProvider = ({ children }) => {
   const router = useRouter();
 
   const AddToCart = async (product)=>{
-    console.log("Images",product)
     const Data = {
       id:product._id,
       name:product.name,

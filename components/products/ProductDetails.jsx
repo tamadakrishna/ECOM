@@ -4,10 +4,14 @@ import CartContext from "@/context/CartContext";
 import { useContext, useEffect } from "react";
 import ProductContext from "@/context/ProductContext";
 import Loading from "@/components/layouts/Loading";
+import toast from 'react-hot-toast';
 
 const ProductDetails = ({productId}) => {
   const { loading, productDetails, getProduct} = useContext(ProductContext);
   const {AddToCart} = useContext(CartContext)
+
+    const notify = () => toast.success('Successfully added');
+
 
   useEffect(()=>{
     getProduct(productId);
@@ -46,7 +50,8 @@ const ProductDetails = ({productId}) => {
                         <h1 className="text-[#020617]">Buy Now</h1>
                     </div>
                     <div className="bg-yellow-400 laptop:w-[250px] laptop:h-[60px] laptop:rounded-[50px]  laptop:flex laptop:justify-center laptop:items-center laptop:cursor-pointer
-                                    mobile:w-[250px] mobile:h-[40px] mobile:rounded-[50px]" onClick={()=>{AddToCart(productDetails)}}>
+    const notify = () => toast('Successfully added');
+                                    mobile:w-[250px] mobile:h-[40px] mobile:rounded-[50px]" onClick={()=>{AddToCart(productDetails); notify();}}>
                         <h1 className="text-[#020617]">Add to Cart</h1>
                     </div>
                 </div>

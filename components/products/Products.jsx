@@ -34,16 +34,19 @@ const Products = () => {
                                         mobile:w-[100px] mobile:h-[250px] mobile:flex mobile:items-center ">
                             <div className="mobile:w-[100%] mobile:h-[155px] mobile:relative 
                                             ">
-                                <Image
-                                    className="mobile:py-5 px-2"
-                                    src={
-                                      product && product?.images && product?.images.length > 0
-                                        ? product?.images[0].url
-                                        : "/images/default_product.png"
-                                    }
-                                    alt="product anme"
-                                    fill={true}
-                                  />
+                                <Link
+                                href={`/product/${product?._id}`}>
+                                  <Image
+                                      className="mobile:py-5 px-2"
+                                      src={
+                                        product && product?.images && product?.images.length > 0
+                                          ? product?.images[0].url
+                                          : "/images/default_product.png"
+                                      }
+                                      alt="product anme"
+                                      fill={true}
+                                    />
+                                  </Link>
                             </div>
                         </div>
                         <div className="ml-2

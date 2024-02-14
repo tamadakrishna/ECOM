@@ -4,14 +4,12 @@ import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { ProductProvider } from "@/context/ProductContext";
 import { SessionProvider } from "next-auth/react";
-
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from 'react-hot-toast';
 
 export function GlobalProvider({ children }) {
   return (
     <>
-      <ToastContainer position="bottom-right" />
+    <Toaster position="top-right" reverseOrder={false}/>
       <AuthProvider>
         <CartProvider>
           <ProductProvider>
