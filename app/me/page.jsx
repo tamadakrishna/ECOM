@@ -2,9 +2,11 @@ import Profile from "@/components/auth/Profile";
 import React from "react";
 
 const ProfilePage = async () => {
-  const addresses = [{street:"nehru"}];
 
-  return <Profile addresses={addresses} />;
-};
+  return( 
+  <div className="mobile:h-[100%] mobile:w-[100%] ">
+    <Profile/>
+  </div>
+)};
 
 export default ProfilePage;

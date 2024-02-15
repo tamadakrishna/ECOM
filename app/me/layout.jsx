@@ -1,26 +1,17 @@
-import Sidebar from "@/components/layouts/Sidebar";
+import SideMenu from "@/components/layouts/SideMenu";
+{/* <Sidebar /> */}
 
 export default function UserLayout({ children }) {
   return (
     <>
-      <section className="py-5 sm:py-7 bg-blue-100">
-        <div className="container max-w-screen-xl mx-auto px-4">
-          <h1 className="text-bold text-2xl">User Dashboard</h1>
+      <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[3px]">
+        <div className="mobile:w-[100%] h-[30px] ">
+          <SideMenu/>
         </div>
-      </section>
-
-      <section className="py-10">
-        <div className="container max-w-screen-xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row -mx-4">
-            <Sidebar />
-            <main className="md:w-2/3 lg:w-3/4 px-4">
-              <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
-                {children}
-              </article>
-            </main>
-          </div>
+        <div className="mobile:w-[100%] mobile:h-[calc(100%_-_30px)] ">
+          {children}
         </div>
-      </section>
+      </div>
     </>
   );
 }

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -15,7 +14,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your password"],
     minLength: [6, "Your password must be longer than 6 characters"],
-    select: false,
   },
   avatar: {
     public_id: String,
@@ -31,12 +29,5 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
-    next();
-  }
-
-  this.password = await bcrypt.hash(this.password, 10);
-});
 
 export default mongoose.models.User || mongoose.model("User", userSchema);

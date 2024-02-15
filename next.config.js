@@ -5,7 +5,7 @@ const nextConfig = {
          API_URL: "https://proecommerce.vercel.app",
 
         // DB_URI:"mongodb+srv://admin:admin@cluster0.uskgjtq.mongodb.net/?retryWrites=true&w=majority",
-        // NEXTAUTH_SECRET: "krishna",
+        NEXTAUTH_SECRET: "865f38a9950699794e81fcd91584f8612f5a42aec5b7bbed48c1683832c519c22c836c91fe1afc0330a2ea02dea0a31a1f509dfde1a780ce82ec0eb1",
 
         STRIPE_PUBLIC_KEY: "pk_test_51ONubaSHZfLMCurbIEJZC9AiaonKjBRzwssg5DcmcG6rnwQgr6SG4XBFC9dfNELAlNANLZ76aTto0NAfyv74DjmU007uLUFkF7",
         STRIPE_PRIVATE_KEY: "sk_test_51ONubaSHZfLMCurb8depsFhnl1MMZxYeKLmosyyZgumfrfKzU5fW7pUUkxUH3w7jV3pyxiNiSml2mgqhBrjyVZQF00tcu0KMwO",

@@ -1,18 +1,21 @@
 import User from "../models/user";
-import React, { useContext } from "react";
-
-
+import dbConnect from "@/backend/config/dbConnect";
+import bcrypt from "bcrypt";
 
 export const registerUser = async (req, res) => {
   const { name, email, password } = req;
 
-  const user = await User.create({
-    name,
-    email,
-    password,
-  });
-  
-  return user;
+  const encryptpassword = await bcrypt.hash(password, 10);
+  dbConnect();
+
+    const user = await User.create({
+      name,
+      email,
+      password:encryptpassword
+    });
+    
+    return user;
+ 
 };
 
 export const getUsers = async (req, res) => {
@@ -38,11 +41,18 @@ export const deleteUser = async (req, res) => {
 
 export const verifyUser = async (email,password) =>{
 
-  let user = await User.find({email:email,password:password});
-  if(!user)
-  return null;
+  dbConnect();
 
-  return user[0];
+  let user = await User.findOne({email:email});
+
+  if(user){
+    const status = await bcrypt.compare(password, user.password);
+    if(status)
+    return user;
+  
+    return null;
+  }
+ 
 }
 
 export const getUser = async(email) => {

@@ -22,9 +22,12 @@ const handler = NextAuth({
 
           async authorize(credentials, req) {
             
-            const user = await verifyUser(credentials.email,credentials.password)
-
-            return user
+            
+              const user = await verifyUser(credentials.email,credentials.password)
+              if(user){
+              return user
+            }
+            
           }
         })
       ],
@@ -41,8 +44,8 @@ const handler = NextAuth({
                 }
             }
         }
-    }
-      
+    },
+    secret: process.env.NEXTAUTH_SECRET 
   })
   
   export { handler as GET, handler as POST }

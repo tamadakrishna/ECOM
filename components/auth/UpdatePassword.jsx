@@ -1,70 +1,42 @@
 "use client";
-
-import AuthContext from "@/context/AuthContext";
-import React, { useContext, useState } from "react";
+import React from 'react'
 
 const UpdatePassword = () => {
-  const { error, updatePassword, clearErrors } = useContext(AuthContext);
-
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-
-
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-
-    updatePassword({
-      currentPassword,
-      newPassword,
-    });
-  };
-
   return (
-    <>
-      <div
-        style={{ maxWidth: "480px" }}
-        className="mt-5 mb-20 p-4 md:p-7 mx-auto rounded bg-white"
-      >
-        <form onSubmit={submitHandler}>
-          <h2 className="mb-5 text-2xl font-semibold">Update Password</h2>
+    <div className="w-[100%] h-[100%] p-[5px] ">
+      <div className="w-[100%] h-[calc(100%_-_60px)] ">
 
-          <div className="mb-4">
-            <label className="block mb-1"> Current Password </label>
-            <input
-              className="appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full"
-              type="password"
-              placeholder="Type your password"
-              minLength={6}
-              required
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-            />
-          </div>
+      <div className="mb-[8px] mt-[10px] mobile:w-[100%] ">
+          <label className="block mb-[2px] text-[15px] font-semibold text-gray-900 dark:text-white">Current Password</label>
+          <input type="name" id="name" className="mobile:h-[35px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[2.5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required
+            value={''}
+            onChange={(e)=>{}}/>
+        </div>
 
-          <div className="mb-4">
-            <label className="block mb-1"> New Password </label>
-            <input
-              className="appearance-none border border-gray-200 bg-gray-100 rounded-md py-2 px-3 hover:border-gray-400 focus:outline-none focus:border-gray-400 w-full"
-              type="password"
-              placeholder="Type your password"
-              minLength={6}
-              required
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-          </div>
+        <div className="mb-[8px] mt-[5px] mobile:w-[100%] ">
+          <label className="block mb-[2px] text-[15px] font-semibold text-gray-900 dark:text-white">New Password</label>
+          <input type="name" id="name" className="mobile:h-[35px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[2.5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required
+            value={''}
+            onChange={(e)=>{}}/>
+        </div>
 
-          <button
-            type="submit"
-            className="my-2 px-4 py-2 text-center w-full inline-block text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700"
-          >
-            Update
-          </button>
-        </form>
+        <div className="mb-[8px] mt-[5px] mobile:w-[100%] ">
+          <label className="block mb-[2px] text-[15px] font-semibold text-gray-900 dark:text-white">Confirm New Password</label>
+          <input type="name" id="name" className="mobile:h-[35px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-[2.5px] focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  required
+            value={''}
+            onChange={(e)=>{}}/>
+        </div>
+
       </div>
-    </>
-  );
-};
+      <div className='w-[100%] h-[60px]'>
+        <div className="mobile:w-[100%] mobile:h-[35px]  mb-1 cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
+                          onClick={(e)=>{ 
+                            }}>
+              <span className="text-[#020617] cursor-pointer">Update Password</span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
-export default UpdatePassword;
+export default UpdatePassword
