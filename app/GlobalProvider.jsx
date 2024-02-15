@@ -9,7 +9,7 @@ import { Toaster } from 'react-hot-toast';
 export function GlobalProvider({ children }) {
   return (
     <>
-    <Toaster position="top-right" reverseOrder={false}/>
+    <Toaster position="top-left" reverseOrder={false}/>
       <AuthProvider>
         <CartProvider>
           <ProductProvider>

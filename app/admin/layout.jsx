@@ -1,26 +1,35 @@
-import Sidebar from "@/components/layouts/Sidebar";
+"use client"
+import SideMenu from "@/components/layouts/SideMenu";
+import AuthContext from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import React, { useContext, useEffect } from "react";
+import toast from 'react-hot-toast';
+
 
 export default function AdminLayout({ children }) {
+  const { user } = useContext(AuthContext);
+
+  const router = useRouter();
+
+  if(user===null){
+    toast.error('Please Login...')
+  }
+  useEffect(()=>{
+    if(user===null){
+      router.push('/')
+    }
+  },[user])
+  
   return (
     <>
-      <section className="py-5 sm:py-7 bg-blue-100">
-        <div className="container max-w-screen-xl mx-auto px-4">
-          <h1 className="text-bold text-2xl">Admin Dashboard</h1>
+      <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[3px]">
+        <div className="mobile:w-[100%] h-[30px] ">
+          <SideMenu user={user}/>
         </div>
-      </section>
-
-      <section className="py-10">
-        <div className="container max-w-screen-xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row -mx-4">
-            <Sidebar />
-            <main className="md:w-2/3 lg:w-3/4 px-4">
-              <article className="border border-gray-200 bg-white shadow-sm rounded mb-5 p-3 lg:p-5">
-                {children}
-              </article>
-            </main>
-          </div>
+        <div className="mobile:w-[100%] mobile:h-[calc(100%_-_30px)] ">
+          {children}
         </div>
-      </section>
+      </div>
     </>
   );
 }

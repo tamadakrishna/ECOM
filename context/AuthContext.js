@@ -3,12 +3,15 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
+import { signOut } from "next-auth/react";
+import toast from 'react-hot-toast';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState(null);
   const [address,setAddress] = useState([]);
 
   const router = useRouter();
@@ -83,17 +86,75 @@ export const AuthProvider = ({ children }) => {
     return;
   }
 
+  const updateProfile = async(profile) =>{
+
+    const info = { name:profile.name,email:profile.email};
+
+    try{
+      const {data} = await axios.put(`${process.env.API_URL}/api/auth/user/updateProfile/${profile.id}`,info);
+      signOut();
+      router.push('/login');
+      toast.success('successfully updated')
+      }
+      catch(error){
+        console.log(error);
+      }
+  }
+
+  const updatePassword = async(info) =>{
+
+
+    try{
+      const {data} = await axios.post(`${process.env.API_URL}/api/auth/user/updatePassword/${info.id}`,
+                            {
+                              oldPassword:info.password,
+                              newPassword:info.newPassword
+                            });
+      signOut();
+      router.push('/login');
+      toast.success('successfully updated')
+      }
+      catch(error){
+        console.log(error);
+      }
+  }
+
+  const getUsers = async()=>{
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/api/admin/users`);
+      setUsers(data);
+      }
+      catch(error){
+        console.log(error);
+      }
+  }
+
+  const deleteUser = async(id)=>{
+    try{
+      const { data } = await axios.delete(`${process.env.API_URL}/api/admin/users/${id}`);
+      getUsers();
+      }
+      catch(error){
+        console.log(error);
+      }
+  }
+
   return (
     <AuthContext.Provider
       value={{
         user,
+        users,
         address,
         setUser,
+        getUsers,
+        deleteUser,
         registerUser,
         getAddress,
         newAddress,
         deleteAddress,
-        updateAddress
+        updateAddress,
+        updateProfile,
+        updatePassword
       }}
     >
       {children}

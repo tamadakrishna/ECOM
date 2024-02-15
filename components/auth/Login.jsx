@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import toast from 'react-hot-toast';
 
 
 const Login = () => {
@@ -20,11 +21,16 @@ const Login = () => {
       email,
       password,
       redirect:false,
-      // callbackUrl: callBackUrl ? parseCallbackUrl(callBackUrl) : "/",
     });
     
-    if(data)
-    router.push('/me')
+
+    if(data.ok){
+      toast.success('Welcome Back!')
+      router.push('/me')
+    }else{
+      toast.error('Incorrect Password/email..')
+      router.push('/login')
+    }
   };
 
   return (

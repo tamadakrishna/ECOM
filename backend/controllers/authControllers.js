@@ -25,7 +25,6 @@ export const getUsers = async (req, res) => {
   return users;
 };
 
-
 export const deleteUser = async (req, res) => {
 
   let user = await User.findById(req);
@@ -61,4 +60,37 @@ export const getUser = async(email) => {
   return null;
 
   return user;
+}
+
+export const updateProfile = async(id,info) => {
+  dbConnect();
+  const filter = { _id:id };
+  const doc = await User.findOneAndUpdate(filter, info, {
+    new: true
+  })
+
+  return;
+}
+
+export const updatePassword = async (id,oldpass,newpass) =>{
+
+  dbConnect();
+
+  let user = await User.findOne({_id:id});
+
+  if(user){
+    const status = await bcrypt.compare(oldpass, user.password);
+    if(status){
+          const encryptpassword = await bcrypt.hash(newpass, 10);
+          const filter = { _id:id };
+          const doc = await User.findOneAndUpdate(filter, {
+            password:encryptpassword
+          }, {
+            new: true
+          })
+    }
+    return user;
+  
+  }
+ 
 }

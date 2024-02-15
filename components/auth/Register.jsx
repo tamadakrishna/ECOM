@@ -4,19 +4,36 @@ import Link from "next/link";
 import React, { useState, useContext } from "react";
 import AuthContext from "@/context/AuthContext";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import toast from 'react-hot-toast';
 
 const Register = () => {
-  const { error, registerUser, clearErrors } = useContext(AuthContext);
+  const { registerUser} = useContext(AuthContext);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const [info,setInfo] = useState({
+    name:"",
+    email:"",
+    password:""
+  })
 
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    registerUser({ name, email, password });
+    registerUser({ ...info});
+
+    setInfo({
+      name:"",
+      email:"",
+      password:""
+    });
+
+    toast.success('Registered Successfully');
+
+    router.push('/login');
+
   };
 
   return (
@@ -47,8 +64,8 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Type your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={info.name}
+                onChange={(e) => setInfo({...info,name:e.target.value})}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -63,8 +80,8 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Type your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={info.email}
+                onChange={(e) => setInfo({...info,email:e.target.value})}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
@@ -83,8 +100,8 @@ const Register = () => {
                 type="password"
                 placeholder="Type your password"
                 minLength={6}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={info.password}
+                onChange={(e) => setInfo({...info,password:e.target.value})}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />

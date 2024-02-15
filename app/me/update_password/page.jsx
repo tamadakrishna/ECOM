@@ -1,10 +1,10 @@
 import React from 'react'
 import UpdatePassword from "@/components/auth/UpdatePassword";
 
-const Update_Password = () => {
+const Update_Password = ({searchParams}) => {
   return (
     <div className="mobile:h-[100%] mobile:w-[100%] ">
-        <UpdatePassword/>
+        <UpdatePassword user={searchParams}/>
     </div>
   )
 }

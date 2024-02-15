@@ -1,15 +1,20 @@
 "use client";
 
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import toast from 'react-hot-toast';
+import { useRouter } from "next/navigation";
 
-export default function SideMenu({cart,user}) {
+export default function SideMenu({user}) {
+
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const router = useRouter();
 
     const logoutHandler = () => {
-      // router.replace('/') { callbackUrl: `${process.env.API_URL}/` }
+      router.push('/');
       signOut();
+      toast.success("Successfully logged out..")
     };
 
     const UserRoutes = [
@@ -31,8 +36,27 @@ export default function SideMenu({cart,user}) {
       },
     ];
 
+    const AdminRoutes = [
+      {
+        name:"New Product",
+        route:"/admin/products/new"
+      },
+      {
+        name:"All Products",
+        route:'/admin/products'
+      },
+      {
+        name:"All Orders",
+        route:"/admin/orders"
+      },
+      {
+        name:"All Users",
+        route:"/admin/users"
+      },
+    ];
+
   return (
-    <section className="MOBILE-MENU flex lg:hidden">
+    <section className="MOBILE-MENU flex ">
           <div
             className="HAMBURGER-ICON space-y-1"
             onClick={() => setIsNavOpen((prev) => !prev)}
@@ -62,19 +86,31 @@ export default function SideMenu({cart,user}) {
             </div>
             <div  className="mobile:flex mobile:pt-[150px] mobile:justify-center mobile:gap-2  mobile:w-[100%] mobile:h-[100vh] ">
             <div>
-                  {
-                    UserRoutes?.map((info,index)=>{
+                  {user?.role==="user" ?
+                    (UserRoutes?.map((info,index)=>{
                       return(
                         <li className="list-none" key={index}>
                           <Link
-                            href={info?.route}
+                            href={{ pathname: info?.route, query: { ...user} }}
                             onClick={() => setIsNavOpen(false)}
                             className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md">
                             {info?.name}
                           </Link>
                         </li>
                       )
-                    })
+                    })) :
+                    (AdminRoutes?.map((info,index)=>{
+                      return(
+                        <li className="list-none" key={index}>
+                          <Link
+                            href={{ pathname: info?.route, query: { ...user} }}
+                            onClick={() => setIsNavOpen(false)}
+                            className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md">
+                            {info?.name}
+                          </Link>
+                        </li>
+                      )
+                    }))
                   }
                    <li className="list-none">
                     <a
@@ -108,3 +144,7 @@ export default function SideMenu({cart,user}) {
         </section>
    )
 }
+
+{/* <Link
+                      className="mobile:w-[100%]"
+                       href={{ pathname: '/address/update', query: { ...address} }}></Link> */}

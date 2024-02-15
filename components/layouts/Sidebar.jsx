@@ -25,7 +25,7 @@ const Sidebar = () => {
     },
     {
       name:"All Products",
-      route:`${process.env.API_URL}/admin/products`
+      route:'/admin/products'
     },
     {
       name:"All Orders",
