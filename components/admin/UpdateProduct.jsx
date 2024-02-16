@@ -2,6 +2,7 @@
 
 import React, { useContext, useState } from "react";
 import productContext from "@/context/ProductContext";
+import toast from "react-hot-toast";
 
 const Update_Product = ({productData}) => {
   const {updateProduct} = useContext(productContext);
@@ -33,6 +34,7 @@ const Update_Product = ({productData}) => {
   const submitHandler = (e) => {
     e.preventDefault();
     updateProduct(productData?._id,product);
+    toast.success("Successfully Updated");
   };
 
   return (

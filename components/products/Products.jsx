@@ -6,13 +6,13 @@ import Link from "next/link";
 import ProductContext from "@/context/ProductContext";
 import Loading from "@/components/layouts/Loading";
 
-const Products = () => { 
+const Products = ({products}) => { 
   
-  const { loading, products, getProducts} = useContext(ProductContext);
+  // const { loading, products, getProducts} = useContext(ProductContext);
 
-  useEffect(()=>{
-    getProducts();
-  },[])
+  // useEffect(()=>{
+  //   getProducts();
+  // },[])
 
 
   return (
@@ -21,7 +21,7 @@ const Products = () => {
         <div className="laptop:w-[250px] laptop:h-[100%] laptop:border-3 laptop:border-red-800
                         mobile:hidden"></div>
         {
-        loading ? 
+        !products ? 
         <div className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] laptop:flex laptop:justify-center laptop:items-center
                        "> <Loading/> </div> :
         <div className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] laptop:overflow-y-scroll laptop:p-1 

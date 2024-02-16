@@ -12,6 +12,7 @@ const Profile = () => {
   const router = useRouter();
 
   useEffect(()=>{
+    if(user.role!=="admin")
     getAddress(user?.id);
   },[user])
 
@@ -20,6 +21,8 @@ const Profile = () => {
       <div className="w-[100%] h-[35px] flex items-center ">
         <span className="text-[#242222] font-semibold font-Poppins text-[20px]">Hi {user?.name}</span>
       </div>
+
+      {/* Disable it for admin */}
       <div className="w-[100%] h-[calc(100%-35px)] overflow-y-scroll">
       {
             address?.map((address,index)=>{

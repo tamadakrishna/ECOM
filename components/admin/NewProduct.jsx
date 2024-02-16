@@ -3,24 +3,12 @@
 import ProductContext from "@/context/ProductContext";
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const NewProduct = () => {
   const { createProduct } = useContext(ProductContext);
 
-  const [product, setProduct] = useState({
-    name: "",
-    description: "",
-    seller: "",
-    price: "",
-    stock: "",
-    category: "",
-  });
-
-  const { name, description, seller, price, stock, category } = product;
-
-  const onChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
-  };
+  const router = useRouter();
 
   const categories = [
     "Electronics",
@@ -30,6 +18,23 @@ const NewProduct = () => {
     "Headphones",
     "Sports",
   ];
+
+  const [product, setProduct] = useState({
+    name: "",
+    description: "",
+    seller: "",
+    price: "",
+    stock: "",
+    category: categories[0],
+  });
+
+  const { name, description, seller, price, stock, category } = product;
+
+  const onChange = (e) => {
+    setProduct({ ...product, [e.target.name]: e.target.value });
+  };
+
+
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -43,6 +48,7 @@ const NewProduct = () => {
       category: "",
     })
     createProduct(product);
+    router.push('/admin/products')
   };
 
   return (
@@ -53,7 +59,7 @@ const NewProduct = () => {
 
       <form onSubmit={submitHandler}>
         <div className="mb-4">
-          <label className="block mb-1"> Name </label>
+          <label className="block mb-1 text-[#020617"> Name </label>
           <input
             type="text"
             className="relative m-0 w-full block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -66,7 +72,7 @@ const NewProduct = () => {
         </div>
 
         <div className="mb-4 mt-5">
-          <label className="block mb-1"> Description </label>
+          <label className="block mb-1 text-[#020617"> Description </label>
           <textarea
             rows="4"
             className="relative m-0 w-full block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -80,7 +86,7 @@ const NewProduct = () => {
 
         <div className="grid md:grid-cols-2 gap-x-2 mt-5">
           <div className="mb-4">
-            <label className="block mb-1"> Price </label>
+            <label className="block mb-1 text-[#020617"> Price </label>
             <div className="relative">
               <div className="col-span-2">
                 <input
@@ -96,7 +102,7 @@ const NewProduct = () => {
             </div>
           </div>
           <div className="mb-4">
-            <label className="block mb-1"> Category </label>
+            <label className="block mb-1 text-[#020617"> Category </label>
             <div className="relative">
               <select
                 className="relative w-full m-0 block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -117,7 +123,7 @@ const NewProduct = () => {
 
         <div className="grid md:grid-cols-2 gap-x-2 mt-5">
           <div className="mb-4">
-            <label className="block mb-1"> Seller / Brand </label>
+            <label className="block mb-1 text-[#020617"> Seller / Brand </label>
             <input
               type="text"
               className="relative w-full m-0 block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
@@ -130,7 +136,7 @@ const NewProduct = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block mb-1"> Stock </label>
+            <label className="block mb-1 text-[#020617"> Stock </label>
             <div className="relative">
               <div className="col-span-2">
                 <input

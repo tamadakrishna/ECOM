@@ -53,7 +53,7 @@ export const AuthProvider = ({ children }) => {
   const newAddress = async (address) =>{
     try{
     const { data } = await axios.post(`${process.env.API_URL}/api/address`,address);
-    console.log("new address response",data)
+    router.back()
     }
     catch(error){
       console.log(error);

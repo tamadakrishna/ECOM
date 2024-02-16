@@ -6,7 +6,7 @@ import { useContext, useEffect } from "react";
 
 const Products = () => {
 
-  const {products, getProducts} = useContext(ProductContext);
+  const {products, getProducts, deleteProduct} = useContext(ProductContext);
 
   useEffect(()=>{
     getProducts();
@@ -55,7 +55,7 @@ const Products = () => {
                   </Link>
 
                   <button
-                    onClick={''}
+                    onClick={()=>{deleteProduct(info?._id)}}
                     className="px-2 py-2 inline-block text-red-600 bg-white shadow-sm border border-gray-200 rounded-md 
                             hover:bg-gray-100 cursor-pointer mr-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-3 h-3">
