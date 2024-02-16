@@ -7,71 +7,40 @@ import { createContext, useState } from "react";
 const OrderContext = createContext();
 
 export const OrderProvider = ({ children }) => {
-  const [error, setError] = useState(null);
-  const [updated, setUpdated] = useState(false);
-  const [canReview, setCanReview] = useState(false);
+
+  const [orders, setOrders] = useState(null);
+  const [orderDetails, setOrderDetails] = useState(null);
 
   const router = useRouter();
 
-  const updateOrder = async (id, orderData) => {
-    try {
-      const { data } = await axios.put(
-        `${process.env.API_URL}/api/admin/orders/${id}`,
-        orderData
-      );
-
-      if (data.success) {
-        setUpdated(true);
-        router.replace(`/admin/orders/${id}`);
-      }
-    } catch (error) {
-      setError(error?.response?.data?.message);
+  const getAllOrders = async()=>{
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/api/orders/me/`);
+      setOrders(data);
+    }catch(error){
+      console.log(error)
     }
-  };
+    return;
+  }
 
-  const deleteOrder = async (id) => {
-    try {
-      const { data } = await axios.delete(
-        `${process.env.API_URL}/api/admin/orders/${id}`
-      );
-
-      if (data?.success) {
-        router.replace(`/admin/orders`);
-      }
-    } catch (error) {
-      setError(error?.response?.data?.message);
+  const getOrderDetails = async(id)=>{
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/api/orders/me/details/${id}`);
+      setOrderDetails(data);
+    }catch(error){
+      console.log(error)
     }
-  };
-
-  const canUserReview = async (id) => {
-    try {
-      const { data } = await axios.get(
-        `${process.env.API_URL}/api/orders/can_review?productId=${id}`
-      );
-
-      if (data?.canReview) {
-        setCanReview(data?.canReview);
-      }
-    } catch (error) {
-      setError(error?.response?.data?.message);
-    }
-  };
-
-  const clearErrors = () => {
-    setError(null);
-  };
+    return;
+  }
+ 
 
   return (
     <OrderContext.Provider
       value={{
-        error,
-        updated,
-        canReview,
-        setUpdated,
-        updateOrder,
-        deleteOrder,
-        canUserReview,
-        clearErrors,
+        orders,
+        orderDetails,
+        getOrderDetails,
+        getAllOrders
       }}
     >
       {children}
@@ -80,3 +49,5 @@ export const OrderProvider = ({ children }) => {
 };
 
 export default OrderContext;
+
+

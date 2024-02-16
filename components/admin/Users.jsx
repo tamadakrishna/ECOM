@@ -31,9 +31,9 @@ const Users = () => {
         users?.map((user,index)=>{
         return  (
           <div key={index} className="w-[100%] h-[40px] py-[4px] flex justify-between border-gray-400 border-b-[1.5px]">
-            <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start "><span className="text-ellipsis overflow-hidden ... ">{user?.name}</span></div>
-            <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start "><span className="text-ellipsis overflow-hidden ... ">{user?.email}</span></div>
-            <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start ">{user?.role}</div>
+            <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start "><span className="text-ellipsis text-[#363434] overflow-hidden ... ">{user?.name}</span></div>
+            <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start "><span className="text-ellipsis text-[#363434] overflow-hidden ... ">{user?.email}</span></div>
+            <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start "><span className="text-ellipsis text-[#363434] overflow-hidden ... ">{user?.role}</span></div>
             <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-start ">
             <div>
                   <Link

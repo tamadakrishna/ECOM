@@ -103,7 +103,7 @@ export default function SideMenu({user}) {
                       return(
                         <li className="list-none" key={index}>
                           <Link
-                            href={{ pathname: info?.route, query: { ...user} }}
+                            href={info?.route}
                             onClick={() => setIsNavOpen(false)}
                             className="block px-3 py-2 text-gray-800 hover:bg-blue-100 hover:text-blue-500 rounded-md">
                             {info?.name}

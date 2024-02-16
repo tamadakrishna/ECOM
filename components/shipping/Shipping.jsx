@@ -139,7 +139,7 @@ const Shipping = ()=> {
     </div>
 
     {/* Summary UI */}
-    <div className={`mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] mobile:bg-gray-100 mobile:p-[5px] laptop:hidden ${nextUI ? "" : "mobile:hidden"}`}>
+    <div className={`mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] mobile:bg-gray-100 mobile:p-[5px] ${nextUI ? "" : "mobile:hidden"}`}>
       <div className="mobile:w-[100%] mobile:h-[25px] mobile:flex mobile:items-center mobile:justify-end "
       onClick={(e)=>{  setNextUI(false); }}><span className="text-[#020617] text-[15px] font-semibold cursor-pointer mr-[10px]">Cancel</span></div>
       <div className="mobile:w-[100%] mobile:h-[calc(100%_-_25px)]  mobile:px-[10px] mobile:flex mobile:justify-center mobile:items-center ">

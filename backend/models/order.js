@@ -1,67 +1,75 @@
 import mongoose from "mongoose";
 
 const orderSchema = mongoose.Schema({
-  shippingInfo: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "Address",
+  orderId: {
+    type: String,
+    required: true
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
+  orderDate: {
+    type: Date,
+    default: Date.now,
   },
-  orderItems: [
+  userId: {
+    type: String,
+    required: true
+  },
+  orderDetails:[
     {
-      product: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "Product",
-      },
-      name: {
+      productName: {
         type: String,
-        required: true,
+        required: true
       },
       quantity: {
         type: String,
-        required: true,
-      },
-      image: {
-        type: String,
-        required: true,
+        required: true
       },
       price: {
         type: String,
-        required: true,
+        required: true
+      },
+      total: {
+        type: String,
+        required: true
       },
     },
   ],
-  paymentInfo: {
-    id: {
+  summary:{
+    subTotal: {
       type: String,
-      required: true,
+      required: true
     },
-    status: {
+    tax: {
       type: String,
-      required: true,
+      required: true
     },
-    taxPaid: {
-      type: Number,
-      required: true,
+    shippingCharge: {
+      type: String,
+      required: true
     },
-    amountPaid: {
-      type: Number,
-      required: true,
+    estimatedTotal: {
+      type: String,
+      required: true
+    },
+  },
+  customerDetails: {
+    name: {
+      type: String,
+      required: true
+    },
+    address: {
+      type: String,
+      required: true
+    },
+    mobile: {
+      type: String,
+      required: true
     },
   },
   orderStatus: {
     type: String,
     default: "Processing",
   },
-  createAt: {
-    type: Date,
-    default: Date.now,
-  },
+ 
 });
 
 export default mongoose.models.Order || mongoose.model("Order", orderSchema);

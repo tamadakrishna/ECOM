@@ -2,61 +2,88 @@
 
 import Link from "next/link";
 import Pagination from "../layouts/Pagination";
+import React, { useContext, useEffect, useState } from "react";
+import AuthContext from "@/context/AuthContext";
+import OrderContext from "@/context/OrderContext"
 
-const Orders = ({ orders }) => {
+const Orders = () => {
+  const {orders, getAllOrders} = useContext(OrderContext)
+
+  useEffect(()=>{
+    getAllOrders();
+  },[])
 
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <h1 className="text-3xl my-5 ml-4 font-bold">
-        {orders?.ordersCount} Orders
-      </h1>
-      <table className="w-full text-sm text-left">
-        <thead className="text-l text-gray-700 uppercase">
-          <tr>
-            <th scope="col" className="px-6 py-3">
-              ID
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Amount Paid
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Status
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {["IN"].map((order,index) => (
-            <tr key={index} className="bg-white">
-              <td className="px-6 py-2">{"order?._id"}</td>
-              <td className="px-6 py-2">${"order?.paymentInfo?.amountPaid"}</td>
-              <td className="px-6 py-2">{"order?.orderStatus"}</td>
-              <td className="px-6 py-2">
-                <div>
-                  <Link
-                    href={`/admin/orders/${"order?._id"}`}
-                    className="px-2 py-2 inline-block text-yellow-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 cursor-pointer mr-2"
-                  >
-                    <i className="fa fa-pencil" aria-hidden="true"></i>
-                  </Link>
-                  <a
-                    className="px-2 py-2 inline-block text-red-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 cursor-pointer"
-                    onClick={() => "deleteHandler(order?._id)"}
-                  >
-                    <i className="fa fa-trash" aria-hidden="true"></i>
-                  </a>
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      <div className="mb-6">
-        <Pagination/>
+    <div className="w-[100%] h-[100%] overflow-scroll ">
+      <div className="min-w-[480px] h-[40px] ">
+        <span className="text-[#252424] font-Poppins font-semibold text-[18px]">All Orders</span>
       </div>
+      <div className="min-w-[480px] h-[calc(100%_-_40px)] ">
+
+        <div className="min-w-[480px] h-[35px] flex justify-between gap-[2px] border-gray-400 border-b-[1.5px]">
+
+          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+            <span className="text-[#474545] font-Poppins font-medium text-[12px]">Order ID</span>
+          </div>
+
+          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+            <span className="text-[#474545] font-Poppins font-medium text-[12px]">Order Date</span>
+          </div>
+
+          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+            <span className="text-[#474545] font-Poppins font-medium leading-[10px] text-[12px]">Customer Name</span>
+          </div>
+
+          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+            <span className="text-[#474545] font-Poppins font-medium text-[12px]">Status</span>
+          </div>
+
+          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+            <span className="text-[#474545] font-Poppins font-medium text-[12px]">Price</span>
+          </div>
+        </div>
+
+        {
+          orders?.map((order,index)=>{
+            const originalDate = new Date(order?.orderDate);
+            const orderDate = originalDate.toLocaleDateString();
+
+            return(
+              <div key={index} className="min-w-[480px] h-[35px] flex justify-between gap-[2px] border-gray-400 border-b-[1.5px]">
+                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+                  <Link
+                      className="w-[100%] h-[100%] flex justify-center items-center"
+                    href={{
+                      pathname: '/admin/orders/orderDetails',
+                      query: { id:order?._id },
+                    }}>
+                    <span className="text-[#4c3daf] font-Poppins  text-[12px]">{order?.orderId}</span>
+                    </Link>
+                  </div>
+
+                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+                    <span className="text-[#252424] font-Poppins  text-[12px]">{orderDate}</span>
+                  </div>
+
+                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+                    <span className="text-[#252424] font-Poppins  text-[12px] leading-[12px]">{order?.customerDetails?.name}</span>
+                  </div>
+
+                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+                    <span className="text-[#252424] font-Poppins  text-[12px] leading-[12px]">{order?.orderStatus}</span>
+                  </div>
+
+                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
+                    <span className="text-[#252424] font-Poppins  text-[12px] leading-[12px]">&#x20b9;{order?.summary?.estimatedTotal}</span>
+                  </div>
+                </div>);
+          })
+
+        }
+        
+
+      </div>
+   
     </div>
   );
 };
