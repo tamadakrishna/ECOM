@@ -2,9 +2,10 @@
 
 import ProductContext from "@/context/ProductContext";
 import React, { useContext, useState } from "react";
+import toast from "react-hot-toast";
 
 const NewProduct = () => {
-  const { newProduct } = useContext(ProductContext);
+  const { createProduct } = useContext(ProductContext);
 
   const [product, setProduct] = useState({
     name: "",
@@ -32,13 +33,21 @@ const NewProduct = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    newProduct(product);
+    toast.success("successfully created!")
+    setProduct({
+      name: "",
+      description: "",
+      seller: "",
+      price: "",
+      stock: "",
+      category: "",
+    })
+    createProduct(product);
   };
 
   return (
-    <section className="container max-w-3xl p-6 mx-auto">
-      <h1 className="mb-3 text-xl md:text-3xl font-semibold text-black mb-8">
+    <section className="container h-[100%] overflow-y-scroll max-w-3xl p-6 mx-auto">
+      <h1 className=" text-xl md:text-3xl font-semibold text-black mb-8">
         Create New Product
       </h1>
 

@@ -59,14 +59,25 @@ export const ProductProvider = ({ children }) => {
   }
 
   const uploadImage = async (file,id)=>{
-    const data = await axios.post(`${process.env.API_URL}/api/admin/products/upload_images/${id}`,file);
+    try{
+      const data = await axios.post(`${process.env.API_URL}/api/admin/products/upload_images/${id}`,file);
+      router.push('/admin/products')
+    }catch(error){
+      console.log(error)
+    }
     return;
   }
 
   const getProducts = async ()=>{
     setLoading(true)
     try{
-      const { data } = await axios.get(`${process.env.API_URL}/api/products/`);
+      const { data } = await axios.get(`${process.env.API_URL}/api/products/`,{
+        headers: {
+          'Cache-Control': 'no-cache',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+        },
+      });
       setProducts(data);
     }
     catch(error){
