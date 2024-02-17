@@ -10,7 +10,7 @@ const UserOrders = () => {
 
   useEffect(()=>{
     if(user?.id){
-      fetchUserOrders("12345678")
+      fetchUserOrders(user.id)
     }
   },[])
 
