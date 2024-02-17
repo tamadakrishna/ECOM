@@ -1,9 +1,12 @@
 import React from 'react'
+import UserOrders from '@/components/orders/UserOrders'
 
-const UpdatePassword = () => {
+const UserOrderPage = ()=> {
   return (
-    <div className="mobile:h-[100%] mobile:w-[100%] mobile:border-2 mobile:border-red-700">Orders</div>
+    <>
+      <UserOrders/>
+    </>
   )
 }
 
-export default UpdatePassword
+export default UserOrderPage

@@ -5,8 +5,10 @@ import { useContext, useEffect } from "react";
 import ProductContext from "@/context/ProductContext";
 import Loading from "@/components/layouts/Loading";
 import toast from 'react-hot-toast';
+import { useRouter } from "next/navigation";
 
 const ProductDetails = ({productId}) => {
+  const router = useRouter();
   const { loading, productDetails, getProduct} = useContext(ProductContext);
   const {AddToCart} = useContext(CartContext)
 
@@ -46,11 +48,14 @@ const ProductDetails = ({productId}) => {
                 <div className="laptop:w-[100%] laptop:h-[25%] laptop:flex laptop:justify-center laptop:gap-[10px]
                                 mobile:w-[100%] mobile:h-[50px] mobile:flex mobile:justify-center mobile:gap-[10px]">
                     <div className="bg-orange-400 laptop:w-[250px] laptop:h-[60px] laptop:rounded-[50px] laptop:flex laptop:justify-center laptop:items-center laptop:cursor-pointer
-                                    mobile:w-[250px] mobile:h-[40px] mobile:rounded-[50px]">
+                                    mobile:w-[250px] mobile:h-[40px] mobile:rounded-[50px]"
+                                    onClick={()=>{
+                                      AddToCart(productDetails);
+                                      router.push('/shipping');
+                                      }}>
                         <h1 className="text-[#020617]">Buy Now</h1>
                     </div>
                     <div className="bg-yellow-400 laptop:w-[250px] laptop:h-[60px] laptop:rounded-[50px]  laptop:flex laptop:justify-center laptop:items-center laptop:cursor-pointer
-    const notify = () => toast('Successfully added');
                                     mobile:w-[250px] mobile:h-[40px] mobile:rounded-[50px]" onClick={()=>{AddToCart(productDetails); notify();}}>
                         <h1 className="text-[#020617]">Add to Cart</h1>
                     </div>

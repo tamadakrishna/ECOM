@@ -24,3 +24,4 @@ export const fetchAllOrders = async () =>{
   const Orders = await Order.find({});
   return Orders;
 }
+

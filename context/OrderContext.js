@@ -10,6 +10,7 @@ export const OrderProvider = ({ children }) => {
 
   const [orders, setOrders] = useState(null);
   const [orderDetails, setOrderDetails] = useState(null);
+  const [userOrders,setUserOrders] = useState(null);
 
   const router = useRouter();
 
@@ -32,6 +33,26 @@ export const OrderProvider = ({ children }) => {
     }
     return;
   }
+
+  const fetchUserOrders = async(id)=>{
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/api/orders/me/${id}`);
+      setUserOrders(data);
+    }catch(error){
+      console.log(error)
+    }
+    return;
+  }
+
+  const placeOrder = async(order)=>{
+    try{
+      const { data } = await axios.post(`${process.env.API_URL}/api/orders/me/order/`,order);
+        localStorage.clear();
+    }catch(error){
+      console.log(error)
+    }
+    return
+  }
  
 
   return (
@@ -39,8 +60,11 @@ export const OrderProvider = ({ children }) => {
       value={{
         orders,
         orderDetails,
+        userOrders,
         getOrderDetails,
-        getAllOrders
+        getAllOrders,
+        fetchUserOrders,
+        placeOrder
       }}
     >
       {children}

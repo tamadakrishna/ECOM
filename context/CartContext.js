@@ -110,6 +110,8 @@ export const CartProvider = ({ children }) => {
       value={{
         cart,
         summary,
+        setCart,
+        setSummary,
         AddToCart,
         RemoveFromCart,
         ModifyCart

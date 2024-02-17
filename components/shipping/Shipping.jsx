@@ -6,7 +6,7 @@ import CartContext from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
-
+import Link from "next/link";
 
 const Shipping = ()=> {
   
@@ -111,6 +111,7 @@ const Shipping = ()=> {
         </div>
         {
           address?.map((address,index)=>{
+            const fullAddress = `${address.houseno} ${address.street} ${address.area} ${address.city} ${address?.state} ${address?.pincode}`
             return (
               <div key={index} className="mobile:mb-[4px] mobile:w-[100%] mobile:h-[220px] mobile:p-[5px] mobile:bg-white mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
                   <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] font-semibold uppercase">{address?.name}</span></div>
@@ -120,12 +121,17 @@ const Shipping = ()=> {
                   <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] ">{address?.pincode}</span></div>
                   <div className="mobile:w-[100%] mobile:h-[25px]"><span className="text-[#020617] text-[15px] ">Phone number: {address?.mobile}</span></div>
                   <div className="mobile:w-[100%] mobile:h-[60px] mobile:flex mobile:items-center mobile:px-[10px]">
-                  <div className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
-                        onClick={(e)=>{ 
-                          setNextUI(true);
-                          }}>
+                 
+                  <Link 
+                      key={index}  
+                      className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
+                      href={{
+                                pathname: '/shipping/summary',
+                                query: { address:fullAddress, mobile: address.mobile, name:address.name},
+                      }}>
+                  
                         <span className="text-[#020617] cursor-pointer">Deliver to this address</span>
-                  </div>
+                    </Link>
                   </div>
             </div>);
           })
@@ -138,57 +144,7 @@ const Shipping = ()=> {
       </div>
     </div>
 
-    {/* Summary UI */}
-    <div className={`mobile:w-[100vw] mobile:h-[calc(100vh_-_60px)] mobile:bg-gray-100 mobile:p-[5px] ${nextUI ? "" : "mobile:hidden"}`}>
-      <div className="mobile:w-[100%] mobile:h-[25px] mobile:flex mobile:items-center mobile:justify-end "
-      onClick={(e)=>{  setNextUI(false); }}><span className="text-[#020617] text-[15px] font-semibold cursor-pointer mr-[10px]">Cancel</span></div>
-      <div className="mobile:w-[100%] mobile:h-[calc(100%_-_25px)]  mobile:px-[10px] mobile:flex mobile:justify-center mobile:items-center ">
-        <div className="mobile:w-[350px] mobile:h-[450px] mobile:px-[8px] bg-white mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400">
-          <div className="mobile:w-[100%] mobile:h-[400px]">
-              <div className="mobile:w-[100%] mobile:h-[50px] mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center">
-                <span className="text-[#020617] text-[20px] font-semibold font-Poppins uppercase">ORDER SUMMARY</span>
-              </div>
-              <div className="mobile:w-[100%] mobile:max-h-[120px] mobile:border-b-[1.2px] mobile:border-gray-400 overflow-y-scroll">
-                {
-                  cart?.map((product,index)=>{
-                    return(
-                      <div key={index} className="mobile:w-[100%] mobile:h-[25px]   mobile:flex mobile:items-center mobile:justify-between">
-                        <span className="text-[#3f3f41] text-[15px]  font-Poppins ">{product?.quantity} x {product?.name}</span>
-                        <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{product?.quantity * product?.price}</span>
-                      </div>
-                    );
-                  })
-                }
-                
-              </div>
-              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins font-semibold">Subtotal</span>
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.subTotal}</span>
-              </div>
-              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">Estimated Tax</span>
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.salesTax}</span>
-              </div>
-              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">Shipping</span>
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.shipping}</span>
-              </div>
-              <div className="mobile:w-[100%] mobile:h-[50px]  mobile:border-b-[1.2px] mobile:border-gray-400 mobile:flex mobile:items-center mobile:justify-between">
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">Estimated Total</span>
-                <span className="text-[#3f3f41] text-[15px]  font-Poppins ">&#x20b9;{summary.estimatedTotal}</span>
-              </div>
-          </div>
-          <div className="mobile:w-[100%] mobile:h-[50px]">
-            <div className="mobile:w-[100%] mobile:h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
-                onClick={(e)=>{ 
-                  handler();
-                  }}>
-                <span className="text-[#020617] cursor-pointer">Proceed to Pay</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    
     </>
   )
 }
