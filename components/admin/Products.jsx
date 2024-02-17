@@ -19,10 +19,10 @@ const Products = () => {
       </div>
       <div className="w-[100%] h-[calc(100%_-_40px)] overflow-y-scroll ">
        <div className="w-[100%] h-[40px] flex justify-between border-gray-400 border-b-[1.5px] mb-2">
-        <div className="w-[80px] h-[100%] flex justify-center items-center ">Name</div>
-        <div className="w-[80px] h-[100%] flex justify-center items-center ">Stock</div>
-        <div className="w-[80px] h-[100%] flex justify-center items-center ">Price</div>
-        <div className="w-[80px] h-[100%] flex justify-center items-center ">Actions</div>
+        <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">Name</span></div>
+        <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">Stock</span></div>
+        <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">Price</span></div>
+        <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">Actions</span></div>
        </div>
        {
         products?.map((info,index)=>{
