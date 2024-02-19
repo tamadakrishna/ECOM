@@ -6,7 +6,7 @@ import { signOut } from "next-auth/react";
 import toast from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 
-export default function SideMenu({user}) {
+export default function UserMenu({user}) {
 
     const [isNavOpen, setIsNavOpen] = useState(false);
     const router = useRouter();
@@ -143,7 +143,3 @@ export default function SideMenu({user}) {
         </section>
    )
 }
-
-{/* <Link
-                      className="mobile:w-[100%]"
-                       href={{ pathname: '/address/update', query: { ...address} }}></Link> */}
