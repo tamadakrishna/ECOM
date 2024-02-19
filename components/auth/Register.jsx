@@ -6,8 +6,13 @@ import AuthContext from "@/context/AuthContext";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import toast from 'react-hot-toast';
+import Spinner from "@/components/layouts/Spinner";
+
 
 const Register = () => {
+
+  const [loading, setLoading] = useState(false)
+
   const { registerUser} = useContext(AuthContext);
 
   const router = useRouter();
@@ -20,6 +25,8 @@ const Register = () => {
 
 
   const submitHandler = (e) => {
+
+    setLoading(true)
     e.preventDefault();
 
     registerUser({ ...info});
@@ -64,6 +71,7 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Type your name"
+                disabled={loading}
                 value={info.name}
                 onChange={(e) => setInfo({...info,name:e.target.value})}
                 required
@@ -80,6 +88,7 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Type your email"
+                disabled={loading}
                 value={info.email}
                 onChange={(e) => setInfo({...info,email:e.target.value})}
                 required
@@ -97,6 +106,7 @@ const Register = () => {
             </div>
             <div className="mt-2">
               <input
+                disabled={loading}
                 type="password"
                 placeholder="Type your password"
                 minLength={6}
@@ -113,7 +123,7 @@ const Register = () => {
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Register
+              {loading ? <Spinner/> : "Register" }  
             </button>
           </div>
         </form>

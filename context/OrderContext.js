@@ -16,7 +16,7 @@ export const OrderProvider = ({ children }) => {
 
   const getAllOrders = async()=>{
     try{
-      const { data } = await axios.get(`${process.env.API_URL}/api/orders/me/`);
+      const { data } = await axios.get(`${process.env.API_URL}/api/orders/profile/`);
       setOrders(data);
     }catch(error){
       console.log(error)
@@ -26,7 +26,7 @@ export const OrderProvider = ({ children }) => {
 
   const getOrderDetails = async(id)=>{
     try{
-      const { data } = await axios.get(`${process.env.API_URL}/api/orders/me/details/${id}`);
+      const { data } = await axios.get(`${process.env.API_URL}/api/orders/profile/details/${id}`);
       setOrderDetails(data);
     }catch(error){
       console.log(error)
@@ -36,7 +36,7 @@ export const OrderProvider = ({ children }) => {
 
   const fetchUserOrders = async(id)=>{
     try{
-      const { data } = await axios.get(`${process.env.API_URL}/api/orders/me/${id}`);
+      const { data } = await axios.get(`${process.env.API_URL}/api/orders/profile/${id}`);
       setUserOrders(data);
     }catch(error){
       console.log(error)
@@ -46,7 +46,7 @@ export const OrderProvider = ({ children }) => {
 
   const placeOrder = async(order)=>{
     try{
-      const { data } = await axios.post(`${process.env.API_URL}/api/orders/me/order/`,order);
+      const { data } = await axios.post(`${process.env.API_URL}/api/orders/profile/order/`,order);
         localStorage.clear();
     }catch(error){
       console.log(error)

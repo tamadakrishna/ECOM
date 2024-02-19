@@ -26,6 +26,7 @@ export const CartProvider = ({ children }) => {
   },[cart])
 
   const cartSummary = () =>{
+    if(Array.isArray(cart)){
     const subTotal = cart?.reduce((accumulator,product)=>{
       return accumulator + (product?.quantity * product?.price);
     },0)
@@ -35,6 +36,7 @@ export const CartProvider = ({ children }) => {
     const salesTax = parseFloat(subTotal * 0.18).toFixed(2);
     const afterSalesTax = parseFloat((subTotal + (subTotal * 0.18)).toFixed(2));
     const shipping = 40;
+
     setSummary({
       subTotal:subTotal,
       shipping:40,
@@ -42,6 +44,8 @@ export const CartProvider = ({ children }) => {
       salesTax:salesTax,
       quantity:quantity
     });
+
+  }
     return;
   }
 
@@ -56,7 +60,7 @@ export const CartProvider = ({ children }) => {
       imageUrl: product?.images[0] ? product?.images[0].url : "/images/default_product.png"
     }
 
-    const existingItemIndex = cart?.findIndex(item => item.id === Data.id);
+    const existingItemIndex = Array.isArray(cart) ? cart?.findIndex(item => item.id === Data.id) : -1;
 
     if (existingItemIndex !== -1) {
       const updatedCart = [...cart];
@@ -64,9 +68,9 @@ export const CartProvider = ({ children }) => {
       localStorage.setItem('cart',JSON.stringify(updatedCart));
       setCart(updatedCart);
     } else {
-      const UpdatedCart =[...cart, Data];
+      const UpdatedCart = Array.isArray(cart) ? [...cart, Data] : Data;
       localStorage.setItem('cart',JSON.stringify(UpdatedCart));
-      setCart(prevCart => [...prevCart, Data]);
+      Array.isArray(cart) ? setCart(prevCart => [...prevCart, Data]) : setCart([Data])
     }
     
     return;

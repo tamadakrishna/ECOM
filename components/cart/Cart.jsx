@@ -25,7 +25,7 @@ const Cart = () => {
       </div>
       <div className="w-full h-[calc(100vh_-_145px)] overflow-scroll">
       {
-        cart?.map((product,index)=>{
+       Array.isArray(cart) && cart?.map((product,index)=>{
           return(
             <div key={index} className="flex w-full h-40 border-b-2 border-gray-200  mb-2">
               <div className=" flex h-full w-2/4 ">

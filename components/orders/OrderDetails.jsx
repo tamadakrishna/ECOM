@@ -157,7 +157,7 @@ function OrderDetails({id}) {
                     <div className="mobile:w-[100%] mobile:h-[40px] mobile:flex mobile:items-center mobile:px-[10px]">
                   <div className="mobile:w-[100%] mobile:h-[30px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
                         onClick={(e)=>{ 
-                            router.push('/me/orders')
+                            router.push('/profile/orders')
                           }}>
                         <span className="text-[#020617] cursor-pointer">Back</span>
                   </div>

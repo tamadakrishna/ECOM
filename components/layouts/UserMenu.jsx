@@ -12,7 +12,6 @@ export default function SideMenu({user}) {
     const router = useRouter();
 
     const logoutHandler = () => {
-      router.push('/');
       signOut();
       toast.success("Successfully logged out..")
     };
@@ -20,19 +19,19 @@ export default function SideMenu({user}) {
     const UserRoutes = [
       {
         name:"Your Profile",
-        route:"/me"
+        route:"/profile"
       },
       {
         name:"Orders",
-        route:"/me/orders"
+        route:"/profile/orders"
       },
       {
         name:"Update Profile",
-        route:"/me/update_profile"
+        route:"/profile/update_profile"
       },
       {
         name:"Update Password",
-        route:"/me/update_password"
+        route:"/profile/update_password"
       },
     ];
 

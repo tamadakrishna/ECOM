@@ -29,7 +29,7 @@ const UserOrders = () => {
                   key={index}  
                   className="mobile:flex mobile:mt-[5px] mobile:mb-[2px] mobile:w-[100%] mobile:h-[100px] mobile:bg-white cursor-pointer mobile:border-[1.2px] rounded-[2px] mobile:border-gray-400"
                   href={{
-                            pathname: '/me/orders/orderDetails',
+                            pathname: '/profile/orders/orderDetails',
                             query: { id:order?._id },
                   }}>
                   <div>

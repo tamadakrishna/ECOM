@@ -40,19 +40,19 @@ const Sidebar = () => {
   const UserRoutes = [
     {
       name:"Your Profile",
-      route:"/me"
+      route:"/profile"
     },
     {
       name:"Orders",
-      route:"/me/orders"
+      route:"/profile/orders"
     },
     {
       name:"Update Profile",
-      route:"/me/update"
+      route:"/profile/update"
     },
     {
       name:"Update Password",
-      route:"/me/update_password"
+      route:"/profile/update_password"
     },
   ];
 

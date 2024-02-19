@@ -20,10 +20,10 @@ const Users = () => {
     <>
     <div className="w-[100%] h-[100%] ">
       <div className="w-[100%] h-[40px] py-[4px] flex justify-between ">
-        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2">Name</div>
-        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2">Email</div>
-        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2">Role</div>
-        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2">Actions</div>
+        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2">Name</div>
+        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 font-medium  text-sm px-5 py-2.5 text-center me-2 mb-2">Email</div>
+        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2">Role</div>
+        <div className="w-[80px] h-[100%] rounded-[5px] flex items-center justify-center text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium text-sm px-5 py-2.5 text-center me-2 mb-2">Actions</div>
       </div>
       <div  className="w-[100%] h-[calc(100%_-_40px)] py-[4px]  overflow-y-scroll ">
 

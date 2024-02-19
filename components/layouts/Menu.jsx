@@ -53,7 +53,7 @@ export default function Menu({cart,user}) {
                           setIsNavOpen(false)
                           e.stopPropagation();
                         }}
-                        href="/me">
+                        href="/profile">
                         <div className="w-[100%] h-[100%] flex items-center mb-4 space-x-3 mt-4 cursor-pointer">
                           {/* <img
                             className="w-10 h-10 rounded-full"
@@ -64,7 +64,7 @@ export default function Menu({cart,user}) {
                           <div className="space-y-1 font-medium">
                             <p>
                               {user?.name}
-                              <time className="block text-sm text-gray-500 dark:text-gray-400">
+                              <time className="block text-sm text-gray-500">
                                 {user?.email}
                               </time>
                             </p>

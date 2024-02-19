@@ -6,17 +6,19 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from 'react-hot-toast';
+import Spinner from "@/components/layouts/Spinner";
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter();
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     const data = await signIn("credentials", {
       email,
       password,
@@ -25,9 +27,11 @@ const Login = () => {
     
 
     if(data.ok){
+      setLoading(false)
       toast.success('Welcome Back!')
-      router.push('/me')
+      router.push('/profile')
     }else{
+      setLoading(false)
       toast.error('Incorrect Password/email..')
       router.push('/login')
     }
@@ -61,6 +65,7 @@ const Login = () => {
                 type="text"
                 placeholder="Type your email"
                 value={email}
+                disabled={loading}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6"
@@ -85,6 +90,7 @@ const Login = () => {
                 placeholder="Type your password"
                 minLength={6}
                 value={password}
+                disabled={loading}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -97,7 +103,7 @@ const Login = () => {
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign in
+             {loading ? <Spinner/> : "Sign in" }  
             </button>
           </div>
         </form>
