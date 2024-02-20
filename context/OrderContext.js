@@ -47,6 +47,7 @@ export const OrderProvider = ({ children }) => {
   const placeOrder = async(order)=>{
     try{
       const { data } = await axios.post(`${process.env.API_URL}/api/orders/profile/order/`,order);
+      console.log(data)
         localStorage.clear();
     }catch(error){
       console.log(error)

@@ -7,7 +7,7 @@ export async function POST(request) {
    const response = await newAddress(data);
 
    if(response)
-   return NextResponse.json(response)
+   return NextResponse.json({message:'New address added'},{status:200,statusText:"success"})
 }
 
 export async function GET(request,response) {
@@ -25,7 +25,7 @@ export async function DELETE(request) {
        const response = await deleteAddress(data.id);
     
        if(response)
-       return NextResponse.json(response)
+       return NextResponse.json({message:'Address deleted'},{status:200,statusText:"success"})
     }
 
 

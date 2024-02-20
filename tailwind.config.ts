@@ -13,10 +13,15 @@ const config: Config = {
       'tab': {'max': '767px'},
 
       'mobile': {'max': '639px'},
+
+      'small_screen': {'min': '640px'},
+
+      'large_screen': {'max': '640px'}
     },
     extend: {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
+        Mont: ["Montserrat", "sans-serif"]
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

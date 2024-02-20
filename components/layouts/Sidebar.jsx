@@ -14,8 +14,9 @@ const Sidebar = () => {
   const { userData} = useContext(AuthContext);
 
   const logoutHandler = () => {
-    // router.replace('/') { callbackUrl: `${process.env.API_URL}/` }
-    signOut();
+    signOut({ redirect: false }).then(() => {
+      router.push("/");
+    });
   };
 
   const AdminRoutes = [

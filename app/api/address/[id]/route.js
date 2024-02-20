@@ -5,5 +5,5 @@ export async function PUT(request,{params}) {
     const data = await request.json();
 
     const response = await updateAddress(params.id,data)
-    return NextResponse.json(response)
+    return NextResponse.json({message:'Address Updated'},{status:200})
 }

@@ -57,12 +57,12 @@ export default function UserMenu({user}) {
   return (
     <section className="MOBILE-MENU flex ">
           <div
-            className="HAMBURGER-ICON space-y-1"
+            className="HAMBURGER-ICON space-y-1 mt-2 ml-2"
             onClick={() => setIsNavOpen((prev) => !prev)}
           >
-            <span className="block h-0.5 w-6 animate-pulse bg-gray-600"></span>
-            <span className="block h-0.5 w-6 animate-pulse bg-gray-600"></span>
-            <span className="block h-0.5 w-6 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
+            <span className="block h-0.5 w-8 animate-pulse bg-gray-600"></span>
           </div>
 
           <div className={isNavOpen ? "showMenuNav" : "hideMenuNav"}>

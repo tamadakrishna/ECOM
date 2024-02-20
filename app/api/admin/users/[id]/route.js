@@ -6,5 +6,5 @@ export async function DELETE(request, {params}){
   dbConnect();
 
   const Response = await deleteUser(params.id);
-  return NextResponse.json({message:"success"},{status:200},{statusText:"OK"});
+  return NextResponse.json({message:"User Deleted"},{status:200, statusText:'success'});
 }

@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <div className="h-[60px] bg-white py-2 border-b laptop:flex laptop:w-[100vw] 
-                    mobile:flex  mobile:w-[100vw] mobile:h-[60px] mobile:border-2 mobile:border-gray-400 ">
+                    mobile:flex  mobile:w-[100vw] mobile:h-[60px]  ">
       <div className="mobile:h-[100%] mobile:w-[20vw] mobile:relative
                       laptop:flex laptop:justify-end laptop:h-[100%] laptop:w-[20vw] laptop:relative ">
         <div className="laptop:w-[150px] laptop:h-[100%] laptop:mr-[20px] laptop:relative">

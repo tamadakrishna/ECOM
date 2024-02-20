@@ -40,7 +40,7 @@ const ProductDetails = ({productId}) => {
                                 ? productDetails?.images[0].url
                                 : "/images/default_product.png"
                             }
-                            alt="product anme"
+                            alt="product"
                             fill={true}
                         />
                     </div>
@@ -53,22 +53,22 @@ const ProductDetails = ({productId}) => {
                                       AddToCart(productDetails);
                                       router.push('/shipping');
                                       }}>
-                        <h1 className="text-[#020617]">Buy Now</h1>
+                        <h1 className="text-[#020617] font-Poppins">Buy Now</h1>
                     </div>
                     <div className="bg-yellow-400 laptop:w-[250px] laptop:h-[60px] laptop:rounded-[50px]  laptop:flex laptop:justify-center laptop:items-center laptop:cursor-pointer
                                     mobile:w-[250px] mobile:h-[40px] mobile:rounded-[50px]" onClick={()=>{AddToCart(productDetails); notify();}}>
-                        <h1 className="text-[#020617]">Add to Cart</h1>
+                        <h1 className="text-[#020617] font-Poppins">Add to Cart</h1>
                     </div>
                 </div>
             </div>
 
             <div className="laptop:w-[60%] laptop:h-[100%] laptop:px-[5px] 
                             mobile:w-[100%] mobile:h-[calc(100%_-_250px)] mobile:overflow-y-scroll">
-                <div className="text-lg font-bold text-[#020617]">{productDetails?.name}</div>
-                <div className="text-xl font-bold text-[#020617]">MRP &#x20b9; {productDetails?.price}</div>
-                <div className="italic text-[#020617]">{productDetails?.description}</div>
-                <div className="text-[#020617] text-[20px]">Rating:  <span className="text-[#020617]">{productDetails?.ratings} &#9733; </span></div>
-                <div className="text-[#020617] text-[20px]">Seller:  {productDetails?.seller}</div>
+                <div className="text-lg font-Mont font-bold text-[#020617]">{productDetails?.name}</div>
+                <div className="text-xl font-Mont font-bold text-[#020617]">MRP &#x20b9; {productDetails?.price}</div>
+                <div className="italic font-Mont text-[#020617]">{productDetails?.description}</div>
+                <div className="text-[#020617] font-Poppins text-[20px]">Rating:  <span className="text-[#020617]">{productDetails?.ratings} &#9733; </span></div>
+                <div className="text-[#020617] font-Poppins text-[20px]">Seller:  {productDetails?.seller}</div>
             </div>
 
           </div>

@@ -18,7 +18,7 @@ const Orders = () => {
       <div className="min-w-[480px] h-[40px] ">
         <span className="text-[#252424] font-Poppins font-semibold text-[18px]">All Orders</span>
       </div>
-      <div className="min-w-[480px] h-[calc(100%_-_40px)] ">
+      <div className="min-w-[480px] h-[calc(100%_-_40px)] p-[5px]">
 
         <div className="min-w-[480px] h-[35px] flex justify-between gap-[2px] border-gray-400 border-b-[1.5px]">
 

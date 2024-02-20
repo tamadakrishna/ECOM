@@ -11,9 +11,6 @@ export default function UserLayout({ children }) {
 
   const router = useRouter();
 
-  if(user===null){
-    toast.error('Please Login...')
-  }
   useEffect(()=>{
     if(user===null){
       router.push('/')

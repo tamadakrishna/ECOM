@@ -7,7 +7,6 @@ export async function POST(request,{params}){
   dbConnect();
   const RequestBody = await request.json();
   const response = await newProduct(RequestBody)
-  console.log(response);
-  return NextResponse.json("NEW PRODUCT")
+  return NextResponse.json({message:"Product Created"},{status:200, statusText:'success'})
 }
 
