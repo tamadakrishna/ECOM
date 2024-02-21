@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import AuthContext from "@/context/AuthContext";
-import Search from "./Search";
 import CartContext from "@/context/CartContext";
 import Menu from "@/components/layouts/Menu"
 
@@ -130,19 +129,22 @@ const Header = () => {
           <div className="h-[100%] w-[70vw] flex justify-end">
             {/* CART */}
             <div className="h-[100%] w-[80px]  mr-2">
-              <div className="h-[100%] w-[80px] bg-black flex items-center rounded-[30px]">
-                <div className=" ml-2 h-[calc(100%_-_5px)] w-[35px] rounded-[50px] ">
-                    <Image
-                        className=" h-[100%] w-[100%] "
-                        src={"/images/cart.svg"}
-                        width={10}
-                        height={10}
-                        alt="cart"/>
+            <Link
+              href="/cart">
+                <div className="h-[100%] w-[80px] bg-black flex items-center rounded-[30px]">
+                  <div className=" ml-2 h-[calc(100%_-_5px)] w-[35px] rounded-[50px] ">
+                      <Image
+                          className=" h-[100%] w-[100%] "
+                          src={"/images/cart.svg"}
+                          width={10}
+                          height={10}
+                          alt="cart"/>
+                  </div>
+                  <div className="h-[100%] w-[calc(100%_-_35px)] ">
+                      <span className="text-white text-[8.5px]">{ `${cart?.length || 0} Items`}</span>
+                  </div>
                 </div>
-                <div className="h-[100%] w-[calc(100%_-_35px)] ">
-                    <span className="text-white text-[8.5px]">{ `${cart?.length || 0} Items`}</span>
-                </div>
-              </div>
+              </Link>
             </div>
             {/* SIGNIN */}
             <div className="h-[100%] w-[100px] ">
