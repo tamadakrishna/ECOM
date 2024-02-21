@@ -29,7 +29,8 @@ const Login = () => {
     if(data.ok){
       setLoading(false)
       toast.success('Welcome Back!')
-      router.push('/profile')
+      console.log(data)
+      router.push('/')
     }else{
       setLoading(false)
       toast.error('Incorrect Password/email..')

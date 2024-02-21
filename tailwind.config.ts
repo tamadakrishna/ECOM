@@ -21,7 +21,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
-        Mont: ["Montserrat", "sans-serif"]
+        Mont: ["Montserrat", "sans-serif"],
+        Anta:["Anta", "sans-serif"]
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

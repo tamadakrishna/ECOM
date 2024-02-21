@@ -14,9 +14,9 @@ export const OrderProvider = ({ children }) => {
 
   const router = useRouter();
 
-  const getAllOrders = async()=>{
+  const getAllOrders = async(page)=>{
     try{
-      const { data } = await axios.get(`${process.env.API_URL}/api/orders/profile/`);
+      const { data } = await axios.get(`${process.env.API_URL}/api/admin/orders/${page}`);
       setOrders(data);
     }catch(error){
       console.log(error)

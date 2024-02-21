@@ -100,7 +100,7 @@ const Shipping = ()=> {
         estimatedTotal:0,
         salesTax:0
       })
-    router.push('/');
+    router.push('/shipping/payment_success');
     return;
   }
 

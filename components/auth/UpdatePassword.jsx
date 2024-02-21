@@ -12,7 +12,8 @@ const UpdatePassword = ({user}) => {
     confirmPassword:""
   })
   return (
-    <div className="w-[100%] h-[100%] p-[5px] ">
+    <div className="w-[100%] h-[100%] p-[5px] small_screen:flex small_screen:justify-center ">
+      <div className="small_screen:w-[500px]">
       <div className="w-[100%] h-[calc(100%_-_60px)] ">
 
       <div className="mb-[8px] mt-[10px] mobile:w-[100%] ">
@@ -37,10 +38,11 @@ const UpdatePassword = ({user}) => {
         </div>
 
       </div>
-      <div className='w-[100%] h-[60px]'>
-        <div className="mobile:w-[100%] mobile:h-[35px]  mb-1 cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
-                          onClick={(e)=>{ updatePassword(info)}}>
-              <span className="text-[#020617] cursor-pointer">Update Password</span>
+        <div className='w-[100%] h-[60px]'>
+          <div className="w-[100%] h-[35px]  mb-1 cursor-pointer bg-yellow-400 rounded-[5px] flex justify-center items-center"
+                            onClick={(e)=>{ updatePassword(info)}}>
+                <span className="text-[#020617] cursor-pointer">Update Password</span>
+          </div>
         </div>
       </div>
     </div>

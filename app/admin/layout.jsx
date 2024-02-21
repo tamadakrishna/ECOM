@@ -22,11 +22,22 @@ export default function AdminLayout({ children }) {
   
   return (
     <>
-      <div className="mobile:w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[3px]">
-        <div className="mobile:w-[100%] h-[30px] ">
+      {/* Small Screen */}
+       <div className="w-[100vw] h-[calc(100vh_-_60px)] bg-gray-100 mobile:p-[3px] small_screen:hidden">
+        <div className="w-[100%] h-[30px] ">
           <UserMenu user={user}/>
         </div>
-        <div className="mobile:w-[100%] mobile:h-[calc(100%_-_30px)] ">
+        <div className="w-[100%] h-[calc(100%_-_30px)]">
+          {children}
+        </div>
+      </div>
+
+      {/* Large Screen */}
+      <div className="w-[100vw] h-[calc(100vh_-_60px)] flex bg-gray-100 mobile:p-[3px] large_screen:hidden">
+        <div className="w-[250px] h-[100%] border border-r-gray-800 ">
+          <UserMenu user={user}/>
+        </div>
+        <div className="w-[calc(100%_-_250px)] h-[100%] ">
           {children}
         </div>
       </div>

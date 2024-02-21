@@ -12,11 +12,9 @@ const NewProduct = () => {
 
   const categories = [
     "Electronics",
-    "Cameras",
-    "Laptops",
-    "Accessories",
-    "Headphones",
-    "Sports",
+    "Fashion",
+    "Books",
+    "Food",
   ];
 
   const [product, setProduct] = useState({
@@ -52,7 +50,7 @@ const NewProduct = () => {
   };
 
   return (
-    <section className="container h-[100%] overflow-y-scroll max-w-3xl p-6 mx-auto">
+    <section className="container h-[100%] overflow-y-scroll max-w-3xl p-6 mx-auto no-scrollbar">
       <h1 className=" text-xl md:text-3xl font-semibold text-black mb-8">
         Create New Product
       </h1>

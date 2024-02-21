@@ -20,9 +20,68 @@ const Products = () => {
       className="laptop:w-[100%] laptop:h-[calc(100vh_-_60px)] laptop:flex laptop:p-[10px]
                  mobile:w-[100%] mobile:h-[calc(100dvh_-_60px)]">
         <div
-          className="laptop:w-[250px] laptop:h-[100%] border border-gray-900
+          className="laptop:w-[250px] laptop:h-[100%] border 
                      mobile:hidden">
             {/* Filter Widget */}
+            <div className="w-[100%] h-[20px] mb-2">
+              <span className="text-[15px] font-Poppins ml-4 uppercase font-semibold">Categories</span>
+            </div>
+            <div className="w-[100%] h-[120px] border-b-[1px] border-b-[#d8d5d5]">
+            {
+              ["Electronics","Fashion","Books","Food"]?.map((info,index)=>{
+                return(
+                  <div key={index} className="flex items-center mb-2 ml-4">
+                    <input id="default-checkbox" type="checkbox" value={info} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 "/>
+                    <label for="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 ">{info}</label>
+                  </div>
+                )})
+            }
+            </div>
+            {/* Reviews */}
+            <div className="w-[100%] h-[20px] mb-2">
+              <span className="text-[15px] font-Poppins ml-4 uppercase font-semibold">Reviews</span>
+            </div>
+            <div className="w-[100%] h-[140px] border-b-[1px] border-b-[#d8d5d5]">
+            {
+              [5,4,3,2,1]?.map((info,index)=>{
+                return(
+                  <div key={index} className="flex items-center mb-1 ml-4">
+                      <label for="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 ">
+                        <div className="flex">
+                          {
+                            Array.apply(null, Array(info)).map((item,index)=>{
+                              return (
+                                 <span key={index} className="text-[22px] text-[#FFA51D]">&#9733;</span>
+                              )
+                            })
+                          }
+                        </div>
+                        </label>
+                  </div>
+                )})
+            }
+            </div>
+            {/* Price */}
+            <div className="w-[100%] h-[20px] mb-2">
+              <span className="text-[15px] font-Poppins ml-4 uppercase font-semibold">Price</span>
+            </div>
+            <div className="w-[100%] h-[60px] border-b-[1px] border-b-[#d8d5d5]">
+              <div className="flex gap-3 h-[100%] mb-1 ml-4 ">
+                     <div className="w-[60px] h-[35px]">
+                     <input type="number" id="min" className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
+                      focus:border-blue-500 block w-full p-1 h-[100%] " placeholder="&#8377; Min" required />
+                     </div>
+                     <div className="w-[60px] h-[35px]">
+                     <input type="number" id="min" className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
+                      focus:border-blue-500 block w-full p-1 h-[100%] " placeholder="&#8377; Max" required />
+                     </div>
+                     <div className="w-[40px] h-[35px]">
+                     <button type="button" id="min" className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
+                      focus:border-blue-500 block w-full p-1 h-[100%] " >Go</button>
+                     </div>
+              </div>
+               
+            </div>
         </div>
         <div 
           className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] overflow-y-scroll no-scrollbar

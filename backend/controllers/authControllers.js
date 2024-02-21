@@ -30,7 +30,7 @@ export const deleteUser = async (req, res) => {
   let user = await User.findById(req);
 
   if (!user) {
-    return next(new ErrorHandler("No User found with this ID", 404));
+    return null;
   }
 
   await user.deleteOne();
@@ -55,6 +55,7 @@ export const verifyUser = async (email,password) =>{
 }
 
 export const getUser = async(email) => {
+
   let user = await User.findOne({email:email})
   if(!user)
   return null;

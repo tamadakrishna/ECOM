@@ -19,9 +19,11 @@ export const fetchOrder = async (id) =>{
   return userOrder;
 }
  
-export const fetchAllOrders = async () =>{
+export const fetchAllOrders = async (page) =>{
   dbConnect();
-  const Orders = await Order.find({});
+  // const count = await Order.countDocuments();
+  const skip = (page - 1) * 10;
+  const Orders = await Order.find({}).skip(skip).limit(10);
   return Orders;
 }
 

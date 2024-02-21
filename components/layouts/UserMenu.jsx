@@ -55,7 +55,8 @@ export default function UserMenu({user}) {
     ];
 
   return (
-    <section className="MOBILE-MENU flex ">
+    <>
+    <section className="MOBILE-MENU flex small_screen:hidden">
           <div
             className="HAMBURGER-ICON space-y-1 mt-2 ml-2"
             onClick={() => setIsNavOpen((prev) => !prev)}
@@ -140,6 +141,64 @@ export default function UserMenu({user}) {
         align-items: center;
       }
     `}</style>
-        </section>
+    </section>
+
+    <div className="w-[100%] h-[100%]  large_screen:hidden">
+            <div className="w-[100%] h-[100%]">
+              <div className="h-[80px] w-[100%] flex items-center p-[1px]">
+               <span className="text-[#292929] text-[20px] ml-5 font-Poppins font-semibold">
+                {
+                  user?.role==="admin" ? "Admin Dashboard" : `Hi ${user?.name}`
+                }
+                
+                </span>
+              </div>
+                  {user?.role==="user" ?
+                    (UserRoutes?.map((info,index)=>{
+                      return(
+                        <div key={index}
+                            className="w-[100%] h-[40px] flex justify-center items-center bg-white hover:bg-blue-100 hover:text-blue-500 rounded-[1px] border-[1px] border-gray-500">
+                          <Link
+                            href={{ pathname: info?.route, query: { ...user} }}
+                            onClick={() => setIsNavOpen(false)}
+                            className="w-[140px] h[100%]  ">
+                            {info?.name}
+                          </Link>
+                        </div>
+                      )
+                    })) :
+                    (AdminRoutes?.map((info,index)=>{
+                      return(
+                        <div key={index}
+                             className="w-[100%] h-[40px] flex justify-center items-center bg-white hover:bg-blue-100 hover:text-blue-500 rounded-[1px] border-[1px] border-gray-500">
+                          <Link
+                            href={info?.route}
+                            onClick={() => setIsNavOpen(false)}
+                            className="w-[100px] h[100%]  ">
+                           <span className="text-gray-800 text-center border-red-600">{info?.name}</span>
+                          </Link>
+                        </div>
+                      )
+                    }))
+                  }
+                  <div 
+                    className="w-[100%] h-[40px] flex justify-center items-center bg-white hover:bg-red-100 hover:text-blue-500 rounded-[1px] border-[1px] border-gray-500 cursor-pointer"
+                    onClick={logoutHandler}>
+                      <div className="w-[100px] h[100%]">
+                        Logout
+                      </div>
+                  </div>
+                   {/* <div className="w-[100%] h-[40px]">
+                    <div className="w-[100%] h-[40px]">
+                      <a
+                        className="h-[100%] w-[100%] bg-white border-2 border-gray-400  text-red-800 hover:bg-red-100 hover:text-white-500 rounded-md cursor-pointer"
+                        onClick={logoutHandler}>
+                        Logout
+                      </a>
+                    </div>
+                  </div> */}
+            </div>
+    </div>
+    </>
    )
 }

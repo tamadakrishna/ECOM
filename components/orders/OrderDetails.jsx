@@ -20,7 +20,7 @@ function OrderDetails({id}) {
         <div className='w-[100%] h-[40px]'>
             <span className="text-[#252424] font-Poppins font-semibold text-[18px]">Order Overview</span>
         </div>
-        <div className="w-[100%] h-[calc(100%_-_40px)] overflow-y-scroll ">
+        <div className="w-[100%] h-[calc(100%_-_40px)] p-2 overflow-y-scroll ">
 
             <div className='w-[100%] h-[35px] flex border-gray-400 border-b-[1.5px]'>
                 <div className='w-[120px] h-[35px] '>
@@ -154,13 +154,13 @@ function OrderDetails({id}) {
                         </div>
                     </div>
 
-                    <div className="mobile:w-[100%] mobile:h-[40px] mobile:flex mobile:items-center mobile:px-[10px]">
-                  <div className="mobile:w-[100%] mobile:h-[30px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
-                        onClick={(e)=>{ 
-                            router.push('/profile/orders')
-                          }}>
-                        <span className="text-[#020617] cursor-pointer">Back</span>
-                  </div>
+                    <div className="w-[100%] h-[40px] flex items-center small_screen:justify-center px-[10px]">
+                        <div className="w-[100%] laptop:w-[400px] h-[30px] cursor-pointer bg-yellow-400 rounded-[5px] flex justify-center items-center"
+                                onClick={(e)=>{ 
+                                    router.push('/profile/orders')
+                                }}>
+                                <span className="text-[#020617] cursor-pointer">Back</span>
+                        </div>
                   </div>
             
         </div>

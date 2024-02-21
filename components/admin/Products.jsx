@@ -3,6 +3,7 @@ import Pagination from "@/components/layouts/Pagination";
 import Link from "next/link";
 import ProductContext from "@/context/ProductContext";
 import { useContext, useEffect } from "react";
+import Tabluar from "@/components/layouts/Tabluar";
 
 const Products = () => {
 
@@ -12,12 +13,35 @@ const Products = () => {
     getProducts();
   },[])
 
+  const header = [
+    {
+      title:"Name",
+      id:"name"
+    },
+    {
+      title:"Stock",
+      id:"stock"
+    },
+    {
+      title:"Price",
+      id:"price"
+    },
+    {
+      title:"Actions",
+      id:"actions"
+    },
+  ]
   return (
-    <div className="w-[100%] h-[100%]">
+    <div className="w-[100%] h-[100%] no-scrollbar">
       <div className="w-[100%] h-[40px] ">
       <span className="text-[#171616] font-Poppins font-semibold"> {products?.length} Product(s) </span>
       </div>
+
       <div className="w-[100%] h-[calc(100%_-_40px)] overflow-y-scroll ">
+        <Tabluar header={header} data={products}/>
+      </div>
+
+      {/* <div className="w-[100%] h-[calc(100%_-_40px)] overflow-y-scroll ">
        <div className="w-[100%] h-[40px] flex justify-between border-gray-400 border-b-[1.5px] mb-2">
         <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">Name</span></div>
         <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">Stock</span></div>
@@ -27,7 +51,7 @@ const Products = () => {
        {
         products?.map((info,index)=>{
           return(
-            <div key={index} className="w-[100%] h-[40px] flex justify-between border-gray-400 border-b-[1.5px]  mb-2">
+            <div key={index} className="w-[100%] h-[40px] p-[12px] flex justify-between border-gray-400 border-b-[1.5px]  mb-2">
               <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">{info?.name}</span></div>
               <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">{info?.stock}</span></div>
               <div className="w-[80px] h-[100%] flex justify-center items-center "><span className="text-[#171616]">&#x20b9;{info?.price}</span></div>
@@ -70,7 +94,7 @@ const Products = () => {
         })
            
        }
-      </div>
+      </div> */}
     </div>
   );
 };
