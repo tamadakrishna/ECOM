@@ -17,15 +17,16 @@ const Orders = () => {
   const header = [
     {
       title:"Order ID",
-      id:"orderId"
+      id:"orderId",
+      type:"Link"
     },
     {
       title:"Order Date",
-      id:"orderDate"
+      id:"orderDate",
     },
     {
       title:"Customer Name",
-      id:"name"
+      id:"name",
     },
     {
       title:"Status",

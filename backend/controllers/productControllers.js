@@ -5,20 +5,20 @@ import {cloudinary} from "../utils/cloudinary";
 import {Store, FlushFiles} from "../utils/storage";
 
 
-export const newProduct = async (req, res, next) => {
+export const newProduct = async (req, res,) => {
 
   const product = await Product.create(req);
 
   return product;
 };
 
-export const getProducts = async (req, res, next) => {
+export const getProducts = async (req, res ) => {
     dbConnect();
     const Products = await Product.find({});
     return Products;
 };
 
-export const getProduct = async (req, res, next) => {
+export const getProduct = async (req, res) => {
     dbConnect();
   const product = await Product.findById(req);
   

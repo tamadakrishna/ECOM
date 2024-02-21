@@ -146,7 +146,7 @@ export default function UserMenu({user}) {
     <div className="w-[100%] h-[100%]  large_screen:hidden">
             <div className="w-[100%] h-[100%]">
               <div className="h-[80px] w-[100%] flex items-center p-[1px]">
-               <span className="text-[#292929] text-[20px] ml-5 font-Poppins font-semibold">
+               <span className=" text-[#CACCDD] text-[20px] ml-5 font-Poppins font-semibold">
                 {
                   user?.role==="admin" ? "Admin Dashboard" : `Hi ${user?.name}`
                 }
@@ -170,22 +170,22 @@ export default function UserMenu({user}) {
                     (AdminRoutes?.map((info,index)=>{
                       return(
                         <div key={index}
-                             className="w-[100%] h-[40px] flex justify-center items-center bg-white hover:bg-blue-100 hover:text-blue-500 rounded-[1px] border-[1px] border-gray-500">
+                             className={`w-[100%] h-[40px] flex justify-center items-center ${ index%2==0 ? "bg-[#78829B]" : "bg-[#6A758F]"} hover:bg-blue-100 hover:text-blue-500 rounded-[1px] `}>
                           <Link
                             href={info?.route}
                             onClick={() => setIsNavOpen(false)}
                             className="w-[100px] h[100%]  ">
-                           <span className="text-gray-800 text-center border-red-600">{info?.name}</span>
+                           <span className=" text-center text-[#CACCDD] font-Poppins text-[15px] font-semibold">{info?.name}</span>
                           </Link>
                         </div>
                       )
                     }))
                   }
                   <div 
-                    className="w-[100%] h-[40px] flex justify-center items-center bg-white hover:bg-red-100 hover:text-blue-500 rounded-[1px] border-[1px] border-gray-500 cursor-pointer"
+                    className="w-[100%] h-[40px] flex justify-center items-center bg-[#78829B] hover:bg-red-100 hover:text-blue-500 rounded-[1px]  cursor-pointer"
                     onClick={logoutHandler}>
                       <div className="w-[100px] h[100%]">
-                        Logout
+                      <span className=" text-center text-[#CACCDD] font-Poppins text-[15px] font-semibold"> Logout</span>
                       </div>
                   </div>
                    {/* <div className="w-[100%] h-[40px]">

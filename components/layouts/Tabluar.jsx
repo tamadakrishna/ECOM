@@ -16,7 +16,6 @@ const Tabluar = ({header,data})=> {
                             )
                         })
                     }
-                    
                 </tr>
             </thead>
             <tbody>

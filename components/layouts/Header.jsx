@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import AuthContext from "@/context/AuthContext";
 import CartContext from "@/context/CartContext";
-import Menu from "@/components/layouts/Menu"
 
 const Header = () => {
+  const [search, setSearch] = useState('');
   const { user, setUser } = useContext(AuthContext);
   const { cart } = useContext(CartContext);
 
@@ -19,6 +19,11 @@ const Header = () => {
       setUser(data?.user);
     }
   }, [data]);
+
+  const Filter = () =>{
+    console.log("search",search)
+    return;
+  }
 
 
   return (
@@ -48,7 +53,17 @@ const Header = () => {
                     height={20}
                     alt="search"/>
                 </div>
-                <input  type="text" placeholder="Search Your favorite Product" className="w-[calc(100%_-_35px)] focus:outline-none font-Poppins h-[35px] rounded-r-[10px] bg-[#e8eaf4]"/>
+                <input 
+                    onChange={(e)=>{setSearch(e.target.value)}}
+                    onKeyDown={(e)=>{
+                      if(e.key==="Enter")
+                      {
+                        Filter();
+                      }
+                    }}
+                    type="text" 
+                    placeholder="Search Your favorite Product" 
+                    className="w-[calc(100%_-_35px)] focus:outline-none font-Poppins h-[35px] rounded-r-[10px] bg-[#e8eaf4]"/>
               </div>
           </div>
       </div>
@@ -114,7 +129,6 @@ const Header = () => {
         ) }
       </div>
 
-      
     </div>
 
 
@@ -123,9 +137,13 @@ const Header = () => {
       {/* LOGO + CART + SIGNIN */}
         <div className="h-[30px] w-[100%] flex items-center justify-center p-[1.5px] ">
           {/* LOGO */}
-          <div className="h-[100%] w-[30vw] flex justify-center items-center">
-            <span className="font-Anta font-[400px] text-[#72A9B2] text-[20px]">ECOM</span>
-          </div>
+          
+            <div className="h-[100%] w-[30vw] flex justify-center items-center">
+              <Link
+              href="/">
+                <span className="font-Anta font-[400px] text-[#72A9B2] text-[20px]">ECOM</span>
+              </Link>
+            </div>
           <div className="h-[100%] w-[70vw] flex justify-end">
             {/* CART */}
             <div className="h-[100%] w-[80px]  mr-2">

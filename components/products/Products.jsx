@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useContext, useEffect}  from "react";
+import React, {useContext, useEffect, useState}  from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ProductContext from "@/context/ProductContext";
@@ -9,6 +9,14 @@ import Loading from "@/components/layouts/Loading";
 const Products = () => { 
   
   const { loading, products, getProducts} = useContext(ProductContext);
+  const [filter,setFilter] = useState({
+    categories:[],
+    min_price:null,
+    max_price:null,
+    rating:"",
+  })
+
+  useEffect(()=>{console.log(filter.categories)},[filter])
 
   useEffect(()=>{
     getProducts();
@@ -31,8 +39,19 @@ const Products = () => {
               ["Electronics","Fashion","Books","Food"]?.map((info,index)=>{
                 return(
                   <div key={index} className="flex items-center mb-2 ml-4">
-                    <input id="default-checkbox" type="checkbox" value={info} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 "/>
-                    <label for="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 ">{info}</label>
+                    <input id="default-checkbox" type="checkbox" 
+                           onChange={(e)=>{
+                            if(e.target.checked){
+                              setFilter({...filter,categories:[...filter.categories,info]})
+                            }else{
+                              setFilter((prevFilter) => ({
+                                ...prevFilter,
+                                categories: prevFilter.categories.filter(category => category !== info),
+                              }));
+                            }
+                          }} 
+                           value={info} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 "/>
+                    <label  className="ms-2 text-sm font-medium text-gray-900 ">{info}</label>
                   </div>
                 )})
             }
@@ -46,7 +65,7 @@ const Products = () => {
               [5,4,3,2,1]?.map((info,index)=>{
                 return(
                   <div key={index} className="flex items-center mb-1 ml-4">
-                      <label for="default-checkbox" className="ms-2 text-sm font-medium text-gray-900 ">
+                      <label  className="ms-2 text-sm font-medium text-gray-900 ">
                         <div className="flex">
                           {
                             Array.apply(null, Array(info)).map((item,index)=>{
@@ -164,64 +183,3 @@ const Products = () => {
 };
 
 export default Products;
-
-
-// <div className="laptop:w-[100%] laptop:h-[calc(100vh_-_60px)] laptop:p-[10px] laptop:flex laptop:border-3 laptop:border-gray-800
-//                    mobile:w-[100%] mobile:h-[calc(100vh_-_60px)] mobile:p-[2px] ">
-//         <div className="laptop:w-[250px] laptop:h-[100%] laptop:border-3 laptop:border-red-800
-//                         mobile:hidden"></div>
-//         {
-//         !products ? 
-//         <div className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] laptop:flex laptop:justify-center laptop:items-center
-//                        "> <Loading/> </div> :
-//         <div className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] laptop:overflow-y-scroll laptop:p-1 
-//                         mobile:w-[100%] mobile:h-[100%] mobile:overflow-y-scroll mobile:p-1 ">
-//             {
-//                 products?.map((product,index)=>{
-//                    return (
-//                    <div className="laptop:w-[100%] laptop:h-[250px] laptop:grid laptop:grid-cols-[400px_calc((100%_-_400px))] laptop:mt-2
-//                                           mobile:w-[100%] mobile:h-[250px] border border-green-700 mobile:grid mobile:grid-cols-[100px_calc((100%_-_100px))] mobile:mt-2 mobile:border-b-[1px] mobile:border-gray-300" key={index}>
-//                         <div className="laptop:w-[400px] laptop:h-[250px] laptop:relative
-//                                         mobile:w-[100px] mobile:h-[250px] mobile:flex mobile:items-center ">
-//                             <div className="mobile:w-[100%] mobile:h-[155px] mobile:relative 
-//                                             ">
-//                                 <Link
-//                                 href={`/product/${product?._id}`}>
-//                                   <Image
-//                                       className="mobile:py-5 px-2"
-//                                       src={
-//                                         product && product?.images && product?.images.length > 0
-//                                           ? product?.images[0].url
-//                                           : "/images/default_product.png"
-//                                       }
-//                                       alt="product anme"
-//                                       fill={true}
-//                                     />
-//                                   </Link>
-//                             </div>
-//                         </div>
-//                         <div className="ml-2
-//                                         mobile:h-[250px] mobile:w-[100%-100px] mobile:ml-[2px]">
-//                             <div className="mobile:h-[25px] mobile:w-[100%]  mobile:text-ellipsis mobile:overflow-clip">
-//                               <Link
-//                                 href={`/product/${product?._id}`}
-//                               >
-//                                     <p className="text-lg font-bold hover:text-blue-600 text-[#020617]  mobile:text-ellipsis mobile:overflow-clip">{product?.name}</p>
-//                               </Link>
-//                             </div>
-//                             <div className="text-[#020617]
-//                                             mobile:h-[25px] mobile:text-[#020617] ">Rating  <span >{product?.ratings} &#9733; </span></div>
-//                             <div className="text-xl font-bold text-[#020617]
-//                                             mobile:h-[25px] mobile:text-[#020617]">&#x20b9; {product?.price}</div>
-//                             <div className="italic  text-[#020617]
-//                                             mobile:h-[125px] mobile:text-[#020617] border border-red-800  mobile:overflow-hidden"><span className="w-[100%] h-[100%] overflow-hidden">{product?.description}</span></div>
-//                         </div>
-//                    </div>)
-//                 })
-//             }
-            
-//         </div>
-//         }
-//     </div>
-
-
