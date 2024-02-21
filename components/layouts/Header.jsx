@@ -189,18 +189,20 @@ const Header = () => {
         </div>
 
         {/* SEARCH */}
-        <div className="h-[30px] w-[100%] flex  cursor-pointer  p-[2px]">
-           <div className="w-[30px] h-[100%] flex items-center rounded-l-[10px] bg-[#e8eaf4]">
-            <Image
-               className="h-[calc(100%_-_10px)] w-[calc(100%_-_10px)] rounded-l-[10px] "
-               src={"/images/search.svg"}
-               width={5}
-               height={5}
-               alt="search"/>     
-           </div>
-           <div className="w-[calc(100%_-_30px)] h-[100%] flex items-center  rounded-r-[10px] bg-[#e8eaf4]">
-              <input  type="text" placeholder="Search Your favorite Product" className="h-[100%] w-[100%] rounded-r-[10px] focus:outline-none bg-[#e8eaf4]"/>
-           </div>
+        <div className="h-[30px] w-[100%] flex justify-center">
+          <div className="h-[30px] w-[calc(100%_-_20px)] flex  cursor-pointer  p-[2px]">
+            <div className="w-[30px] h-[100%] flex items-center rounded-l-[10px] bg-[#e8eaf4]">
+              <Image
+                className="h-[calc(100%_-_10px)] w-[calc(100%_-_10px)] rounded-l-[10px] "
+                src={"/images/search.svg"}
+                width={5}
+                height={5}
+                alt="search"/>     
+            </div>
+            <div className="w-[calc(100%_-_30px)] h-[100%] flex items-center  rounded-r-[10px] bg-[#e8eaf4]">
+                <input  type="text" placeholder="Search Your favorite Product" className="h-[100%] w-[100%] rounded-r-[10px] focus:outline-none bg-[#e8eaf4]"/>
+            </div>
+          </div>
         </div>
     </div>
     </>
