@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductContext from "@/context/ProductContext";
 import Loading from "@/components/layouts/Loading";
+import AnimatedLoad from "@/components/layouts/AnimatedLoad";
 
 const Products = () => { 
   
@@ -131,6 +132,8 @@ const Products = () => {
             </div>
         </div>
         {/* Products */}
+      {loading ? <AnimatedLoad/> :
+
         <div 
           className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] overflow-y-scroll no-scrollbar
                       mobile:w-[100%] mobile:h-[100%] ">
@@ -207,6 +210,8 @@ const Products = () => {
                    })
                 }
         </div>
+
+        }
     </div>
 
     

@@ -34,6 +34,7 @@ export const Upload_Image = async (file,id) => {
 
   for(let i=0;i<Files.length;i++){
     const result = await cloudinary.v2.uploader.upload(Files[i],{folder:"ECOM/Products"});
+    console.log("result",result)
     if(result)
     {
       urls.push( {
