@@ -83,7 +83,6 @@ export const searchProduct = async(searchWord) =>{
   const keywords = searchWord.split(' ');
   const regex = new RegExp(keywords.join('|'), 'i');
   const products = await Product.find({name:regex});
-  if(Array.isArray(products))
     if(products.length!==null){
         return products;
     }
@@ -96,7 +95,6 @@ export const filterProduct = async(type,data)=>{
   
   if(type==="categories"){
     const products = await Product.find({ category: { $in: data } });
-    if(Array.isArray(products))
     if(products.length!==null){
         return products;
     }
@@ -104,7 +102,6 @@ export const filterProduct = async(type,data)=>{
     return null;
   }else if(type==="price"){
     const products = await Product.find({ price: { $gt: data.min, $lt: data.max } });
-    if(Array.isArray(products))
     if(products.length!==null){
         return products;
     }

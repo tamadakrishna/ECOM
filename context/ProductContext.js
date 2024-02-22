@@ -97,7 +97,7 @@ const createProduct = async (product) => {
             }
           });
 
-          if(statusText==="success")
+          if(statusText=="success")
           setProducts(data)
         }
         if(type==="price"){
@@ -110,7 +110,7 @@ const createProduct = async (product) => {
             }
           });
 
-          if(statusText==="success")
+          if(statusText=="success")
           setProducts(data)
         }
     }catch(error){
@@ -127,7 +127,7 @@ const createProduct = async (product) => {
           name:searchTerm
         }
       }); 
-    if(statusText==="success")
+    if(statusText=="success")
     setProducts(data)
     }
     catch(error){
