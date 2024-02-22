@@ -1,8 +1,8 @@
 const nextConfig = {
    
     env:{
-        API_URL: "http://localhost:3000",
-        //  API_URL: "https://proecommerce.vercel.app",
+        // API_URL: "http://localhost:3000",
+         API_URL: "https://proecommerce.vercel.app",
 
         // DB_URI:"mongodb+srv://admin:admin@cluster0.uskgjtq.mongodb.net/?retryWrites=true&w=majority",
         NEXTAUTH_SECRET: "865f38a9950699794e81fcd91584f8612f5a42aec5b7bbed48c1683832c519c22c836c91fe1afc0330a2ea02dea0a31a1f509dfde1a780ce82ec0eb1",
