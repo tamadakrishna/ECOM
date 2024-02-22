@@ -122,13 +122,13 @@ const createProduct = async (product) => {
 
   const searchProduct = async (searchTerm)=>{
     try{
-      const { data } = await axios.get(`${process.env.API_URL}/api/products/search/`,
+      const { data, statusText } = await axios.get(`${process.env.API_URL}/api/products/search/`,
       {
         params:{
           name:searchTerm
         }
-      });
-    if(data)
+      }); 
+    if(statusText!=="not found")
     setProducts(data)
     }
     catch(error){

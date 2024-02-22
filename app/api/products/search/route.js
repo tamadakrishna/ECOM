@@ -9,6 +9,6 @@ export async function GET(request,response) {
     if(Products)
     return NextResponse.json(Products)
 
-    return NextResponse.json({message:"Not Found"})
+    return NextResponse.json({message:"Not Found"},{statusText:'not found'})
 
 }
