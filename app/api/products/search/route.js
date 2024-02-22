@@ -6,7 +6,7 @@ export async function GET(request,response) {
 
     const Products = await searchProduct(name)
 
-    if(Products.length!==null)
+    if(Products)
     return NextResponse.json(Products,{statusText:'success'})
 
     return NextResponse.json({message:"Not Found"},{statusText:'failed'})

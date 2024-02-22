@@ -83,7 +83,7 @@ export const searchProduct = async(searchWord) =>{
   const keywords = searchWord.split(' ');
   const regex = new RegExp(keywords.join('|'), 'i');
   const products = await Product.find({name:regex});
-    if(products.length!==null){
+    if(products){
         return products;
     }
   
