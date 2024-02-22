@@ -19,6 +19,7 @@ export const registerUser = async (req, res) => {
 };
 
 export const getUsers = async (req, res) => {
+  dbConnect();
 
   const users = await User.find({});
 
@@ -26,6 +27,7 @@ export const getUsers = async (req, res) => {
 };
 
 export const deleteUser = async (req, res) => {
+  dbConnect();
 
   let user = await User.findById(req);
 
@@ -55,6 +57,7 @@ export const verifyUser = async (email,password) =>{
 }
 
 export const getUser = async(email) => {
+  dbConnect();
 
   let user = await User.findOne({email:email})
   if(!user)
