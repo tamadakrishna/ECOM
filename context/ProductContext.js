@@ -97,7 +97,7 @@ const createProduct = async (product) => {
             }
           });
 
-          if(statusText!=="not found")
+          if(statusText==="success")
           setProducts(data)
         }
         if(type==="price"){
@@ -110,12 +110,11 @@ const createProduct = async (product) => {
             }
           });
 
-          if(statusText!=="not found")
+          if(statusText==="success")
           setProducts(data)
         }
     }catch(error){
-      toast.error(error)
-
+      console.log(error)
     }
       return;
   }
@@ -128,11 +127,11 @@ const createProduct = async (product) => {
           name:searchTerm
         }
       }); 
-    if(statusText!=="not found")
+    if(statusText==="success")
     setProducts(data)
     }
     catch(error){
-      toast.error(error)
+      console.log("error",error)
     }
 
     return;

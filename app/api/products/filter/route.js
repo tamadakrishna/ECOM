@@ -10,10 +10,10 @@ export async function GET(request,response) {
     
         const Products = await filterProduct(type,info)
     
-        if(Products)
-        return NextResponse.json(Products)
+        if(Products.length!==null)
+        return NextResponse.json(Products,{statusText:"success"})
     
-        return NextResponse.json({message:"Not Found"},{statusText:"not found"})
+        return NextResponse.json({message:"Not Found"},{statusText:"failed"})
     }
     if(type==="price"){
         const min = request.nextUrl.searchParams.get('min');
@@ -21,10 +21,10 @@ export async function GET(request,response) {
     
         const Products = await filterProduct(type,{min:min,max:max})
     
-        if(Products)
-        return NextResponse.json(Products)
+        if(Products.length!==null)
+        return NextResponse.json(Products,{statusText:'success'})
     
-        return NextResponse.json({message:"Not Found"},{statusText:"not found"})
+        return NextResponse.json({message:"Not Found"},{statusText:"failed"})
     }
     
 
