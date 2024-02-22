@@ -22,10 +22,10 @@ const Profile = () => {
       {/* Disable it for admin */}
 
         <div className="w-[100%] h-[35px] flex items-center ">
-          <span className="text-[#242222] font-semibold font-Poppins text-[20px]">Hi {user?.name}</span>
+          <span className=" text-[#39407a] text-[20px] ml-1 mb-2 font-Poppins font-semibold">Your Saved Addresses</span>
         </div>
         
-        <div className="w-[100%] h-[calc(100%_-_35px)] overflow-y-scroll  ">
+        <div className="w-[100%] h-[calc(100%_-_35px)] overflow-y-scroll no-scrollbar ">
         {
               address?.map((address,index)=>{
                 return (

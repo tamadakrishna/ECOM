@@ -14,6 +14,7 @@ export default function UserMenu({user}) {
     const logoutHandler = () => {
       signOut();
       toast.success("Successfully logged out..")
+      localStorage.clear();
     };
 
     const UserRoutes = [
@@ -157,12 +158,13 @@ export default function UserMenu({user}) {
                     (UserRoutes?.map((info,index)=>{
                       return(
                         <div key={index}
-                            className="w-[100%] h-[40px] flex justify-center items-center bg-white hover:bg-blue-100 hover:text-blue-500 rounded-[1px] border-[1px] border-gray-500">
+                                  className={`w-[100%] h-[40px] flex justify-center items-center ${ index%2==0 ? "bg-[#78829B]" : "bg-[#6A758F]"} hover:bg-blue-100 hover:text-blue-500 rounded-[1px] `}>
+
                           <Link
                             href={{ pathname: info?.route, query: { ...user} }}
                             onClick={() => setIsNavOpen(false)}
                             className="w-[140px] h[100%]  ">
-                            {info?.name}
+                            <span className=" text-center text-[#CACCDD] font-Poppins text-[15px] font-semibold">{info?.name}</span>
                           </Link>
                         </div>
                       )

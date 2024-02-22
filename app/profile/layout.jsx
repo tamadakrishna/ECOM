@@ -34,7 +34,7 @@ export default function AdminLayout({ children }) {
 
       {/* Large Screen */}
       <div className="w-[100vw] h-[calc(100vh_-_60px)] flex bg-gray-100 mobile:p-[3px] large_screen:hidden">
-        <div className="w-[250px] h-[100%] border border-r-gray-800 ">
+        <div className="w-[250px] h-[100%]  bg-[#41415B]">
           <UserMenu user={user}/>
         </div>
         <div className="w-[calc(100%_-_250px)] h-[100%] ">

@@ -77,3 +77,34 @@ export const updateProduct= async(id,info) => {
 
   return {message:"error"}
 }
+
+export const searchProduct = async(searchWord) =>{
+  dbConnect();
+  const keywords = searchWord.split(' ');
+  const regex = new RegExp(keywords.join('|'), 'i');
+  const products = await Product.find({name:regex});
+
+  if(products.length>0)
+  return products;
+  
+  return null;
+}
+
+export const filterProduct = async(type,data)=>{
+  dbConnect();
+  
+  if(type==="categories"){
+    const products = await Product.find({ category: { $in: data } });
+    if(products.length>0)
+    return products;
+
+    return null;
+  }else if(type==="price"){
+    const products = await Product.find({ price: { $gt: data.min, $lt: data.max } });
+    if(products.length>0)
+    return products;
+
+    return null;
+  }
+ return;
+}

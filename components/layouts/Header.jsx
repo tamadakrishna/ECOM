@@ -6,11 +6,14 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import AuthContext from "@/context/AuthContext";
 import CartContext from "@/context/CartContext";
+import ProductContext from "@/context/ProductContext";
+import queryString from 'query-string';
 
 const Header = () => {
   const [search, setSearch] = useState('');
   const { user, setUser } = useContext(AuthContext);
   const { cart } = useContext(CartContext);
+  const {searchProduct} = useContext(ProductContext)
 
   const { data } = useSession();
 
@@ -20,10 +23,12 @@ const Header = () => {
     }
   }, [data]);
 
-  const Filter = () =>{
-    console.log("search",search)
+  const SearchFilter = () =>{
+    searchProduct(search.trim())
     return;
   }
+
+ 
 
 
   return (
@@ -38,7 +43,7 @@ const Header = () => {
               <Link
                 href="/">
                   <div className="h-[40px] w-[100px] flex items-center justify-center">
-                    <span className="font-Anta font-[400px] text-[#72A9B2] text-[30px]">ECOM</span>
+                    <span className="font-Anta font-[400px] text-[#72A9B2] text-[38px]">ECOM</span>
                   </div>
             </Link>
            </div>
@@ -58,7 +63,7 @@ const Header = () => {
                     onKeyDown={(e)=>{
                       if(e.key==="Enter")
                       {
-                        Filter();
+                        SearchFilter();
                       }
                     }}
                     type="text" 
@@ -220,7 +225,17 @@ const Header = () => {
                 alt="search"/>     
             </div>
             <div className="w-[calc(100%_-_30px)] h-[100%] flex items-center  rounded-r-[10px] bg-[#e8eaf4]">
-                <input  type="text" placeholder="Search Your favorite Product" className="h-[100%] w-[100%] rounded-r-[10px] focus:outline-none bg-[#e8eaf4]"/>
+                <input 
+                      type="text" 
+                      placeholder="Search Your favorite Product" 
+                      onChange={(e)=>{setSearch(e.target.value)}}
+                    onKeyDown={(e)=>{
+                      if(e.key==="Enter")
+                      {
+                        SearchFilter();
+                      }
+                    }}
+                      className="h-[100%] w-[100%] rounded-r-[10px] focus:outline-none bg-[#e8eaf4]"/>
             </div>
           </div>
         </div>

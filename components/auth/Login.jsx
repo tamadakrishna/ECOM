@@ -20,8 +20,8 @@ const Login = () => {
     e.preventDefault();
     setLoading(true)
     const data = await signIn("credentials", {
-      email,
-      password,
+      email:email.trim(),
+      password:password.trim(),
       redirect:false,
     });
     
@@ -29,7 +29,6 @@ const Login = () => {
     if(data.ok){
       setLoading(false)
       toast.success('Welcome Back!')
-      console.log(data)
       router.push('/')
     }else{
       setLoading(false)
@@ -64,7 +63,7 @@ const Login = () => {
             <div className="mt-2">
               <input
                 type="text"
-                placeholder="Type your email"
+                placeholder="Enter your email"
                 value={email}
                 disabled={loading}
                 onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +87,7 @@ const Login = () => {
             <div className="mt-2">
               <input
                 type="password"
-                placeholder="Type your password"
+                placeholder="Enter your password"
                 minLength={6}
                 value={password}
                 disabled={loading}

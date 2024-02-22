@@ -64,13 +64,13 @@ const Register = () => {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form className="space-y-6" onSubmit={submitHandler}>
         <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label className="block text-sm font-medium leading-6 text-gray-900">
               Full Name
             </label>
             <div className="mt-2">
               <input
                 type="text"
-                placeholder="Type your name"
+                placeholder="Enter your name"
                 disabled={loading}
                 value={info.name}
                 onChange={(e) => setInfo({...info,name:e.target.value})}
@@ -81,13 +81,13 @@ const Register = () => {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label  className="block text-sm font-medium leading-6 text-gray-900">
               Email address
             </label>
             <div className="mt-2">
               <input
                 type="text"
-                placeholder="Type your email"
+                placeholder="Enter your email"
                 disabled={loading}
                 value={info.email}
                 onChange={(e) => setInfo({...info,email:e.target.value})}
@@ -99,7 +99,7 @@ const Register = () => {
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
+              <label  className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
               
@@ -108,7 +108,7 @@ const Register = () => {
               <input
                 disabled={loading}
                 type="password"
-                placeholder="Type your password"
+                placeholder="Enter your password"
                 minLength={6}
                 value={info.password}
                 onChange={(e) => setInfo({...info,password:e.target.value})}

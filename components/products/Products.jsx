@@ -8,19 +8,34 @@ import Loading from "@/components/layouts/Loading";
 
 const Products = () => { 
   
-  const { loading, products, getProducts} = useContext(ProductContext);
+  const { loading, products, getProducts, filterProducts} = useContext(ProductContext);
   const [filter,setFilter] = useState({
     categories:[],
-    min_price:null,
-    max_price:null,
+    min_price:1,
+    max_price:1000,
     rating:"",
   })
 
-  useEffect(()=>{console.log(filter.categories)},[filter])
 
   useEffect(()=>{
     getProducts();
   },[])
+
+  useEffect(()=>{
+    if(filter.categories.length>0)
+    {
+    filterProducts("categories",filter.categories);
+    }
+    else{
+      getProducts();
+    }
+  },[filter.categories])
+
+  const priceFilter = ()=>{
+    if(filter.min && filter.max)
+    filterProducts("price",{min:filter.min,max:filter.max});
+    return;
+  }
 
 
   return (
@@ -43,7 +58,7 @@ const Products = () => {
                     <input id="default-checkbox" type="checkbox" 
                            onChange={(e)=>{
                             if(e.target.checked){
-                              setFilter({...filter,categories:[...filter.categories,info]})
+                              setFilter((prevFilter)=>({...prevFilter,categories:[...prevFilter.categories,info]}))
                             }else{
                               setFilter((prevFilter) => ({
                                 ...prevFilter,
@@ -65,13 +80,13 @@ const Products = () => {
             {
               [5,4,3,2,1]?.map((info,index)=>{
                 return(
-                  <div key={index} className="flex items-center mb-1 ml-4">
+                  <div key={index} className="flex items-center mb-1 ml-4 cursor-pointer">
                       <label  className="ms-2 text-sm font-medium text-gray-900 ">
                         <div className="flex">
                           {
                             Array.apply(null, Array(info)).map((item,index)=>{
                               return (
-                                 <span key={index} className="text-[22px] text-[#FFA51D]">&#9733;</span>
+                                 <span key={index} className="text-[22px] text-[#FFA51D] cursor-pointer">&#9733;</span>
                               )
                             })
                           }
@@ -88,16 +103,28 @@ const Products = () => {
             <div className="w-[100%] h-[60px] border-b-[1px] border-b-[#d8d5d5]">
               <div className="flex gap-3 h-[100%] mb-1 ml-4 ">
                      <div className="w-[60px] h-[35px]">
-                     <input type="number" id="min" className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
+                     <input type="number" id="min" 
+                      value={filter.min}
+                      onChange={(e)=>{
+                        setFilter((prevFilter)=>({...prevFilter,min:e.target.value}))
+                      }}
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
                       focus:border-blue-500 block w-full p-1 h-[100%] " placeholder="&#8377; Min" required />
                      </div>
                      <div className="w-[60px] h-[35px]">
-                     <input type="number" id="min" className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
+                     <input type="number" id="max" 
+                      value={filter.max}
+                      onChange={(e)=>{
+                        setFilter((prevFilter)=>({...prevFilter,max:e.target.value}))
+                      }}
+                     className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
                       focus:border-blue-500 block w-full p-1 h-[100%] " placeholder="&#8377; Max" required />
                      </div>
                      <div className="w-[40px] h-[35px]">
-                     <button type="button" id="min" className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
-                      focus:border-blue-500 block w-full p-1 h-[100%] " >Go</button>
+                     <button type="button" id="price"
+                        onClick={()=>{priceFilter()}}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-[12px] rounded-[5px] focus:ring-blue-500
+                      focus:border-blue-500 block w-full p-1 h-[100%]" >Go</button>
                      </div>
               </div>
                
@@ -141,11 +168,14 @@ const Products = () => {
                                      mobile:w-[100%] mobile:h-[100%]">
                             <div
                               className="laptop:w-[100%] laptop:h-[30px] overflow-hidden
-                                         mobile:w-[100%] mobile:h-[20px] mobile:flex mobile:items-center ">
-                                <span className="font-Mont font-[500] ml-[2px] text-[#2c2b2b]  laptop:text-[18px] 
-                                                 mobile:text-[15px]">
-                                       {product?.name}
-                                </span>
+                                         mobile:w-[100%] mobile:h-[20px] mobile:flex mobile:items-center hover:text-[#3a4383]">
+                                <Link
+                                   href={`/product/${product?._id}`}>
+                                      <span className="font-Mont font-[500] ml-[2px] text-[#2c2b2b] hover:text-[#6161d8] laptop:text-[18px] 
+                                                      mobile:text-[15px]">
+                                            {product?.name}
+                                      </span>
+                                </Link>
                             </div>
                             <div
                               className="laptop:w-[100%] laptop:h-[25px] flex items-center 

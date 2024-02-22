@@ -17,7 +17,7 @@ const UserOrders = () => {
   return (
     <div className="h-[100%] w-[100%] px-[5px]">
         <div className="w-[100%] h-[30px] ml-[5px]">
-          <h1 className="w-[100%] h-[100%] text-[#020617] text-[18px] font-semibold font-Poppins">Your Orders</h1>
+          <span className=" text-[#39407a] text-[20px] ml-1 mb-2 font-Poppins font-semibold">Your Orders</span>
         </div>
         <div className="w-[100%] h-[calc(100%_-_30px)] overflow-y-scroll no-scrollbar">        
           {

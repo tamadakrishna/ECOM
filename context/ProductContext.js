@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { createContext, useState } from "react";
+import toast from "react-hot-toast";
 
 const ProductContext = createContext();
 
@@ -84,6 +85,58 @@ const createProduct = async (product) => {
     return;
   }
 
+  const filterProducts = async (type,filter)=>{
+
+    try{
+        if(type==="categories"){
+          const { data, statusText } = await axios.get(`${process.env.API_URL}/api/products/filter/`,
+          {
+            params:{
+              type:type,
+              categories:JSON.stringify(filter)
+            }
+          });
+
+          if(statusText!=="not found")
+          setProducts(data)
+        }
+        if(type==="price"){
+          const { data, statusText } = await axios.get(`${process.env.API_URL}/api/products/filter/`,
+          {
+            params:{
+              type:type,
+              min:filter.min,
+              max:filter.max
+            }
+          });
+
+          if(statusText!=="not found")
+          setProducts(data)
+        }
+    }catch(error){
+      toast.error(error)
+
+    }
+      return;
+  }
+
+  const searchProduct = async (searchTerm)=>{
+    try{
+      const { data } = await axios.get(`${process.env.API_URL}/api/products/search/`,
+      {
+        params:{
+          name:searchTerm
+        }
+      });
+    if(data)
+    setProducts(data)
+    }
+    catch(error){
+      toast.error(error)
+    }
+
+    return;
+  }
 
   return (
     <ProductContext.Provider
@@ -95,6 +148,8 @@ const createProduct = async (product) => {
         createProduct,
         getProduct,
         getProducts,
+        searchProduct,
+        filterProducts,
         deleteProduct,
         updateProduct,
         uploadImage,
