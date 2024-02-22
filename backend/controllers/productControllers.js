@@ -27,6 +27,7 @@ export const getProduct = async (req, res) => {
 };
 
 export const Upload_Image = async (file,id) => {
+  dbConnect();
   
   const Files = await Store(file);
   let urls = [];
