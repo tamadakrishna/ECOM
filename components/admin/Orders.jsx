@@ -18,7 +18,21 @@ const Orders = () => {
     {
       title:"Order ID",
       id:"orderId",
-      type:"Link"
+      type:"actions",
+      Component:({id,info})=>{
+        return (
+          <div >
+             <Link
+                      className="w-[100%] h-[100%] flex justify-center items-center"
+                    href={{
+                      pathname: '/admin/orders/orderDetails',
+                      query: { id:info?.id },
+                    }}>
+                    <span className="text-[#4c3daf] font-Poppins  text-[12px] small_screen:text-[14px]">{info?.orderId}</span>
+              </Link>     
+          </div>
+        )
+      }
     },
     {
       title:"Order Date",
@@ -42,6 +56,7 @@ const Orders = () => {
     const originalDate = new Date(order?.orderDate);
     const orderDate = originalDate.toLocaleDateString();
     return {
+      id:order?._id,
       orderId:order?.orderId,
       orderDate:orderDate,
       name:order?.customerDetails?.name,
@@ -53,79 +68,18 @@ const Orders = () => {
 
   return (
     <div className="w-[100%] h-[100%] overflow-scroll no-scrollbar">
-      <div className="min-w-[480px] h-[40px] ">
-        <span className="text-[#252424] font-Poppins font-semibold text-[18px]">All Orders</span>
+      <div className="min-w-[480px] h-[30px] mt-2">
+        <span className=" text-[#39407a] text-[20px] ml-5 mb-2 font-Poppins font-semibold">All Orders</span>
       </div>
-      <div className="min-w-[480px] h-[calc(100%_-_40px)] p-[5px] no-scrollbar">
-
-        {/* <div className="min-w-[480px] h-[35px] flex justify-between gap-[2px] border-gray-400 border-b-[1.5px]">
-
-          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-            <span className="text-[#474545] font-Poppins font-medium text-[12px] small_screen:text-[18px]">Order ID</span>
-          </div>
-
-          <div className="w-[80px] h-[30px] small_screen:w-[100px] flex justify-center items-center "> 
-            <span className="text-[#474545] font-Poppins font-medium text-[12px] small_screen:text-[18px]">Order Date</span>
-          </div>
-
-          <div className="w-[80px] h-[30px] small_screen:w-[150px] flex justify-center items-center "> 
-            <span className="text-[#474545] font-Poppins font-medium leading-[10px] text-[12px] small_screen:text-[18px]">Customer Name</span>
-          </div>
-
-          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-            <span className="text-[#474545] font-Poppins font-medium text-[12px] small_screen:text-[18px]">Status</span>
-          </div>
-
-          <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-            <span className="text-[#474545] font-Poppins font-medium text-[12px] small_screen:text-[18px]">Price</span>
-          </div>
-        </div> */}
-
-        {/* {
-          orders?.map((order,index)=>{
-            const originalDate = new Date(order?.orderDate);
-            const orderDate = originalDate.toLocaleDateString();
-
-            return(
-              <div key={index} className="min-w-[480px] h-[35px] p-[5px] flex justify-between gap-[2px] border-gray-400 border-b-[1.5px]">
-                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-                  <Link
-                      className="w-[100%] h-[100%] flex justify-center items-center"
-                    href={{
-                      pathname: '/admin/orders/orderDetails',
-                      query: { id:order?._id },
-                    }}>
-                    <span className="text-[#4c3daf] font-Poppins  text-[12px] small_screen:text-[14px]">{order?.orderId}</span>
-                    </Link>
-                  </div>
-
-                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-                    <span className="text-[#252424] font-Poppins  text-[12px] small_screen:text-[14px]">{orderDate}</span>
-                  </div>
-
-                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-                    <span className="text-[#252424] font-Poppins  text-[12px] leading-[12px] small_screen:text-[14px]">{order?.customerDetails?.name}</span>
-                  </div>
-
-                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-                    <span className="text-[#252424] font-Poppins  text-[12px] leading-[12px] small_screen:text-[14px]">{order?.orderStatus}</span>
-                  </div>
-
-                  <div className="w-[80px] h-[30px] flex justify-center items-center "> 
-                    <span className="text-[#252424] font-Poppins  text-[12px] leading-[12px] small_screen:text-[14px]">&#x20b9;{order?.summary?.estimatedTotal}</span>
-                  </div>
-                </div>);
-          })
-
-        } */}
+      <div className="min-w-[480px] h-[calc(100%_-_40px)] overflow-y-scroll p-2 no-scrollbar">
 
         <Tabular header={header} data={data}/>
         
         <div className=" flex justify-end">
           <Pagination method={getAllOrders}/>
         </div>
+
       </div>
-   
     </div>
   );
 };

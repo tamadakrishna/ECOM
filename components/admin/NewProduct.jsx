@@ -51,9 +51,7 @@ const NewProduct = () => {
 
   return (
     <section className="container h-[100%] overflow-y-scroll max-w-3xl p-6 mx-auto no-scrollbar">
-      <h1 className=" text-xl md:text-3xl font-semibold text-black mb-8">
-        Create New Product
-      </h1>
+        <span className=" text-[#39407a] text-[20px]  mb-2 font-Poppins font-semibold">Create New Product</span>
 
       <form onSubmit={submitHandler}>
         <div className="mb-4">
@@ -121,11 +119,11 @@ const NewProduct = () => {
 
         <div className="grid md:grid-cols-2 gap-x-2 mt-5">
           <div className="mb-4">
-            <label className="block mb-1 text-[#1e1d1d]"> Seller / Brand </label>
+            <label className="block mb-1 text-[#1e1d1d]"> Seller </label>
             <input
               type="text"
               className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
-              placeholder="Seller or brand"
+              placeholder="Seller"
               name="seller"
               value={seller}
               onChange={onChange}

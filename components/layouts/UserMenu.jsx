@@ -188,15 +188,7 @@ export default function UserMenu({user}) {
                       <span className=" text-center text-[#CACCDD] font-Poppins text-[15px] font-semibold"> Logout</span>
                       </div>
                   </div>
-                   {/* <div className="w-[100%] h-[40px]">
-                    <div className="w-[100%] h-[40px]">
-                      <a
-                        className="h-[100%] w-[100%] bg-white border-2 border-gray-400  text-red-800 hover:bg-red-100 hover:text-white-500 rounded-md cursor-pointer"
-                        onClick={logoutHandler}>
-                        Logout
-                      </a>
-                    </div>
-                  </div> */}
+                   
             </div>
     </div>
     </>

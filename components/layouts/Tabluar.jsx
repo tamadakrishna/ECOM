@@ -23,8 +23,14 @@ const Tabluar = ({header,data})=> {
                     data?.map((info,index)=>{
                         return(
                             <tr key={index}  className="odd:bg-white even:bg-gray-50  ">
-                                {
+                                { 
                                     header?.map((column,index)=>{
+                                        if(column.type==="actions")
+                                        return (
+                                            <td key={index} className="px-6 py-4">
+                                                <column.Component id={info?._id} info={info}/>
+                                            </td>
+                                            )
                                         return (
                                             <td key={index}  className="px-6 py-4">
                                                 {info?.[column?.id]}

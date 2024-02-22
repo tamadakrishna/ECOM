@@ -27,6 +27,7 @@ const Products = () => {
     <div
       className="laptop:w-[100%] laptop:h-[calc(100vh_-_60px)] laptop:flex laptop:p-[10px]
                  mobile:w-[100%] mobile:h-[calc(100dvh_-_60px)]">
+        {/* Sidebar */}
         <div
           className="laptop:w-[250px] laptop:h-[100%] border 
                      mobile:hidden">
@@ -102,6 +103,7 @@ const Products = () => {
                
             </div>
         </div>
+        {/* Products */}
         <div 
           className="laptop:w-[calc(100%_-_250px)] laptop:h-[100%] overflow-y-scroll no-scrollbar
                       mobile:w-[100%] mobile:h-[100%] ">

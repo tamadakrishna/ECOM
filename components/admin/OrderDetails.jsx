@@ -18,9 +18,9 @@ function OrderDetails({id}) {
   return (
     <div className="w-[100%] h-[100%] overflow-scroll ">
         <div className='w-[100%] h-[40px]'>
-            <span className="text-[#252424] font-Poppins font-semibold text-[18px]">Order Overview</span>
+            <span className=" text-[#39407a] text-[20px] ml-5 mb-2 font-Poppins font-semibold">Order Overview</span>
         </div>
-        <div className="w-[100%] h-[calc(100%_-_40px)] overflow-y-scroll ">
+        <div className="w-[100%] h-[calc(100%_-_40px)] overflow-y-scroll p-2 ">
 
             <div className='w-[100%] h-[35px] flex border-gray-400 border-b-[1.5px]'>
                 <div className='w-[120px] h-[35px] '>
@@ -154,13 +154,21 @@ function OrderDetails({id}) {
                         </div>
                     </div>
 
-                    <div className="mobile:w-[100%] mobile:h-[40px] mobile:flex mobile:items-center mobile:px-[10px]">
-                  <div className="mobile:w-[100%] mobile:h-[30px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
-                        onClick={(e)=>{ 
-                            router.push('/admin/orders')
-                          }}>
-                        <span className="text-[#020617] cursor-pointer">Back</span>
+                    <div className="mobile:w-[100%] mobile:h-[40px] mobile:flex mobile:items-center mobile:px-[10px] small_screen:hidden">
+                        <div className="mobile:w-[100%] mobile:h-[30px] cursor-pointer bg-yellow-400 rounded-[5px] mobile:flex mobile:justify-center mobile:items-center"
+                                onClick={(e)=>{ 
+                                    router.push('/admin/orders')
+                                }}>
+                                <span className="text-[#020617] cursor-pointer">Back</span>
+                        </div>
                   </div>
+                  <div className="w-[100%] h-[40px] flex items-center justify-center  large_screen:hidden mt-2">
+                        <div className="w-[350px] h-[40px] cursor-pointer bg-yellow-400 rounded-[5px] flex justify-center items-center"
+                                onClick={(e)=>{ 
+                                    router.push('/admin/orders')
+                                }}>
+                                <span className="text-[#020617] cursor-pointer">Back</span>
+                        </div>
                   </div>
             
         </div>
