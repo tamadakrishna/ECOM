@@ -8,7 +8,7 @@ const Store = async (file)=>{
     
   const buffer = Buffer.from(await file.arrayBuffer());
   const uploadFolder = `/uploads/`;
-  const uploadDirectory = join(process.cwd(), "/tmp/public", uploadFolder);
+  const uploadDirectory = join(process.cwd(), "tmp/public", uploadFolder);
 
   try {
     await stat(uploadDirectory);
@@ -38,7 +38,7 @@ const Store = async (file)=>{
 
     let List = [];
     for (const file of fileList) {
-        const name = `${'tmp/public/uploads/'}${file}`
+        const name = `${'temp/public/uploads/'}${file}`
         List.push(name);
     }
     return List;
@@ -47,7 +47,7 @@ const Store = async (file)=>{
 const FlushFiles = async () => {
 
   const uploadFolder = `/uploads/`;
-  const uploadDirectory = join(process.cwd(), "tmp/public", uploadFolder);
+  const uploadDirectory = join(process.cwd(), "temp/public", uploadFolder);
 
   fs.readdir(uploadDirectory, (err, files) => {
     if (err) throw err;
