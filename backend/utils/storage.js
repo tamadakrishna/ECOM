@@ -8,13 +8,13 @@ const Store = async (file)=>{
     
   const buffer = Buffer.from(await file.arrayBuffer());
   const uploadFolder = `/uploads/`;
-  const uploadDirectory = join(process.cwd(), "public", uploadFolder);
+  const uploadDirectory = join(process.cwd(), "/tmp/public", uploadFolder);
 
   try {
     await stat(uploadDirectory);
   } catch (e) {
     if (e.code === "ENOENT") {
-      await mkdir(uploadDirectory, { recursive: true });
+      await fs.promises.mkdir(uploadDirectory, { recursive: true });
     } else {
       console.error(
         "Error while trying to create directory when uploading a file\n",
