@@ -8,7 +8,10 @@ import toast from "react-hot-toast";
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState({
+    data:[],
+    count:0
+  });
   const [productDetails, setProductDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,11 +31,18 @@ export const ProductProvider = ({ children }) => {
     return;
 }
 
-const getProducts = async ()=>{
+const getProducts = async (page=1)=>{
   setLoading(true)
   try{
-    const { data } = await axios.get(`${process.env.API_URL}/api/products/`);
-    setProducts(data);
+    const { data } = await axios.get(`${process.env.API_URL}/api/products/`, {
+      params:{
+        page:page,
+      }
+    });
+    setProducts({
+      data:data.products,
+      count:data.count
+    });
   }
   catch(error){
     setError(error.response)
@@ -43,7 +53,7 @@ const getProducts = async ()=>{
 
 const createProduct = async (product) => {
   const { data } = await axios.post(
-    `${process.env.API_URL}/api/admin/products`,
+    `${process.env.API_URL}/api/admin/products/`,
     product
   );
 
@@ -97,8 +107,12 @@ const createProduct = async (product) => {
             }
           });
 
-          if(statusText=="success")
-          setProducts(data)
+          if(statusText=="success"){
+            setProducts({
+              data:data.products,
+              count:data.count
+            })
+          }
         }
         if(type==="price"){
           const { data, statusText } = await axios.get(`${process.env.API_URL}/api/products/filter/`,
@@ -110,8 +124,12 @@ const createProduct = async (product) => {
             }
           });
 
-          if(statusText=="success")
-          setProducts(data)
+          if(statusText=="success"){
+            setProducts({
+              data:data.products,
+              count:data.count
+            })
+          }
         }
     }catch(error){
       console.log(error)
@@ -128,7 +146,10 @@ const createProduct = async (product) => {
         }
       }); 
     if(statusText=="success")
-    setProducts(data)
+        setProducts({
+          data:data.products,
+          count:data.count
+        })
     }
     catch(error){
       console.log("error",error)

@@ -6,8 +6,8 @@ export async function GET(request,response) {
 
     const Products = await searchProduct(name)
 
-    if(Products)
-    return NextResponse.json(Products,{statusText:'success'})
+        if(Products.count>0)
+        return NextResponse.json({...Products},{statusText:"success"})
 
     return NextResponse.json({message:"Not Found"},{statusText:'failed'})
 

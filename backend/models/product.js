@@ -30,11 +30,9 @@ const productSchema = new mongoose.Schema({
     enum: {
       values: [
         "Electronics",
-        "Cameras",
-        "Laptops",
-        "Accessories",
-        "Headphones",
-        "Sports",
+        "Fashion",
+        "Books",
+        "Food",
       ],
       message: "Please select correct category",
     },

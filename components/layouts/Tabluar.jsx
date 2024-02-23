@@ -20,7 +20,7 @@ const Tabluar = ({header,data})=> {
             </thead>
             <tbody>
                 {
-                    data?.map((info,index)=>{
+                    Array.isArray(data) && data?.map((info,index)=>{
                         return(
                             <tr key={index}  className="odd:bg-white even:bg-gray-50  ">
                                 { 

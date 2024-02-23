@@ -5,35 +5,36 @@ import Image from "next/image";
 import Link from "next/link";
 import ProductContext from "@/context/ProductContext";
 import AnimatedLoad from "@/components/layouts/AnimatedLoad";
+import Pagination from "@/components/layouts/Pagination";
 
-const Products = () => { 
+const Products = () => {
+  const [page, setPage] = useState(1);
   
   const { loading, products, getProducts, filterProducts} = useContext(ProductContext);
-  const [filter,setFilter] = useState({
+  const [filters,setFilter] = useState({
     categories:[],
     min_price:1,
     max_price:1000,
     rating:"",
   })
 
+  useEffect(()=>{
+    getProducts(page);
+  },[page])
 
   useEffect(()=>{
-    getProducts();
-  },[])
-
-  useEffect(()=>{
-    if(filter.categories.length>0)
-    {
-    filterProducts("categories",filter.categories);
+    if(filters?.categories.length>0){
+      filterProducts("categories",filters.categories)
     }
     else{
-      getProducts();
+      getProducts(page)
     }
-  },[filter.categories])
+  },[filters.categories])
+
 
   const priceFilter = ()=>{
-    if(filter.min && filter.max)
-    filterProducts("price",{min:filter.min,max:filter.max});
+    if(filters.min && filters.max)
+    filterProducts("price",{min:filters.min,max:filters.max});
     return;
   }
 
@@ -58,12 +59,14 @@ const Products = () => {
                     <input id="default-checkbox" type="checkbox" 
                            onChange={(e)=>{
                             if(e.target.checked){
-                              setFilter((prevFilter)=>({...prevFilter,categories:[...prevFilter.categories,info]}))
+                              if(!filters.categories.includes(e.target.value)){
+                                setFilter((prev)=>({...prev,categories:[...prev.categories,e.target.value]}))
+                              }
                             }else{
-                              setFilter((prevFilter) => ({
-                                ...prevFilter,
-                                categories: prevFilter.categories.filter(category => category !== info),
-                              }));
+                              const updated = filters.categories.filter((info)=>{
+                                return info!==e.target.value
+                              })
+                              setFilter((prev)=>({...prev,categories:[...updated]}))
                             }
                           }} 
                            value={info} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500  focus:ring-2 "/>
@@ -104,7 +107,7 @@ const Products = () => {
               <div className="flex gap-3 h-[100%] mb-1 ml-4 ">
                      <div className="w-[60px] h-[35px]">
                      <input type="number" id="min" 
-                      value={filter.min}
+                      value={filters.min}
                       onChange={(e)=>{
                         setFilter((prevFilter)=>({...prevFilter,min:e.target.value}))
                       }}
@@ -113,7 +116,7 @@ const Products = () => {
                      </div>
                      <div className="w-[60px] h-[35px]">
                      <input type="number" id="max" 
-                      value={filter.max}
+                      value={filters.max}
                       onChange={(e)=>{
                         setFilter((prevFilter)=>({...prevFilter,max:e.target.value}))
                       }}
@@ -138,7 +141,7 @@ const Products = () => {
                       mobile:w-[100%] mobile:h-[100%] ">
            
                 {
-                   products?.map((product,index)=>{
+                   products?.data?.map((product,index)=>{
                     return (
                       <div  key={index}
                         className="laptop:w-[100%] laptop:h-[250px] laptop:grid laptop:grid-cols-[400px_calc((100%_-_400px))] border-b-[1px] border-gray-300
@@ -208,6 +211,12 @@ const Products = () => {
                     )
                    })
                 }
+
+          {/* Pagination */}
+          <div className="w-[100%] mt-1 flex justify-end">
+           <Pagination page={page} set={setPage} totalDocument={products.count} documentsPerPage={4}/> 
+          </div>
+
         </div>
 
         }

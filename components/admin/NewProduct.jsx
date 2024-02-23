@@ -26,13 +26,6 @@ const NewProduct = () => {
     category: categories[0],
   });
 
-  const { name, description, seller, price, stock, category } = product;
-
-  const onChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
-  };
-
-
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -61,8 +54,8 @@ const NewProduct = () => {
             className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
             placeholder="Product name"
             name="name"
-            value={name}
-            onChange={onChange}
+            value={product?.name}
+            onChange={(e)=>{setProduct({...product, name:e.target.value})}}
             required
           />
         </div>
@@ -74,8 +67,8 @@ const NewProduct = () => {
             className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
             placeholder="Product description"
             name="description"
-            value={description}
-            onChange={onChange}
+            value={product?.description}
+            onChange={(e)=>{setProduct({...product, description:e.target.value})}}
             required
           ></textarea>
         </div>
@@ -90,8 +83,8 @@ const NewProduct = () => {
                   className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="0.00"
                   name="price"
-                  value={price}
-                  onChange={onChange}
+                  value={product?.price}
+                   onChange={(e)=>{setProduct({...product, price:e.target.value})}}
                   required
                 />
               </div>
@@ -103,8 +96,8 @@ const NewProduct = () => {
               <select
                 className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                 name="category"
-                value={category}
-                onChange={onChange}
+                value={product?.category}
+                onChange={(e)=>{setProduct({...product, category:e.target.value})}}
                 required
               >
                 {categories.map((category) => (
@@ -125,8 +118,8 @@ const NewProduct = () => {
               className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
               placeholder="Seller"
               name="seller"
-              value={seller}
-              onChange={onChange}
+              value={product?.seller}
+              onChange={(e)=>{setProduct({...product, seller:e.target.value})}}
               required
             />
           </div>
@@ -140,8 +133,8 @@ const NewProduct = () => {
                   className="relative m-0 placeholder:text-[#3a3939] w-full block flex-auto rounded border border-solid border-neutral-300  bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6]  outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none"
                   placeholder="0"
                   name="stock"
-                  value={stock}
-                  onChange={onChange}
+                  value={product?.stock}
+                  onChange={(e)=>{setProduct({...product, stock:e.target.value})}}
                   required
                 />
               </div>
