@@ -14,7 +14,7 @@ const Store = async (file)=>{
     await stat(uploadDirectory);
   } catch (e) {
     if (e.code === "ENOENT") {
-      await fs.promises.mkdir(uploadDirectory, { recursive: true });
+      await mkdir(uploadDirectory, { recursive: true });
     } else {
       console.error(
         "Error while trying to create directory when uploading a file\n",
@@ -38,7 +38,7 @@ const Store = async (file)=>{
 
     let List = [];
     for (const file of fileList) {
-        const name = `${'public/uploads/'}${file}`
+        const name = `${'tmp/public/uploads/'}${file}`
         List.push(name);
     }
     return List;
@@ -47,7 +47,7 @@ const Store = async (file)=>{
 const FlushFiles = async () => {
 
   const uploadFolder = `/uploads/`;
-  const uploadDirectory = join(process.cwd(), "public", uploadFolder);
+  const uploadDirectory = join(process.cwd(), "tmp/public", uploadFolder);
 
   fs.readdir(uploadDirectory, (err, files) => {
     if (err) throw err;
